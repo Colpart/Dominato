@@ -31,61 +31,95 @@ public class Plateau
 		return true;
 	}
 	
-	public boolean positionEstlibre(int x, int y)
+	public boolean positionExiste(int x, int y, boolean horizontal)
 	{
-		if (x >= 0 && y >= 0 && x < this.getTaille() && y < this.getTaille())
-			if (this.get(x, y).getCouleur().equals(Couleur.VIDE))
+		if (horizontal)
+		{
+			if (x >= 0 && y >= 0 && x+3 < this.getTaille() && y+1 < this.getTaille())
 				return true;
+		}
+		else
+		{
+			if (x >= 0 && y >= 0 && x+1 < this.getTaille() && y+3 < this.getTaille())
+				return true;
+		}
 		
 		return false;
 	}
 	
 	public boolean positionEstLibre(int x, int y, boolean horizontal)
 	{
-		if (horizontal && x >= 0 && y >= 0 && x+3 < this.getTaille() && y+1 < this.getTaille())
-		{
-			for (int i = x; i <= x+3; i++)
-				for (int j = y; j <= y+1; j++)
-					if (!this.get(i, j).getCouleur().equals(Couleur.VIDE))
-						return false;
+		if (this.positionExiste(x, y, horizontal))
+			if (horizontal)
+			{
+				for (int i = x; i <= x+3; i++)
+					for (int j = y; j <= y+1; j++)
+						if (!this.get(i, j).getCouleur().equals(Couleur.VIDE))
+							return false;
 			
-			return true;
-		}
-		else if (!horizontal && x >= 0 && y >= 0 && x+1 < this.getTaille() && y+3 < this.getTaille())
-		{
-			for (int i = x; i <= x+1; i++)
-				for (int j = y; j <= y+3; j++)
-					if (!this.get(i, j).getCouleur().equals(Couleur.VIDE))
-						return false;
+				return true;
+			}
+			else
+			{
+				for (int i = x; i <= x+1; i++)
+					for (int j = y; j <= y+3; j++)
+						if (!this.get(i, j).getCouleur().equals(Couleur.VIDE))
+							return false;
 			
-			return true;
-		}
+				return true;
+			}
 		
 		return false;
 	}
 	
 	public boolean positionEstOccupee(int x, int y, boolean horizontal)
 	{
-		if (horizontal && x >= 0 && y >= 0 && x+3 < this.getTaille() && y+1 < this.getTaille())
-		{
-			for (int i = x; i <= x+3; i++)
-				for (int j = y; j <= y+1; j++)
-					if ((((i == x || i == x+2) && j == y) && (this.get(i, j).getCouleur().equals(Couleur.VIDE) || this.get(i, j).getCouleur().equals(Couleur.PLEIN))) || (!((i == x || i == x+2) && j == y) && !this.get(i, j).getCouleur().equals(Couleur.PLEIN)))
-						return false;
+		if (this.positionExiste(x, y, horizontal))
+			if (horizontal)
+			{
+				for (int i = x; i <= x+3; i++)
+					for (int j = y; j <= y+1; j++)
+						if ((i == x || i == x+2) && j == y)
+						{
+							if (this.get(i, j).getCouleur().equals(Couleur.VIDE) || this.get(i, j).getCouleur().equals(Couleur.PLEIN))
+								return false;
+						}
+						else
+						{
+							if (!this.get(i, j).getCouleur().equals(Couleur.PLEIN))
+								return false;
+						}
 			
-			return true;
-		}
-		else if (!horizontal && x >= 0 & y >= 0 && x+1 < this.getTaille() && y+3 < this.getTaille())
-		{
-			for (int i = x; i <= x+1; i++)
-				for (int j = y; j <= y+3; j++)
-					if (((i == x && (j == y || j == y+2)) && (this.get(i, j).getCouleur().equals(Couleur.VIDE) || this.get(i, j).getCouleur().equals(Couleur.PLEIN))) || (!(i == x && (j == y || j == y+2)) && !this.get(i, j).getCouleur().equals(Couleur.PLEIN)))
-						return false;
-			
-			return true;
-		}
+				return true;
+			}
+			else
+			{
+				for (int i = x; i <= x+1; i++)
+					for (int j = y; j <= y+3; j++)
+						if (i == x && (j == y || j == y+2))
+						{
+							if (this.get(i, j).getCouleur().equals(Couleur.VIDE) || this.get(i, j).getCouleur().equals(Couleur.PLEIN))
+								return false;
+						}
+						else
+						{
+							if (!this.get(i, j).getCouleur().equals(Couleur.PLEIN))
+								return false;
+						}	
+				
+				return true;
+			}
 		
 		return false;
+	}
+	
+	public boolean positionEstVide(int x, int y)
+	{
+		if (x >= 0 && y >= 0 && x < this.getTaille() && y < this.getTaille())
+			if (!this.get(x, y).getCouleur().equals(Couleur.VIDE))
+				return false;
+		
+		return true;
 	}
 	
 	public boolean coupPossible(int x, int y, boolean horizontal)
@@ -98,15 +132,20 @@ public class Plateau
 		
 		if (horizontal)
 		{
-			/* this.positionEstOccupee(x-1, y-2, true) || this.positionEstOccupee(x+1, y-2, true) || this.positionEstOccupee(x-1, y+2, true) || this.positionEstOccupee(x+1, y+2, true) || */
-			if ((this.positionEstOccupee(x-2, y-1, false) || this.positionEstLibre(x-2, y-1, false)) && (this.positionEstOccupee(x+4, y-1, false) || this.positionEstLibre(x+4, y-1, false)) && (this.positionEstOccupee(x+1, y-4, false) || this.positionEstLibre(x+1, y-4, false)) && (this.positionEstOccupee(x+1, y+2, false) || this.positionEstLibre(x+1, y+2, false)))
-				if (this.positionEstOccupee(x-2, y-1, false) || this.positionEstOccupee(x+4, y-1, false) || this.positionEstOccupee(x+1, y-4, false) || this.positionEstOccupee(x+1, y+2, false))
+			if ((this.positionEstOccupee(x+1, y-4, false) || this.positionEstOccupee(x-1, y-2, true) || this.positionEstOccupee(x+1, y-2, true) || (this.positionEstVide(x, y-1) && this.positionEstVide(x+1, y-1) && this.positionEstVide(x+2, y-1) && this.positionEstVide(x+3, y-1)))
+			&& (this.positionEstOccupee(x+1, y+2, false) || this.positionEstOccupee(x-1, y+2, true) || this.positionEstOccupee(x+1, y+2, true) || (this.positionEstVide(x, y+2) && this.positionEstVide(x+1, y+2) && this.positionEstVide(x+2, y+2) && this.positionEstVide(x+3, y+2)))
+			&& (this.positionEstOccupee(x-2, y-1, false) || (this.positionEstVide(x-1, y) && this.positionEstVide(x-1, y+1)))
+			&& (this.positionEstOccupee(x+4, y-1, false) || (this.positionEstVide(x+4, y) && this.positionEstVide(x+4, y+1))))
+				if (this.positionEstOccupee(x+1, y-4, false) || this.positionEstOccupee(x-1, y-2, true) || this.positionEstOccupee(x+1, y-2, true) || this.positionEstOccupee(x+1, y+2, false) || this.positionEstOccupee(x-1, y+2, true) || this.positionEstOccupee(x+1, y+2, true) || this.positionEstOccupee(x-2, y-1, false) || this.positionEstOccupee(x+4, y-1, false))
 					return true;
 		}
 		else
 		{
-			if ((this.positionEstOccupee(x-4, y+1, true) || this.positionEstLibre(x-4, y+1, true)) && (this.positionEstOccupee(x+2, y+1, true) || this.positionEstLibre(x+2, y+1, true)) && (this.positionEstOccupee(x-1, y-2, true) || this.positionEstLibre(x-1, y-2, true)) && (this.positionEstOccupee(x-1, y+4, true) || this.positionEstLibre(x-1, y+4, true)))
-				if (this.positionEstOccupee(x-4, y+1, true) || this.positionEstOccupee(x+2, y+1, true) || this.positionEstOccupee(x-1, y-2, true) || this.positionEstOccupee(x-1, y+4, true))
+			if ((this.positionEstOccupee(x-4, y+1, true) || this.positionEstOccupee(x-2, y-1, false) || this.positionEstOccupee(x-2, y+1, false) || (this.positionEstVide(x-1, y) && this.positionEstVide(x-1, y+1) && this.positionEstVide(x-1, y+2) && this.positionEstVide(x-1, y+3)))
+			&& (this.positionEstOccupee(x+2, y+1, true) || this.positionEstOccupee(x+2, y-1, false) || this.positionEstOccupee(x+2, y+1, false) || (this.positionEstVide(x+2, y) && this.positionEstVide(x+2, y+1) && this.positionEstVide(x+2, y+2) && this.positionEstVide(x+2, y+3)))
+			&& (this.positionEstOccupee(x-1, y-2, true) || (this.positionEstVide(x, y-1) && this.positionEstVide(x+1, y-1)))
+			&& (this.positionEstOccupee(x-1, y+4, true) || (this.positionEstVide(x, y+4) && this.positionEstVide(x+1, y+4))))
+				if (this.positionEstOccupee(x-1, y-2, true) || this.positionEstOccupee(x-2, y-1, false) || this.positionEstOccupee(x-2, y+1, false) || this.positionEstOccupee(x-1, y+4, true) || this.positionEstOccupee(x+2, y-1, false) || this.positionEstOccupee(x+2, y+1, false) || this.positionEstOccupee(x-4, y+1, true) || this.positionEstOccupee(x+2, y+1, true))
 					return true;
 		}
 		
@@ -129,28 +168,6 @@ public class Plateau
 			for (int i = x; i <= x+1; i++)
 				for (int j = y+2; j <= y+3; j++)
 					this.cases[this.getTaille()*i+j] = plein;
-		
-		/* for (int i = x; i <= x+1; i++)
-			for (int j = y; j <= y+1; j++)
-				if (this.ordre)
-					this.cases[this.taille*i+j] = domino.getMarque1();
-				else
-					this.cases[this.taille*i+j] = domino.getMarque2();
-		
-		if (this.horizontal)
-			for (int i = x+2; i <= x+3; i++)
-				for (int j = y; j <= y+1; j++)
-					if (this.ordre)
-						this.cases[this.taille*i+j] = domino.getMarque2();
-					else
-						this.cases[this.taille*i+j] = domino.getMarque1();
-		else
-			for (int i = x; i <= x+1; i++)
-				for (int j = y+2; j <= y+3; j++)
-					if (this.ordre)
-						this.cases[this.taille*i+j] = domino.getMarque2();
-					else
-						this.cases[this.taille*i+j] = domino.getMarque1(); */
 		
 		if (ordre)
 			this.cases[this.getTaille()*x+y] = domino.getMarque1();

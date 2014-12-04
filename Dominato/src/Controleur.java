@@ -1,5 +1,4 @@
 import javax.swing.SwingUtilities;
-
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -33,12 +32,12 @@ class Controleur extends MouseAdapter
 			int x = (int)event.getPoint().getX();
 			int y = (int)event.getPoint().getY();
 			
-			System.out.println("<"+x/20+", "+y/20+"> : libre = "+this.partie.positionEstLibre(x/20, y/20)+", occupée = "+this.partie.positionEstOccupee(x/20, y/20));
+			// System.out.println("<"+x/20+", "+y/20+"> : libre = "+this.partie.positionEstLibre(x/20, y/20)+", occupée = "+this.partie.positionEstOccupee(x/20, y/20));
 			
-			// if (this.partie.coupPossible(x/20, y/20))
-			if (this.partie.positionEstLibre(x/20, y/20))
+			if (this.partie.coupPossible(x/20, y/20))
 			{
 				this.partie.poseDomino(x/20, y/20);
+				this.partie.joueurSuivant();
 				this.partie.changerDomino();
 			}
 		}

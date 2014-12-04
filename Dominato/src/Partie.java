@@ -1,20 +1,46 @@
 public class Partie
 {
+	private int nbJoueurs;
+	private Joueur[] joueurs;
+	private int joueurCourant;
 	private Plateau plateau;
 	private boolean horizontal;
-	private boolean ordre;
+	private boolean sens;
 	private Domino dominoSelected;
 	private int x;
 	private int y;
 	
-	public Partie()
+	public Partie(int nbJoueurs)
 	{
+		this.nbJoueurs = nbJoueurs;
+		this.joueurs = new Joueur[nbJoueurs];
+		for (int i = 0; i < nbJoueurs; i++)
+			this.joueurs[i] = new Joueur("Joueur "+(i+1));
+		this.joueurCourant = 0;
 		this.plateau = new Plateau();
 		this.horizontal = true;
-		this.ordre = true;
+		this.sens = true;
 		this.dominoSelected = new Domino(1, Couleur.ROUGE, 2, Couleur.BLEU);
 		this.x = 0;
 		this.y = 0;
+	}
+	
+	public Joueur getJoueur(int i)
+	{
+		return this.joueurs[i];
+	}
+	
+	public Joueur getJoueurCourant()
+	{
+		return this.joueurs[this.joueurCourant];
+	}
+	
+	public void joueurSuivant()
+	{
+		if (this.joueurCourant == this.nbJoueurs-1)
+			this.joueurCourant = 0;
+		else
+			this.joueurCourant++;
 	}
 	
 	public boolean getHorizontal()
@@ -22,17 +48,17 @@ public class Partie
 		return this.horizontal;
 	}
 	
-	public boolean getOrdre()
+	public boolean getSens()
 	{
-		return this.ordre;
+		return this.sens;
 	}
 	
 	public void changerSens()
 	{
-		if (!this.ordre)
+		if (!this.sens)
 			this.horizontal = !this.horizontal;
 		
-		this.ordre = !this.ordre;
+		this.sens = !this.sens;
 	}
 	
 	public Domino getDominoSelected()
@@ -115,6 +141,6 @@ public class Partie
 	
 	public void poseDomino(int x, int y)
 	{
-		this.plateau.poseDomino(this.dominoSelected, this.horizontal, this.ordre, x, y);
+		this.plateau.poseDomino(this.dominoSelected, this.horizontal, this.sens, x, y);
 	}
 }
