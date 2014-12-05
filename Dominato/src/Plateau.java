@@ -152,6 +152,181 @@ public class Plateau
 		return false;
 	}
 	
+	public boolean coupValide(int x, int y, Domino domino, boolean horizontal, boolean sens)
+	{
+		if (this.coupPossible(x, y, horizontal))
+			if (horizontal)
+			{
+				if (this.positionEstOccupee(x+1, y-4, false))
+					if (!this.get(x+1, y-2).equals(domino.bilan()))
+						return false;
+				
+				if (this.positionEstOccupee(x+1, y+2, false))
+					if (!this.get(x+1, y+2).equals(domino.bilan()))
+						return false;
+					
+				if (this.positionEstOccupee(x-2, y-1, false))
+					if (sens)
+					{
+						if (!domino.getMarque1().equals(new Domino(this.get(x-2, y-1), this.get(x-2, y+1)).bilan()))
+							return false;
+					}
+					else
+					{
+						if (!domino.getMarque2().equals(new Domino(this.get(x-2, y-1), this.get(x-2, y+1)).bilan()))
+							return false;
+					}
+					
+				if (this.positionEstOccupee(x+4, y-1, false))
+					if (sens)
+					{
+						if (!domino.getMarque2().equals(new Domino(this.get(x+4, y-1), this.get(x+4, y+1)).bilan()))
+							return false;
+					}
+					else
+					{
+						if (!domino.getMarque1().equals(new Domino(this.get(x+4, y-1), this.get(x+4, y+1)).bilan()))
+							return false;
+					}
+					
+				if (this.positionEstOccupee(x-1, y-2, true))
+					if (sens)
+					{
+						if (!(domino.getMarque1().equals(new Domino(this.get(x-1, y-2), this.get(x+1, y-2)).bilan()) && this.get(x+1, y-2).equals(domino.bilan())))
+							return false;
+					}
+					else
+					{
+						if (!(domino.getMarque2().equals(new Domino(this.get(x-1, y-2), this.get(x+1, y-2)).bilan()) && this.get(x+1, y-2).equals(domino.bilan())))
+							return false;
+					}
+					
+				if (this.positionEstOccupee(x+1, y-2, true))
+					if (sens)
+					{
+						if (!(domino.getMarque2().equals(new Domino(this.get(x+1, y-2), this.get(x+3, y-2)).bilan()) && this.get(x+1, y-2).equals(domino.bilan())))
+							return false;
+					}
+					else
+					{
+						if (!(domino.getMarque1().equals(new Domino(this.get(x+1, y-2), this.get(x+3, y-2)).bilan()) && this.get(x+1, y-2).equals(domino.bilan())))
+							return false;
+					}
+					
+				if (this.positionEstOccupee(x-1, y+2, true))
+					if (sens)
+					{
+						if (!(domino.getMarque1().equals(new Domino(this.get(x-1, y+2), this.get(x+1, y+2)).bilan()) && this.get(x+1, y+2).equals(domino.bilan())))
+							return false;
+					}
+					else
+					{
+						if (!(domino.getMarque2().equals(new Domino(this.get(x-1, y+2), this.get(x+1, y+2)).bilan()) && this.get(x+1, y+2).equals(domino.bilan())))
+							return false;
+					}
+					
+				if (this.positionEstOccupee(x+1, y+2, true))
+					if (sens)
+					{
+						if (!(domino.getMarque2().equals(new Domino(this.get(x+1, y+2), this.get(x+3, y+2)).bilan()) && this.get(x+1, y+2).equals(domino.bilan())))
+							return false;
+					}
+					else
+					{
+						if (!(domino.getMarque1().equals(new Domino(this.get(x+1, y+2), this.get(x+3, y+2)).bilan()) && this.get(x+1, y+2).equals(domino.bilan())))
+							return false;
+					}
+				
+				return true;
+			}
+			else
+			{
+				if (this.positionEstOccupee(x-1, y-2, true))
+					if (sens)
+					{
+						if (!domino.getMarque1().equals(new Domino(this.get(x-1, y-2), this.get(x+1, y-2)).bilan()))
+							return false;
+					}
+					else
+					{
+						if (!domino.getMarque2().equals(new Domino(this.get(x-1, y-2), this.get(x+1, y-2)).bilan()))
+							return false;
+					}
+					
+				if (this.positionEstOccupee(x-1, y+4, true))
+					if (sens)
+					{
+						if (!domino.getMarque2().equals(new Domino(this.get(x-1, y+4), this.get(x+1, y+4)).bilan()))
+							return false;
+					}
+					else
+					{
+						if (!domino.getMarque1().equals(new Domino(this.get(x-1, y+4), this.get(x+1, y+4)).bilan()))
+							return false;
+					}
+					
+				if (this.positionEstOccupee(x-4, y+1, true))
+					if (!this.get(x-2, y+1).equals(domino.bilan()))
+						return false;
+						
+				if (this.positionEstOccupee(x+2, y+1, true))
+					if (!this.get(x+2, y+1).equals(domino.bilan()))
+						return false;
+					
+				if (this.positionEstOccupee(x-2, y-1, false))
+					if (sens)
+					{
+						if (!(domino.getMarque1().equals(new Domino(this.get(x-2, y-1), this.get(x-2, y+1)).bilan()) && this.get(x-2, y+1).equals(domino.bilan())))
+							return false;
+					}
+					else
+					{
+						if (!(domino.getMarque2().equals(new Domino(this.get(x-2, y-1), this.get(x-2, y+1)).bilan()) && this.get(x-2, y+1).equals(domino.bilan())))
+							return false;
+					}
+					
+				if (this.positionEstOccupee(x-2, y+1, false))
+					if (sens)
+					{
+						if (!(domino.getMarque2().equals(new Domino(this.get(x-2, y+1), this.get(x-2, y+3)).bilan()) && this.get(x-2, y+1).equals(domino.bilan())))
+							return false;
+					}
+					else
+					{
+						if (!(domino.getMarque1().equals(new Domino(this.get(x-2, y+1), this.get(x-2, y+3)).bilan()) && this.get(x-2, y+1).equals(domino.bilan())))
+							return false;
+					}
+					
+				if (this.positionEstOccupee(x+2, y-1, false))
+					if (sens)
+					{
+						if (!(domino.getMarque1().equals(new Domino(this.get(x+2, y-1), this.get(x+2, y+1)).bilan()) && this.get(x+2, y+1).equals(domino.bilan())))
+							return false;
+					}
+					else
+					{
+						if (!(domino.getMarque2().equals(new Domino(this.get(x+2, y-1), this.get(x+2, y+1)).bilan()) && this.get(x+2, y+1).equals(domino.bilan())))
+							return false;
+					}
+					
+				if (this.positionEstOccupee(x+2, y+1, false))
+					if (sens)
+					{
+						if (!(domino.getMarque2().equals(new Domino(this.get(x+2, y+1), this.get(x+2, y+3)).bilan()) && this.get(x+2, y+1).equals(domino.bilan())))
+							return false;
+					}
+					else
+					{
+						if (!(domino.getMarque1().equals(new Domino(this.get(x+2, y+1), this.get(x+2, y+3)).bilan()) && this.get(x+2, y+1).equals(domino.bilan())))
+							return false;
+					}
+					
+				return true;
+			}
+		
+		return false;
+	}
+	
 	public void poseDomino(Domino domino, boolean horizontal, boolean ordre, int x, int y)
 	{
 		Marque plein = new Marque(-1, Couleur.PLEIN);

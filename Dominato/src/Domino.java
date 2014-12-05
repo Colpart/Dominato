@@ -31,7 +31,7 @@ public class Domino
 		return this.marque2;
 	}
 	
-	public Marque getBilan()
+	public Marque bilan()
 	{
 		Marque marque;
 		

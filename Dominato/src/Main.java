@@ -1,7 +1,7 @@
 public class Main
 {
     public static void main(String[] args)
-    {
-		Fenetre fenetre = new Fenetre(new Partie(2));
+    { 	
+    	new Fenetre(new Partie(2));
     }
 }

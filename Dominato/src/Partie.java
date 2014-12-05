@@ -139,6 +139,11 @@ public class Partie
 		return this.plateau.coupPossible(x, y, this.horizontal);
 	}
 	
+	public boolean coupValide(int x, int y)
+	{
+		return this.plateau.coupValide(x, y, this.getDominoSelected(), this.horizontal, this.sens);
+	}
+	
 	public void poseDomino(int x, int y)
 	{
 		this.plateau.poseDomino(this.dominoSelected, this.horizontal, this.sens, x, y);
