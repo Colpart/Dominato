@@ -39,21 +39,11 @@ public class Marque
 	public void draw(Graphics g, int x, int y)
 	{
 		g.setColor(Color.WHITE);
-
-		/* if (this.getCouleur().equals(Couleur.ROUGE))
-			g.setColor(Color.RED);
-		else if (this.getCouleur().equals(Couleur.BLEU))
-			g.setColor(Color.BLUE);
-		else
-		g.setColor(Color.WHITE); */
-
 		g.fillRect(x, y, 39, 39);
-
-		/* if (this.getCouleur().equals(Couleur.BLANC))
-			g.setColor(Color.BLACK);
-		else
-			g.setColor(Color.WHITE); */
-
+		g.setColor(Color.BLACK);
+		g.drawLine(x+39, y, x+39, y+39);
+		g.drawLine(x, y+39, x+39, y+39);
+		
 		if (this.getCouleur().equals(Couleur.ROUGE))
 			g.setColor(Color.RED);
 		else if (this.getCouleur().equals(Couleur.BLEU))

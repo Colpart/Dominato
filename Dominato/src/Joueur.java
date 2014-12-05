@@ -21,6 +21,6 @@ public class Joueur
 	
 	public void penaliser()
 	{
-		this.score--;
+		this.score++;
 	}
 }

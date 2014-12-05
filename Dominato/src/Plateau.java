@@ -327,7 +327,7 @@ public class Plateau
 		return false;
 	}
 	
-	public void poseDomino(Domino domino, boolean horizontal, boolean ordre, int x, int y)
+	public void poserDomino(Domino domino, boolean horizontal, boolean ordre, int x, int y)
 	{
 		Marque plein = new Marque(-1, Couleur.PLEIN);
 		
