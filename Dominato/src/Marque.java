@@ -28,8 +28,10 @@ public class Marque
 		return this.couleur;
 	}
 	
-	public boolean equals(Marque marque)
+	public boolean equals(Object object)
 	{
+		Marque marque = (Marque)object;
+		
 		if (this.getValeur() == marque.getValeur() && this.getCouleur().equals(marque.getCouleur()))
 			return true;
 		
@@ -38,6 +40,8 @@ public class Marque
 	
 	public void draw(Graphics g, int x, int y)
 	{
+		int r = 7;
+		
 		g.setColor(Color.WHITE);
 		g.fillRect(x, y, 39, 39);
 		g.setColor(Color.BLACK);
@@ -51,25 +55,25 @@ public class Marque
 
 		if (this.getValeur() == 1)
 		{
-			g.fillOval(x+15, y+15, 8, 8);
+			g.fillOval(x+15, y+15, r, r);
 		}
 		else if (this.getValeur() == 2)
 		{
-			g.fillOval(x+5, y+5, 8, 8);
-			g.fillOval(x+25, y+25, 8, 8);
+			g.fillOval(x+5, y+5, r, r);
+			g.fillOval(x+25, y+25, r, r);
 		}
 		else if (this.getValeur() == 3)
 		{
-			g.fillOval(x+5, y+5, 8, 8);
-			g.fillOval(x+15, y+15, 8, 8);
-			g.fillOval(x+25, y+25, 8, 8);
+			g.fillOval(x+5, y+5, r, r);
+			g.fillOval(x+15, y+15, r, r);
+			g.fillOval(x+25, y+25, r, r);
 		}
 		else if (this.getValeur() == 4)
 		{
-			g.fillOval(x+5, y+5, 8, 8);
-			g.fillOval(x+25, y+5, 8, 8);
-			g.fillOval(x+25, y+25, 8, 8);
-			g.fillOval(x+5, y+25, 8, 8);
+			g.fillOval(x+5, y+5, r, r);
+			g.fillOval(x+25, y+5, r, r);
+			g.fillOval(x+25, y+25, r, r);
+			g.fillOval(x+5, y+25, r, r);
 		}
 		else if (this.getValeur() != 0)
 			g.drawString(Integer.toString(this.getValeur()), x+5, y+15);

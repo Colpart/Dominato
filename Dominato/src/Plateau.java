@@ -327,6 +327,66 @@ public class Plateau
 		return false;
 	}
 	
+	public int nbLiaisons(int x, int y, boolean horizontal)
+	{
+		int c = 0;
+		
+		if (horizontal)
+		{
+			if (this.positionEstOccupee(x+1, y-4, false))
+				c++;
+			
+			if (this.positionEstOccupee(x+1, y+2, false))
+				c++;
+				
+			if (this.positionEstOccupee(x-2, y-1, false))
+				c++;
+				
+			if (this.positionEstOccupee(x+4, y-1, false))
+				c++;
+				
+			if (this.positionEstOccupee(x-1, y-2, true))
+				c += 2;
+				
+			if (this.positionEstOccupee(x+1, y-2, true))
+				c += 2;
+				
+			if (this.positionEstOccupee(x-1, y+2, true))
+				c += 2;
+				
+			if (this.positionEstOccupee(x+1, y+2, true))
+				c += 2;
+		}
+		else
+		{
+			if (this.positionEstOccupee(x-1, y-2, true))
+				c++;
+				
+			if (this.positionEstOccupee(x-1, y+4, true))
+				c++;
+
+			if (this.positionEstOccupee(x-4, y+1, true))
+				c++;
+					
+			if (this.positionEstOccupee(x+2, y+1, true))
+				c++;
+				
+			if (this.positionEstOccupee(x-2, y-1, false))
+				c += 2;
+				
+			if (this.positionEstOccupee(x-2, y+1, false))
+				c += 2;
+
+			if (this.positionEstOccupee(x+2, y-1, false))
+				c += 2;
+
+			if (this.positionEstOccupee(x+2, y+1, false))
+				c += 2;
+		}
+		
+		return c;
+	}
+	
 	public void poserDomino(Domino domino, boolean horizontal, boolean ordre, int x, int y)
 	{
 		Marque plein = new Marque(-1, Couleur.PLEIN);

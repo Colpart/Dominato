@@ -31,6 +31,18 @@ public class Domino
 		return this.marque2;
 	}
 	
+	public boolean equals(Object object)
+	{
+		Domino domino = (Domino)object;
+		
+		if (this.getMarque1().equals(domino.getMarque1()) && this.getMarque2().equals(domino.getMarque2()))
+			return true;
+		else if (this.getMarque1().equals(domino.getMarque2()) && this.getMarque2().equals(domino.getMarque1()))
+			return true;
+			
+		return false;
+	}
+	
 	public Marque bilan()
 	{
 		Marque marque;
