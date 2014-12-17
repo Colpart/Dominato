@@ -14,13 +14,13 @@ public class Partie
 	private int y;
 	private int terminee;
 	
-	public Partie(int nbJoueurs)
+	public Partie(int nbJoueurs, boolean[] type)
 	{
 		this.plateau = new Plateau();
 		this.nbJoueurs = nbJoueurs;
 		this.joueurs = new Joueur[nbJoueurs];
 		for (int k = 0; k < nbJoueurs; k++)
-			this.joueurs[k] = new Joueur("Joueur "+(k+1));
+			this.joueurs[k] = new Joueur("Joueur "+(k+1), type[k]);
 		this.joueurCourant = 0;
 		this.pioche = this.initialiserPioche();
 		this.distribuer();	
@@ -64,8 +64,34 @@ public class Partie
 	
 	public void compterPoints()
 	{
-		for (int k = 0; k < this.nbJoueurs; k++)
-			this.getJoueur(k).ajouterAuScore(this.getJoueur(k).getJeu().size());
+		this.compterPoints(false);
+	}
+	
+	public void compterPoints(boolean triple)
+	{
+		if (triple)
+		{
+			for (int k = 0; k < this.getNbJoueurs(); k++)
+				if (!this.getJoueur(k).equals(this.getJoueurCourant()))
+					this.getJoueur(k).ajouterAuScore(this.getJoueur(k).getJeu().size()+10);
+		}
+		else
+			for (int k = 0; k < this.getNbJoueurs(); k++)
+				this.getJoueur(k).ajouterAuScore(this.getJoueur(k).getJeu().size());
+		
+		int l = 0;
+		
+		for (int k = 0; k < this.getNbJoueurs(); k++)
+			if (this.getJoueur(k).getScore() < this.getJoueur(l).getScore())
+				l = k;
+		
+		while (!this.getJoueurCourant().equals(this.getJoueur(l)))
+			this.joueurSuivant();
+	}
+	
+	public int getNbJoueurs()
+	{
+		return this.nbJoueurs;
 	}
 	
 	public Joueur getJoueur(int k)
@@ -119,7 +145,7 @@ public class Partie
 								pioche.add(domino);
 						
 						domino = new Domino(i, Couleur.ROUGE, j, Couleur.ROUGE);
-						
+					
 						if (domino.bilan().getValeur() <= 4)
 							if (!pioche.contains(domino))
 								pioche.add(domino);

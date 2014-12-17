@@ -30,10 +30,13 @@ public class Marque
 	
 	public boolean equals(Object object)
 	{
-		Marque marque = (Marque)object;
-		
-		if (this.getValeur() == marque.getValeur() && this.getCouleur().equals(marque.getCouleur()))
-			return true;
+		if (object instanceof Marque)
+		{
+			Marque marque = (Marque)object;
+			
+			if (this.getValeur() == marque.getValeur() && this.getCouleur().equals(marque.getCouleur()))
+				return true;
+		}
 		
 		return false;
 	}
@@ -74,6 +77,14 @@ public class Marque
 			g.fillOval(x+25, y+5, r, r);
 			g.fillOval(x+25, y+25, r, r);
 			g.fillOval(x+5, y+25, r, r);
+		}
+		else if (this.getValeur() == 5)
+		{
+			g.fillOval(x+5, y+5, r, r);
+			g.fillOval(x+25, y+5, r, r);
+			g.fillOval(x+25, y+25, r, r);
+			g.fillOval(x+5, y+25, r, r);
+			g.fillOval(x+15, y+15, r, r);
 		}
 		else if (this.getValeur() != 0)
 			g.drawString(Integer.toString(this.getValeur()), x+5, y+15);

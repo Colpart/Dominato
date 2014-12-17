@@ -5,7 +5,7 @@ public class Plateau
 	
 	public Plateau()
 	{
-		this.taille = 20;
+		this.taille = 30;
 		this.cases = new Marque[this.taille*this.taille];
 		for (int i = 0; i < this.taille*this.taille; i++)
 			this.cases[i] = new Marque();
@@ -387,7 +387,7 @@ public class Plateau
 		return c;
 	}
 	
-	public void poserDomino(Domino domino, boolean horizontal, boolean ordre, int x, int y)
+	public void poserDomino(Domino domino, boolean horizontal, boolean sens, int x, int y)
 	{
 		Marque plein = new Marque(-1, Couleur.PLEIN);
 		
@@ -404,18 +404,18 @@ public class Plateau
 				for (int j = y+2; j <= y+3; j++)
 					this.cases[this.getTaille()*i+j] = plein;
 		
-		if (ordre)
+		if (sens)
 			this.cases[this.getTaille()*x+y] = domino.getMarque1();
 		else
 			this.cases[this.getTaille()*x+y] = domino.getMarque2();
 		
 		if (horizontal)
-			if (ordre)
+			if (sens)
 				this.cases[this.getTaille()*(x+2)+y] = domino.getMarque2();
 			else
 				this.cases[this.getTaille()*(x+2)+y] = domino.getMarque1();
 		else
-			if (ordre)
+			if (sens)
 				this.cases[this.getTaille()*x+(y+2)] = domino.getMarque2();
 			else
 				this.cases[this.getTaille()*x+(y+2)] = domino.getMarque1();

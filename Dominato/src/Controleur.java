@@ -1,4 +1,5 @@
 import javax.swing.SwingUtilities;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
@@ -32,23 +33,103 @@ class Controleur extends MouseAdapter
 	{
 		if (!this.partie.estTerminee())
 		{
-			if (SwingUtilities.isLeftMouseButton(event))
+			if (SwingUtilities.isLeftMouseButton(event) || SwingUtilities.isMiddleMouseButton(event))
 			{
-				int x = (int)event.getPoint().getX();
-				int y = (int)event.getPoint().getY();
+				int x = -1, y = -1;
+				boolean passer = false;
 				
-				if (this.partie.coupPossible(x/20, y/20))
+				if (SwingUtilities.isLeftMouseButton(event))
 				{
-					if (this.partie.coupValide(x/20, y/20))
+					x = (int)event.getPoint().getX()/20;
+					y = (int)event.getPoint().getY()/20;
+					
+				}
+				else if (SwingUtilities.isMiddleMouseButton(event))
+				{
+					passer = true;
+				}
+				
+				do
+				{
+					if (!this.partie.getJoueurCourant().estHumain())
 					{
-						this.partie.poserDomino(x/20, y/20);
-						this.partie.checkIfTerminee(this.partie.nbLiaisons(x/20, y/20));
+						Domino domino = null;
+						boolean horizontal = true, sens = true;
+						int maximum = 0;
+						
+						for (Domino d : partie.getJoueurCourant().getJeu())
+							for (int i = 0; i < partie.getPlateau().getTaille(); i++)
+								for (int j = 0; j < partie.getPlateau().getTaille(); j++)			
+									if (partie.getPlateau().coupValide(i, j, d, true, true))
+									{
+										if (partie.getPlateau().nbLiaisons(i, j, true) > maximum)
+										{
+											maximum = partie.getPlateau().nbLiaisons(i, j, true);
+											domino = d;
+											horizontal = true;
+											sens = true;
+											x = i;
+											y = j;
+										}
+									}
+									else if (partie.getPlateau().coupValide(i, j, d, false, true))
+									{
+										if (partie.getPlateau().nbLiaisons(i, j, false) > maximum)
+										{
+											maximum = partie.getPlateau().nbLiaisons(i, j, false);
+											domino = d;
+											horizontal = false;
+											sens = true;
+											x = i;
+											y = j;
+										}
+									}
+									else if (partie.getPlateau().coupValide(i, j, d, true, false))
+									{
+										if (partie.getPlateau().nbLiaisons(i, j, true) > maximum)
+										{
+											maximum = partie.getPlateau().nbLiaisons(i, j, true);
+											domino = d;
+											horizontal = true;
+											sens = false;
+											x = i;
+											y = j;
+										}
+									}
+									else if (partie.getPlateau().coupValide(i, j, d, false, false))
+									{
+										if (partie.getPlateau().nbLiaisons(i, j, false) > maximum)
+										{
+											maximum = partie.getPlateau().nbLiaisons(i, j, false);
+											domino = d;
+											horizontal = false;
+											sens = false;
+											x = i;
+											y = j;
+										}
+									}
+						
+						if (domino == null)
+						{
+							passer = true;
+						}
+						else
+						{
+							while (!this.partie.getDominoSelectionne().equals(domino))
+								this.partie.changerDomino();
+							
+							while (!(this.partie.dominoEstHorizontal() == horizontal && this.partie.dominoEstDansLeSens1() == sens))
+								this.partie.changerSens();
+						}
+					}
+				
+					if (passer)
+					{
+						this.partie.dernierCoupPasse(true);
 						
 						if (!this.partie.estTerminee())
 						{
-							this.partie.dernierCoupPasse(false);
-							if (this.partie.nbLiaisons(x/20, y/20) <= 1)
-								this.partie.joueurSuivant();
+							this.partie.joueurSuivant();			
 							this.partie.changerDomino();
 						}
 						else
@@ -56,31 +137,59 @@ class Controleur extends MouseAdapter
 					}
 					else
 					{
-						this.partie.getJoueurCourant().penaliser();
-						this.partie.dernierCoupPasse(false);
-						this.partie.joueurSuivant();
-						this.partie.changerDomino();
+						if (this.partie.coupPossible(x, y))
+						{
+							if (this.partie.coupValide(x, y))
+							{
+								this.partie.poserDomino(x, y);
+								this.partie.checkIfTerminee(this.partie.nbLiaisons(x, y));
+							
+								if (!this.partie.estTerminee())
+								{
+									this.partie.dernierCoupPasse(false);
+									if (this.partie.nbLiaisons(x, y) <= 1)
+										this.partie.joueurSuivant();					
+									this.partie.changerDomino();
+								}
+								else
+								{
+									if (this.partie.nbLiaisons(x, y) > 2)
+										this.partie.compterPoints(true);
+									else
+										this.partie.compterPoints();
+								}
+							}
+							else
+							{
+								this.partie.getJoueurCourant().penaliser();
+								this.partie.dernierCoupPasse(false);
+								this.partie.joueurSuivant();					
+								this.partie.changerDomino();
+							}
+						}
 					}
-				}
-			}
-			else if (SwingUtilities.isMiddleMouseButton(event))
-			{
-				this.partie.dernierCoupPasse(true);
-				
-				if (!this.partie.estTerminee())
-				{
-					this.partie.joueurSuivant();
-					this.partie.changerDomino();
-				}
-				else
-					this.partie.compterPoints();
+					
+					/* if (!this.partie.getJoueurCourant().estHumain())
+					{
+						try
+						{
+							Thread.sleep(1000);
+						}
+						catch (InterruptedException e)
+						{
+							e.printStackTrace();
+						}
+					}
+					
+					System.out.println("panneau.repaint();"); */
+					this.panneau.repaint();
+				} while (!this.partie.getJoueurCourant().estHumain() && !this.partie.estTerminee());
 			}
 			else if (SwingUtilities.isRightMouseButton(event))
 			{
 				this.partie.changerSens();
+				this.panneau.repaint();
 			}
-				
-			this.panneau.repaint();
 		}
 	}
 	

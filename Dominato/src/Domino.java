@@ -33,12 +33,15 @@ public class Domino
 	
 	public boolean equals(Object object)
 	{
-		Domino domino = (Domino)object;
-		
-		if (this.getMarque1().equals(domino.getMarque1()) && this.getMarque2().equals(domino.getMarque2()))
-			return true;
-		else if (this.getMarque1().equals(domino.getMarque2()) && this.getMarque2().equals(domino.getMarque1()))
-			return true;
+		if (object instanceof Domino)
+		{
+			Domino domino = (Domino)object;
+			
+			if (this.getMarque1().equals(domino.getMarque1()) && this.getMarque2().equals(domino.getMarque2()))
+				return true;
+			else if (this.getMarque1().equals(domino.getMarque2()) && this.getMarque2().equals(domino.getMarque1()))
+				return true;
+		}
 			
 		return false;
 	}

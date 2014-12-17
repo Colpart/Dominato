@@ -2,6 +2,7 @@ public class Main
 {
     public static void main(String[] args)
     {
-    	new Fenetre(new Partie(2));
+    	boolean[] type = {true, false};
+    	new Fenetre(new Partie(2, type)); 	
     }
 }
