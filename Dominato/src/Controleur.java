@@ -1,5 +1,4 @@
 import javax.swing.SwingUtilities;
-
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
@@ -30,7 +29,7 @@ class Controleur extends MouseAdapter
 	}
 	
 	public void mousePressed(MouseEvent event)
-	{
+	{	
 		if (!this.partie.estTerminee())
 		{
 			if (SwingUtilities.isLeftMouseButton(event) || SwingUtilities.isMiddleMouseButton(event))
@@ -122,7 +121,7 @@ class Controleur extends MouseAdapter
 								this.partie.changerSens();
 						}
 					}
-				
+					
 					if (passer)
 					{
 						this.partie.dernierCoupPasse(true);

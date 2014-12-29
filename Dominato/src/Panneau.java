@@ -14,7 +14,7 @@ public class Panneau extends JPanel
 	public Panneau(Partie partie)
 	{
 		this.partie = partie;
-		this.setPreferredSize(new Dimension(20*partie.getPlateau().getTaille(), 45+20*partie.getPlateau().getTaille()));
+		this.setPreferredSize(new Dimension(20*partie.getPlateau().getTaille()+100, 45+20*partie.getPlateau().getTaille()));
 		Controleur controleur = new Controleur(this, this.partie);
 		this.addMouseListener(controleur);
 		this.addMouseMotionListener(controleur);
@@ -25,7 +25,6 @@ public class Panneau extends JPanel
 	{
 		g.setColor(Color.LIGHT_GRAY);
 	    g.fillRect(0, 0, this.getWidth(), this.getHeight());
-		
 	    
 		for (int i = 0; i < this.partie.getPlateau().getTaille(); i++)
 			for (int j = 0; j < this.partie.getPlateau().getTaille(); j++)
@@ -52,7 +51,21 @@ public class Panneau extends JPanel
 					this.partie.getDominoSelectionne().getMarque1().draw(g, this.partie.getX(), this.partie.getY()+40);
 	    }
 		
-		Font font = new Font("Rockwell", Font.PLAIN, 15);
+		g.setColor(Color.DARK_GRAY);
+	    g.fillRect(this.getWidth()-100, 0, this.getWidth(), this.getHeight());
+	    g.setColor(Color.BLACK);
+	    g.drawLine(this.getWidth()-100, 0, this.getWidth()-100, this.getHeight());
+		
+		int i = this.getWidth()-90, j = 10;
+		
+		for (Domino d : this.partie.getJoueurCourant().getJeu())
+		{
+			d.getMarque1().draw(g, i, j);
+			d.getMarque2().draw(g, i+40, j);	
+			j += 50;
+		}
+		
+		Font font = new Font("Lucida Bright", Font.PLAIN, 15);
 		g.setFont(font);
 		
 		for (int k = 0; k < this.partie.getNbJoueurs(); k++)
@@ -67,7 +80,7 @@ public class Panneau extends JPanel
 		    else
 		    	g.setColor(Color.BLACK);
 		    
-			g.drawString(this.partie.getJoueur(k).getNom()+" : "+this.partie.getJoueur(k).getScore()+" ("+this.partie.getJoueur(k).getJeu().size()+")", 20+k*this.getWidth()/this.partie.getNbJoueurs(), this.getHeight()-20);
+			g.drawString(this.partie.getJoueur(k).getNom()+" : "+this.partie.getJoueur(k).getScore()+" ("+this.partie.getJoueur(k).getJeu().size()+")", 20+k*(this.getWidth()-100)/this.partie.getNbJoueurs(), this.getHeight()-20);
 		}
 	}               
 }
