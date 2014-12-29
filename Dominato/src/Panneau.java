@@ -56,13 +56,40 @@ public class Panneau extends JPanel
 	    g.setColor(Color.BLACK);
 	    g.drawLine(this.getWidth()-100, 0, this.getWidth()-100, this.getHeight());
 		
-		int i = this.getWidth()-90, j = 10;
+		int i = this.getWidth()-90, j = 10, c = 0, j1 = j;
 		
 		for (Domino d : this.partie.getJoueurCourant().getJeu())
 		{
-			d.getMarque1().draw(g, i, j);
-			d.getMarque2().draw(g, i+40, j);	
-			j += 50;
+			if( j1 > this.getHeight()){
+				if( c==0){
+					g.setColor(Color.DARK_GRAY);
+				    g.fillRect(this.getWidth()-150, 0, 50, this.getHeight());
+				    g.setColor(Color.BLACK);
+				    g.drawLine(this.getWidth()-150, 0, this.getWidth()-150, this.getHeight());
+				    g.setColor(Color.DARK_GRAY);
+				    g.drawLine(this.getWidth()-100, 0, this.getWidth()-100, this.getHeight());
+					
+					i = this.getWidth()-140;
+					j = 10;
+					c++;
+					d.getMarque1().draw(g, i, j);
+					j = j+40;
+					d.getMarque2().draw(g, i, j);
+					j = j+50;
+				}
+				else{
+					d.getMarque1().draw(g, i, j);
+					j = j+40;
+					d.getMarque2().draw(g, i, j);
+					j = j+50;
+				}
+			}
+			else{
+				d.getMarque1().draw(g, i, j);
+				d.getMarque2().draw(g, i+40, j);
+				j += 50;
+				j1 = j;
+			}
 		}
 		
 		Font font = new Font("Lucida Bright", Font.PLAIN, 15);
