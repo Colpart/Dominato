@@ -1,10 +1,14 @@
 import javax.swing.SwingUtilities;
+
+import java.awt.AWTException;
+import java.awt.Robot;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 
 class Controleur extends MouseAdapter
 {
+	private int compteur = 0;
 	private Panneau panneau;
 	private Partie partie;
 	
@@ -12,6 +16,50 @@ class Controleur extends MouseAdapter
 	{
 		this.panneau = panneau;
 		this.partie = partie;
+	}
+	
+	
+	public class BougerSouris extends Thread{
+		private int xInit,yInit;
+		BougerSouris(int xInit, int yInit){
+			this.xInit = xInit;
+			this.yInit = yInit;
+		}
+		
+		public void run(){
+			Robot r;
+			try {
+				r = new Robot();
+				r.mouseMove(this.xInit, this.yInit);
+			
+			} catch (AWTException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public class Attente extends Thread{
+		private int ms;
+		
+		Attente(int ms){
+			this.ms = ms;
+		}
+		
+		public void run(){
+				
+				try {
+					Thread.sleep(this.ms);	
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				System.out.print("");System.out.print("");System.out.print("");
+				compteur = 1;
+				System.out.println(compteur);
+				panneau.paintComponent(panneau.getGraphics());
+				System.out.println(partie.getPlateau().toString());
+		}
 	}
 
 	public void mouseMoved(MouseEvent event)
@@ -168,20 +216,32 @@ class Controleur extends MouseAdapter
 						}
 					}
 					
-					/* if (!this.partie.getJoueurCourant().estHumain())
-					{
-						try
-						{
-							Thread.sleep(1000);
-						}
-						catch (InterruptedException e)
-						{
-							e.printStackTrace();
-						}
+					if (this.partie.getJoueurCourant().estHumain()){
+						this.panneau.compt = 0;
+						this.panneau.paintComponent(panneau.getGraphics());
 					}
 					
-					System.out.println("panneau.repaint();"); */
-					this.panneau.repaint();
+					
+					System.out.println(event.getLocationOnScreen());
+					
+					if (!this.partie.getJoueurCourant().estHumain())
+					{
+						
+						this.panneau.compt = 1;
+						this.panneau.paintComponent(panneau.getGraphics());
+						BougerSouris b = new BougerSouris((int)event.getLocationOnScreen().getX()+150 , (int)event.getLocationOnScreen().getY());
+						b.start();
+						Attente a = new Attente(2000);
+						a.start();
+						do{
+							System.out.print("");
+						}while(this.compteur == 0);
+						System.out.print("");System.out.print("");System.out.print("");System.out.print("");
+						this.compteur = 0;
+						
+					}
+					
+					
 				} while (!this.partie.getJoueurCourant().estHumain() && !this.partie.estTerminee());
 			}
 			else if (SwingUtilities.isRightMouseButton(event))
@@ -203,5 +263,7 @@ class Controleur extends MouseAdapter
 	        	
 	        this.panneau.repaint();
 		}
-    } 
+    }
+
+	
 }

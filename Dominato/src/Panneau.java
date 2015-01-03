@@ -9,6 +9,7 @@ public class Panneau extends JPanel
 {
 	static final long serialVersionUID = 1;
 	
+	int compt=0;
 	private Partie partie;
 	
 	public Panneau(Partie partie)
@@ -32,8 +33,9 @@ public class Panneau extends JPanel
 					this.partie.getPlateau().get(i, j).draw(g, 20*i, 20*j);
 			
 			
-		if (!this.partie.estTerminee())
+		if (!this.partie.estTerminee() && this.compt ==0)
 		{
+			
 			if (this.partie.dominoEstDansLeSens1())
 				this.partie.getDominoSelectionne().getMarque1().draw(g, this.partie.getX(), this.partie.getY());
 			else
@@ -99,8 +101,9 @@ public class Panneau extends JPanel
 		{
 			if (this.partie.getJoueur(k).equals(this.partie.getJoueurCourant()))
 			{
-				if (!this.partie.estTerminee())
+				if (!this.partie.estTerminee()){;
 					g.setColor(Color.BLUE);
+				}
 				else
 					g.setColor(Color.GREEN);
 			}

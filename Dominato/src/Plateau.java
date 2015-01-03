@@ -1,3 +1,5 @@
+
+
 public class Plateau
 {
 	private int taille;
@@ -383,7 +385,7 @@ public class Plateau
 			if (this.positionEstOccupee(x+2, y+1, false))
 				c += 2;
 		}
-		
+
 		return c;
 	}
 	
@@ -419,5 +421,18 @@ public class Plateau
 				this.cases[this.getTaille()*x+(y+2)] = domino.getMarque2();
 			else
 				this.cases[this.getTaille()*x+(y+2)] = domino.getMarque1();
+	}
+
+	@Override
+	public String toString() {
+		String ch = "";
+		for (int i = 0; i < this.getTaille(); i++)
+			for (int j = 0; j < this.getTaille(); j++){
+				if(!this.positionEstVide(i, j)){
+					ch += "M ";
+				}
+			}
+		return "Plateau [taille=" + taille + ", cases="
+				+ ch + "]";
 	}
 }

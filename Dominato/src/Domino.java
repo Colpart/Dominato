@@ -62,4 +62,9 @@ public class Domino
 		
 		return marque;
 	}
+
+	@Override
+	public String toString() {
+		return "Domino [marque1=" + marque1 + ", marque2=" + marque2 + "]";
+	}
 }
