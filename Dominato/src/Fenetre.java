@@ -1,11 +1,14 @@
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -14,10 +17,10 @@ public class Fenetre extends JFrame
 	static final long serialVersionUID = 1;
 	
 	private JPanel container = new JPanel(); 
-	private JButton bouton = new JButton("Pause");
-	private JButton bouton2 = new JButton("Reprendre");
-	private JButton bouton3 = new JButton("Rejouer");
-	private JButton bouton4 = new JButton("Quitter");
+	private JButton bouton = new Bouton("pause.jpg");
+	private JButton bouton2 = new Bouton("reprendre.jpg");
+	private JButton bouton3 = new Bouton("rejouer.jpg");
+	private JButton bouton4 = new Bouton("quitter.jpg");
 	private Panneau pan;
 	private Partie partie;
 	
@@ -31,15 +34,16 @@ public class Fenetre extends JFrame
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    this.container.setLayout(new BorderLayout());
 		this.container.add(pan, BorderLayout.CENTER);
-		JPanel south = new JPanel();
-		south.add(bouton);
-		south.add(bouton2);
-		south.add(bouton3);
-		south.add(bouton4);
-		south.setBackground(Color.DARK_GRAY);
-		container.add(south, BorderLayout.SOUTH);
+		JPanel north = new JPanel();
+		north.add(bouton, BorderLayout.WEST);
+		north.add(bouton2);
+		north.add(bouton3);
+		north.add(bouton4);
+		north.setBackground(Color.DARK_GRAY);
+		container.add(north, BorderLayout.NORTH);
 		this.bouton2.setEnabled(false);
 		bouton.addActionListener(new BoutonListener());
+		//bouton.setPreferredSize(new Dimension(50,50));
 		bouton2.addActionListener(new Bouton2Listener());
 		bouton3.addActionListener(new Bouton3Listener());
 		bouton4.addActionListener(new Bouton4Listener());
