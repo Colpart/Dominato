@@ -1,3 +1,4 @@
+
 import javax.swing.SwingUtilities;
 
 import java.awt.AWTException;
@@ -8,7 +9,6 @@ import java.awt.event.MouseWheelEvent;
 
 class Controleur extends MouseAdapter
 {
-	private int compteur = 0;
 	private Panneau panneau;
 	private Partie partie;
 	
@@ -39,29 +39,6 @@ class Controleur extends MouseAdapter
 		}
 	}
 	
-	public class Attente extends Thread{
-		private int ms;
-		
-		Attente(int ms){
-			this.ms = ms;
-		}
-		
-		public void run(){
-				
-				try {
-					Thread.sleep(this.ms);	
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				System.out.print("");System.out.print("");System.out.print("");
-				compteur = 1;
-				System.out.println(compteur);
-				panneau.paintComponent(panneau.getGraphics());
-				System.out.println(partie.getPlateau().toString());
-		}
-	}
-
 	public void mouseMoved(MouseEvent event)
 	{
 		int x = (int)event.getPoint().getX()-10;
@@ -218,27 +195,24 @@ class Controleur extends MouseAdapter
 					
 					if (this.partie.getJoueurCourant().estHumain()){
 						this.panneau.compt = 0;
-						this.panneau.paintComponent(panneau.getGraphics());
+						this.panneau.paintImmediately(0, 0, this.panneau.getWidth(), this.panneau.getHeight());
 					}
 					
-					
-					System.out.println(event.getLocationOnScreen());
 					
 					if (!this.partie.getJoueurCourant().estHumain())
 					{
 						
 						this.panneau.compt = 1;
-						this.panneau.paintComponent(panneau.getGraphics());
+						this.panneau.paintImmediately(0, 0, this.panneau.getWidth(), this.panneau.getHeight());
+						
 						BougerSouris b = new BougerSouris((int)event.getLocationOnScreen().getX()+150 , (int)event.getLocationOnScreen().getY());
 						b.start();
-						Attente a = new Attente(2000);
-						a.start();
-						do{
-							System.out.print("");
-						}while(this.compteur == 0);
-						System.out.print("");System.out.print("");System.out.print("");System.out.print("");
-						this.compteur = 0;
-						
+						try {
+							Thread.sleep(2000);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}	
 					}
 					
 					

@@ -11,12 +11,18 @@ public class Panneau extends JPanel
 	
 	int compt=0;
 	private Partie partie;
+	private Controleur controleur;
 	
+	
+	public Controleur getControleur() {
+		return controleur;
+	}
+
 	public Panneau(Partie partie)
 	{
 		this.partie = partie;
 		this.setPreferredSize(new Dimension(20*partie.getPlateau().getTaille()+100, 45+20*partie.getPlateau().getTaille()));
-		Controleur controleur = new Controleur(this, this.partie);
+		this.controleur = new Controleur(this, this.partie);
 		this.addMouseListener(controleur);
 		this.addMouseMotionListener(controleur);
 		this.addMouseWheelListener(controleur);
