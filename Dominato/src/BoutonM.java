@@ -1,13 +1,14 @@
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 
-public class Bouton extends JButton implements MouseListener{
+public class BoutonM extends JButton implements MouseListener{
 
 	
 	/**
@@ -16,16 +17,17 @@ public class Bouton extends JButton implements MouseListener{
 	
 	private static final long serialVersionUID = 1L;
 	
-
-	public Bouton(String icone){
-		super();
-		ImageIcon image = new ImageIcon(icone);
-		this.setIcon(image);
-		this.setBackground(Color.DARK_GRAY);
-		this.setBorderPainted(false);
+	public BoutonM(String name){
+		super(name);
+		this.setBackground(Color.LIGHT_GRAY);
 		this.addMouseListener(this);
+		Font font = new Font("Courrier",Font.BOLD, 15);
+		this.setFont(font);
+		this.setForeground(Color.DARK_GRAY);
+		this.setPreferredSize(new Dimension(170,40));
 	}
-
+	
+	
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub

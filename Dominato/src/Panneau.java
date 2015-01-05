@@ -18,6 +18,10 @@ public class Panneau extends JPanel
 		return controleur;
 	}
 
+	public Panneau(){
+		super();
+	}
+	
 	public Panneau(Partie partie)
 	{
 		this.partie = partie;
@@ -28,7 +32,7 @@ public class Panneau extends JPanel
 		this.addMouseWheelListener(controleur);
 	}
 	
-	public void paintComponent(Graphics g)
+	public void paint(Graphics g)
 	{
 		g.setColor(Color.LIGHT_GRAY);
 	    g.fillRect(0, 0, this.getWidth(), this.getHeight());

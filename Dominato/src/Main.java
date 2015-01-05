@@ -1,8 +1,8 @@
 public class Main
 {
-    public static void main(String[] args)
+    public static void main(String[] args) throws InterruptedException
     {
-    	boolean[] type = {true, false};
-    	new Fenetre(new Partie(type.length, type));
+    	
+    	new Fenetre();
     }
 }

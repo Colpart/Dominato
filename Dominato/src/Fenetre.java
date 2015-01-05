@@ -1,16 +1,16 @@
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.Font;
+import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
 
 public class Fenetre extends JFrame 
 {
@@ -21,38 +21,44 @@ public class Fenetre extends JFrame
 	private JButton bouton2 = new Bouton("reprendre.jpg");
 	private JButton bouton3 = new Bouton("rejouer.jpg");
 	private JButton bouton4 = new Bouton("quitter.jpg");
+	private JButton boutonM1 = new BoutonM("Nouvelle Partie");	
+	private JButton boutonM2 = new BoutonM("Partie Rapide");	
+	private JButton boutonM3 = new BoutonM("Quitter");
 	private Panneau pan;
+	private Menu menu;
 	private Partie partie;
 	
 	
-	public Fenetre(Partie partie)
-	{
-		this.partie = partie;
-		this.pan = new Panneau(partie);
+	public Fenetre(){
+		
 		this.setTitle("Dominato");
 	    this.setLocationRelativeTo(null);
+	    this.setPreferredSize(new Dimension(700,700));
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    this.container.setLayout(new BorderLayout());
-		this.container.add(pan, BorderLayout.CENTER);
-		JPanel north = new JPanel();
-		north.add(bouton, BorderLayout.WEST);
-		north.add(bouton2);
-		north.add(bouton3);
-		north.add(bouton4);
-		north.setBackground(Color.DARK_GRAY);
-		container.add(north, BorderLayout.NORTH);
-		this.bouton2.setEnabled(false);
-		bouton.addActionListener(new BoutonListener());
-		//bouton.setPreferredSize(new Dimension(50,50));
-		bouton2.addActionListener(new Bouton2Listener());
-		bouton3.addActionListener(new Bouton3Listener());
-		bouton4.addActionListener(new Bouton4Listener());
-	    this.setContentPane(container);
+	    this.menu = new Menu(new ImageIcon("dominato.jpg").getImage());
+	    this.getContentPane().setLayout(new BorderLayout());
+	    this.getContentPane().add(this.menu);
+	    JPanel center = new JPanel();
+	    center.add(boutonM1);
+	    center.add(boutonM2);
+	    center.add(boutonM3);
+	    this.getContentPane().add(center, BorderLayout.CENTER);
+	    this.boutonM1.setVisible(true);
+	    this.boutonM2.setVisible(true);
+	    this.boutonM3.setVisible(true);
+	    this.boutonM1.addActionListener(new BoutonListenerM1());
+	    this.boutonM2.addActionListener(new BoutonListenerM1());
+	    this.boutonM3.addActionListener(new Bouton4Listener());
 	    this.pack();
 	    this.setVisible(true);
-	}
 
+	    
+	}
 	
+	
+	public void modifierContainer(Container content){
+		this.setContentPane(content);
+	}
 	
 	public class BoutonListener implements ActionListener{
 	
@@ -102,26 +108,42 @@ public class Fenetre extends JFrame
 	
 	public class Bouton3Listener implements ActionListener{
 		
-		/* à Modifier apres en remelangeant les dominos des joueurs */
-		/* Trouver une solution pour evitez de fermer la fenetre pour rejouer*/
 		public void actionPerformed(ActionEvent arg0) {
-			boolean[] type = new boolean[partie.getNbJoueurs()];
+			JOptionPane jop = new JOptionPane();
+			int option = jop.showConfirmDialog(null,"Voulez-vous recommencer la partie?",null,JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE);
 			
-			for(int i = 0; i<partie.getNbJoueurs(); i++){
-				if(partie.getJoueur(i).estHumain())
-					type[i] = true;
-				else
-					type[i] = false;
-			}
-			Partie p = new Partie(type.length, type);
-			int x = getPositionFenetreX();
-			int y = getPositionFenetreY();
-			int w = getLargeurFenetre();
-			int h = getHauteurFenetre();
-			Fenetre f = new Fenetre(p);
-			f.setBounds(x, y, w, h);
-			fermerFenetre();
-			
+			if(option == JOptionPane.OK_OPTION){
+				
+				boolean[] type = new boolean[partie.getNbJoueurs()];
+				
+				for(int i = 0; i<partie.getNbJoueurs(); i++){
+					if(partie.getJoueur(i).estHumain())
+						type[i] = true;
+					else
+						type[i] = false;
+				}
+				Partie p = new Partie(type.length, type);
+				Panneau pa = new Panneau(p);
+				pan = pa;
+				container.removeAll();
+				
+				container.setLayout(new BorderLayout());
+				container.add(pan, BorderLayout.CENTER);
+				JPanel north = new JPanel();
+				north.add(bouton, BorderLayout.WEST);
+				north.add(bouton2);
+				north.add(bouton3);
+				north.add(bouton4);
+				north.setBackground(Color.DARK_GRAY);
+				container.add(north, BorderLayout.NORTH);
+				bouton2.setEnabled(false);
+				bouton.setEnabled(true);
+				bouton.addActionListener(new BoutonListener());
+				bouton2.addActionListener(new Bouton2Listener());
+				bouton3.addActionListener(new Bouton3Listener());
+				bouton4.addActionListener(new Bouton4Listener());
+				modifierContainer(container);
+			}	
 		}
 	}
 			
@@ -130,11 +152,46 @@ public class Fenetre extends JFrame
 		public void actionPerformed(ActionEvent arg0) {
 			
 			JOptionPane jop = new JOptionPane();
-			int option = jop.showConfirmDialog(null,"Voulez-vous quitter la partie","Attention",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE);
+			int option = jop.showConfirmDialog(null,"Voulez-vous quittez ?","Attention",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE);
 			
 			if(option == JOptionPane.OK_OPTION){
 				System.exit(0);
 			}
+			
+		}
+	}
+	
+	public class BoutonListenerM1 implements ActionListener{
+		
+		public void actionPerformed(ActionEvent arg0) {
+			
+			getContentPane().removeAll();
+			menu.removeAll();
+			boolean[] type = {true,false};
+			partie = new Partie(2,type);
+			pan = new Panneau(partie);
+			getContentPane().removeAll();
+			container.removeAll();
+			container.setLayout(new BorderLayout());
+			container.add(pan, BorderLayout.CENTER);
+			JPanel north = new JPanel();
+			north.add(bouton, BorderLayout.WEST);
+			north.add(bouton2);
+			north.add(bouton3);
+			north.add(bouton4);
+			north.setBackground(Color.DARK_GRAY);
+			container.add(north, BorderLayout.NORTH);
+			bouton2.setEnabled(false);
+			bouton.addActionListener(new BoutonListener());
+			bouton2.addActionListener(new Bouton2Listener());
+			bouton3.addActionListener(new Bouton3Listener());
+			bouton4.addActionListener(new Bouton4Listener());
+		    setContentPane(container);
+		    int x = getPositionFenetreX();
+			int y = getPositionFenetreY();
+			int w = getLargeurFenetre();
+			int h = getHauteurFenetre();
+		    pan.paintImmediately(x,y,w,h);
 			
 		}
 	}
