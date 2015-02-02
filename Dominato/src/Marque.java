@@ -41,15 +41,46 @@ public class Marque
 		return false;
 	}
 	
-	public void draw(Graphics g, int x, int y)
+	public void draw(Graphics g, int x, int y, int joueurCourant)
 	{
 		int r = 7;
+		if(joueurCourant == 0){
+			g.setColor(Color.WHITE);
+			g.fillRect(x, y, 39, 39);
+			g.setColor(Color.BLACK);
+			g.drawLine(x+39, y, x+39, y+39);
+			g.drawLine(x, y+39, x+39, y+39);
+			
+		}
+		if(joueurCourant == 2){
+			Color clr = new Color(230,255,255);
+			g.setColor(clr);
+			g.fillRect(x, y, 39, 39);
+			g.setColor(Color.black);
+			g.drawLine(x+39, y, x+39, y+39);
+			g.drawLine(x, y+39, x+39, y+39);
+			
+		}
+		if(joueurCourant == 3){
+			Color clr = new Color(215,255,255);
+			g.setColor(clr);
+			g.fillRect(x, y, 39, 39);
+			g.setColor(Color.white);
+			g.drawLine(x+39, y, x+39, y+39);
+			g.drawLine(x, y+39, x+39, y+39);
+			
+		}
+		if(joueurCourant == 1){
+			g.setColor(Color.BLACK);
+			g.fillRect(x, y, 39, 39);
+			g.setColor(Color.white);
+			g.drawLine(x+39, y, x+39, y+39);
+			g.drawLine(x, y+39, x+39, y+39);
+			
+		}
 		
-		g.setColor(Color.WHITE);
-		g.fillRect(x, y, 39, 39);
-		g.setColor(Color.BLACK);
-		g.drawLine(x+39, y, x+39, y+39);
-		g.drawLine(x, y+39, x+39, y+39);
+		
+		
 		
 		if (this.getCouleur().equals(Couleur.ROUGE))
 			g.setColor(Color.RED);

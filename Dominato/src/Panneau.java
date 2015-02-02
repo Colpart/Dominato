@@ -40,27 +40,27 @@ public class Panneau extends JPanel
 		for (int i = 0; i < this.partie.getPlateau().getTaille(); i++)
 			for (int j = 0; j < this.partie.getPlateau().getTaille(); j++)
 				if (!this.partie.getPlateau().get(i, j).getCouleur().equals(Couleur.VIDE) && !this.partie.getPlateau().get(i, j).getCouleur().equals(Couleur.PLEIN))
-					this.partie.getPlateau().get(i, j).draw(g, 20*i, 20*j);
+					this.partie.getPlateau().get(i, j).draw(g, 20*i, 20*j,1);
 			
 			
 		if (!this.partie.estTerminee() && this.compt ==0)
 		{
 			
 			if (this.partie.dominoEstDansLeSens1())
-				this.partie.getDominoSelectionne().getMarque1().draw(g, this.partie.getX(), this.partie.getY());
+				this.partie.getDominoSelectionne().getMarque1().draw(g, this.partie.getX(), this.partie.getY(),this.partie.getjoueurcourant());
 			else
-				this.partie.getDominoSelectionne().getMarque2().draw(g, this.partie.getX(), this.partie.getY());
+				this.partie.getDominoSelectionne().getMarque2().draw(g, this.partie.getX(), this.partie.getY(),this.partie.getjoueurcourant());
 			
 			if (this.partie.dominoEstHorizontal())
 				if (this.partie.dominoEstDansLeSens1())
-					this.partie.getDominoSelectionne().getMarque2().draw(g, this.partie.getX()+40, this.partie.getY());
+					this.partie.getDominoSelectionne().getMarque2().draw(g, this.partie.getX()+40, this.partie.getY(),this.partie.getjoueurcourant());
 				else
-					this.partie.getDominoSelectionne().getMarque1().draw(g, this.partie.getX()+40, this.partie.getY());
+					this.partie.getDominoSelectionne().getMarque1().draw(g, this.partie.getX()+40, this.partie.getY(),this.partie.getjoueurcourant());
 			else
 				if (this.partie.dominoEstDansLeSens1())
-					this.partie.getDominoSelectionne().getMarque2().draw(g, this.partie.getX(), this.partie.getY()+40);
+					this.partie.getDominoSelectionne().getMarque2().draw(g, this.partie.getX(), this.partie.getY()+40,this.partie.getjoueurcourant());
 				else
-					this.partie.getDominoSelectionne().getMarque1().draw(g, this.partie.getX(), this.partie.getY()+40);
+					this.partie.getDominoSelectionne().getMarque1().draw(g, this.partie.getX(), this.partie.getY()+40,this.partie.getjoueurcourant());
 	    }
 		
 		g.setColor(Color.DARK_GRAY);
@@ -84,21 +84,21 @@ public class Panneau extends JPanel
 					i = this.getWidth()-140;
 					j = 10;
 					c++;
-					d.getMarque1().draw(g, i, j);
+					d.getMarque1().draw(g, i, j,this.partie.getjoueurcourant());
 					j = j+40;
-					d.getMarque2().draw(g, i, j);
+					d.getMarque2().draw(g, i, j,this.partie.getjoueurcourant());
 					j = j+50;
 				}
 				else{
-					d.getMarque1().draw(g, i, j);
+					d.getMarque1().draw(g, i, j,this.partie.getjoueurcourant());
 					j = j+40;
-					d.getMarque2().draw(g, i, j);
+					d.getMarque2().draw(g, i, j,this.partie.getjoueurcourant());
 					j = j+50;
 				}
 			}
 			else{
-				d.getMarque1().draw(g, i, j);
-				d.getMarque2().draw(g, i+40, j);
+				d.getMarque1().draw(g, i, j,this.partie.getjoueurcourant());
+				d.getMarque2().draw(g, i+40, j,this.partie.getjoueurcourant());
 				j += 50;
 				j1 = j;
 			}

@@ -16,20 +16,19 @@ public class Menu extends JPanel {
 	private Image img;
 	
 	
+	
 	Menu(Image img){
 		this.img = img;
 		Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
-	    setPreferredSize(size);
+		
+		setPreferredSize(size);
 	    setMinimumSize(size);
 	    setMaximumSize(size);
 	    setSize(size);
 	    setLayout(null);
-	    
-	}
+	 }
 	
 	public void paint(Graphics g) {
 		g.drawImage (img, 0, 0, null);
 	}
-
-		
 }

@@ -51,6 +51,10 @@ public class Partie
 				this.terminee = 1;
 	}
 	
+	public int getjoueurcourant(){
+		return this.joueurCourant;
+	}
+	
 	public void dernierCoupPasse(boolean passe)
 	{
 		if (!passe)
@@ -104,6 +108,10 @@ public class Partie
 		return this.joueurs[this.joueurCourant];
 	}
 	
+	public void setJoueurCourant(int joueurCourant) {
+		this.joueurCourant = joueurCourant;
+	}
+
 	public void joueurSuivant()
 	{
 		if (this.joueurCourant == this.nbJoueurs-1)

@@ -19,38 +19,42 @@ public class BoutonM extends JButton implements MouseListener{
 	
 	public BoutonM(String name){
 		super(name);
-		this.setBackground(Color.LIGHT_GRAY);
 		this.addMouseListener(this);
-		Font font = new Font("Courrier",Font.BOLD, 15);
-		this.setFont(font);
-		this.setForeground(Color.DARK_GRAY);
-		this.setPreferredSize(new Dimension(170,40));
+		this.setBackground(Color.LIGHT_GRAY);
+		this.setBorderPainted(false);
 	}
 	
 	
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+		Color clr = new Color(102,0,0);
+		this.setBackground(clr);
+		this.setForeground(Color.white);
 	}
 
 
 	public void mouseEntered(MouseEvent arg0) {
 		Cursor cursor = new Cursor(Cursor.HAND_CURSOR);
 		setCursor(cursor);
-		
+		Color clr = new Color(102,0,0);
+		this.setBackground(clr);
+		this.setForeground(Color.white);
 	}
 
 	@Override
 	public void mouseExited(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+		this.setBackground(Color.LIGHT_GRAY);
+		this.setForeground(Color.BLACK);
 	}
 
 	@Override
 	public void mousePressed(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+		Color clr = new Color(102,0,0);
+		this.setBackground(clr);
+		this.setForeground(Color.white);
 	}
 
 	@Override
