@@ -1,3 +1,5 @@
+import java.awt.Color;
+
 
 
 public class Plateau
@@ -391,7 +393,8 @@ public class Plateau
 	
 	public void poserDomino(Domino domino, boolean horizontal, boolean sens, int x, int y)
 	{
-		Marque plein = new Marque(-1, Couleur.PLEIN);
+		Marque plein = new Marque(-1, Couleur.PLEIN, domino.getMarque1().getCouleurFond());
+		
 		
 		for (int i = x; i <= x+1; i++)
 			for (int j = y; j <= y+1; j++)

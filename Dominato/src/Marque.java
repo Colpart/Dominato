@@ -5,17 +5,20 @@ public class Marque
 {
 	private int valeur;
 	private Couleur couleur;
+	private Color couleurFond;
 	
 	public Marque()
 	{
 		this.valeur = -1;
 		this.couleur = Couleur.VIDE;
+		this.couleurFond = Color.white;
 	}
 	
-	public Marque(int valeur, Couleur couleur)
+	public Marque(int valeur, Couleur couleur, Color color)
 	{
 		this.valeur = valeur;
 		this.couleur = couleur;
+		this.couleurFond = color;
 	}
 	
 	public int getValeur()
@@ -28,57 +31,44 @@ public class Marque
 		return this.couleur;
 	}
 	
+	public Color getCouleurFond() {
+		return couleurFond;
+	}
+
+	
+
 	public boolean equals(Object object)
 	{
 		if (object instanceof Marque)
 		{
 			Marque marque = (Marque)object;
 			
-			if (this.getValeur() == marque.getValeur() && this.getCouleur().equals(marque.getCouleur()))
+			if (this.getValeur() == marque.getValeur() && this.getCouleur().equals(marque.getCouleur()) )
 				return true;
 		}
 		
 		return false;
 	}
 	
-	public void draw(Graphics g, int x, int y, int joueurCourant)
+	public void setCouleurFond(Color couleurFond) {
+		this.couleurFond = couleurFond;
+	}
+
+	public void draw(Graphics g, int x, int y)
 	{
 		int r = 7;
-		if(joueurCourant == 0){
+		g.setColor(this.getCouleurFond());
+		//System.out.println(this.getCouleurFond().toString());
+		g.fillRect(x, y, 39, 39);
+		if(this.getCouleurFond() != Color.BLACK){
+			g.setColor(Color.BLACK);
+		}
+		else{
 			g.setColor(Color.WHITE);
-			g.fillRect(x, y, 39, 39);
-			g.setColor(Color.BLACK);
-			g.drawLine(x+39, y, x+39, y+39);
-			g.drawLine(x, y+39, x+39, y+39);
-			
 		}
-		if(joueurCourant == 2){
-			Color clr = new Color(230,255,255);
-			g.setColor(clr);
-			g.fillRect(x, y, 39, 39);
-			g.setColor(Color.black);
-			g.drawLine(x+39, y, x+39, y+39);
-			g.drawLine(x, y+39, x+39, y+39);
+		g.drawLine(x+39, y, x+39, y+39);
+		g.drawLine(x, y+39, x+39, y+39);
 			
-		}
-		if(joueurCourant == 3){
-			Color clr = new Color(215,255,255);
-			g.setColor(clr);
-			g.fillRect(x, y, 39, 39);
-			g.setColor(Color.white);
-			g.drawLine(x+39, y, x+39, y+39);
-			g.drawLine(x, y+39, x+39, y+39);
-			
-		}
-		if(joueurCourant == 1){
-			g.setColor(Color.BLACK);
-			g.fillRect(x, y, 39, 39);
-			g.setColor(Color.white);
-			g.drawLine(x+39, y, x+39, y+39);
-			g.drawLine(x, y+39, x+39, y+39);
-			
-		}
-		
 		
 		
 		

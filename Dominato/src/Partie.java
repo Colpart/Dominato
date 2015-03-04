@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.util.ArrayList;
 
 public class Partie
@@ -120,6 +121,46 @@ public class Partie
 			this.joueurCourant++;
 	}
 	
+	
+	public Color couleurCourante(){
+		if(this.getjoueurcourant() == 0){
+			return Color.WHITE;
+		}
+		if(this.getjoueurcourant() == 1){
+			Color tmp = new Color(230, 230, 230);
+			return tmp;
+		}
+		if(this.getjoueurcourant() == 2){
+			Color tmp = new Color(210, 210, 210);
+			return tmp;
+		}
+		if(this.getjoueurcourant() == 3){
+			Color tmp = new Color(190,190,190);
+			return tmp;
+		}
+		return null;
+	}
+	
+	public Color couleurCourante(int i){
+		if(i == 0){
+			return Color.WHITE;
+		}
+		else if(i == 1){
+			Color tmp = new Color(230, 230, 230);
+			return tmp;
+		}
+		else if(i == 2){
+			Color tmp = new Color(210, 210, 210);
+			return tmp;
+		}
+		else if(i == 3){
+			Color tmp = new Color(190,190,190);
+			return tmp;
+		}
+		return null;
+	}
+	
+	
 	public ArrayList<Domino> initialiserPioche()
 	{
 		ArrayList<Domino> pioche = new ArrayList<Domino>();
@@ -130,35 +171,35 @@ public class Partie
 				if (!(i == 0 && j == 0))
 					if (i == 0 || j == 0)
 					{
-						domino = new Domino(i+j, Couleur.ROUGE, 0, Couleur.BLANC);
+						domino = new Domino(i+j, Couleur.ROUGE, 0, Couleur.BLANC, this.couleurCourante());
 						
 						if (!pioche.contains(domino))
 						pioche.add(domino);
 				
-						domino = new Domino(0, Couleur.BLANC, i+j, Couleur.BLEU);
+						domino = new Domino(0, Couleur.BLANC, i+j, Couleur.BLEU, this.couleurCourante());
 				
 						if (!pioche.contains(domino))
 							pioche.add(domino);
 					}
 					else
 					{
-						domino = new Domino(i, Couleur.ROUGE, j, Couleur.BLEU);
+						domino = new Domino(i, Couleur.ROUGE, j, Couleur.BLEU,this.couleurCourante());
 				
 						if (!pioche.contains(domino))
 								pioche.add(domino);
 				
-						domino = new Domino(j, Couleur.ROUGE, i, Couleur.BLEU);
+						domino = new Domino(j, Couleur.ROUGE, i, Couleur.BLEU,this.couleurCourante());
 				
 						if (!pioche.contains(domino))
 								pioche.add(domino);
 						
-						domino = new Domino(i, Couleur.ROUGE, j, Couleur.ROUGE);
+						domino = new Domino(i, Couleur.ROUGE, j, Couleur.ROUGE,this.couleurCourante());
 					
 						if (domino.bilan().getValeur() <= 4)
 							if (!pioche.contains(domino))
 								pioche.add(domino);
 				
-						domino = new Domino(i, Couleur.BLEU, j, Couleur.BLEU);
+						domino = new Domino(i, Couleur.BLEU, j, Couleur.BLEU,this.couleurCourante());
 				
 						if (domino.bilan().getValeur() <= 4)
 							if (!pioche.contains(domino))
@@ -175,6 +216,8 @@ public class Partie
 				if (!pioche.isEmpty())
 				{
 					Domino domino = pioche.get((int)(Math.random()*pioche.size()));
+					domino.getMarque1().setCouleurFond(this.couleurCourante(i));
+					domino.getMarque2().setCouleurFond(this.couleurCourante(i));
 					this.joueurs[i].getJeu().add(domino);
 					this.pioche.remove(domino);
 				}
@@ -250,7 +293,7 @@ public class Partie
 					couleur2 = Couleur.BLEU;
 			}
 			
-			this.dominoSelectionne = new Domino(valeur1, couleur1, valeur2, couleur2);
+			this.dominoSelectionne = new Domino(valeur1, couleur1, valeur2, couleur2, this.couleurCourante());
 		} while (!(this.dominoSelectionne.bilan().getValeur() <= 4));
 	}
 	
