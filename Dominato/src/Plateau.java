@@ -1,7 +1,3 @@
-import java.awt.Color;
-
-
-
 public class Plateau
 {
 	private int taille;
@@ -9,7 +5,7 @@ public class Plateau
 	
 	public Plateau()
 	{
-		this.taille = 30;
+		this.taille = 100;
 		this.cases = new Marque[this.taille*this.taille];
 		for (int i = 0; i < this.taille*this.taille; i++)
 			this.cases[i] = new Marque();
@@ -29,8 +25,8 @@ public class Plateau
 	{
 		for (int i = 0; i < this.getTaille(); i++)
 			for (int j = 0; j < this.getTaille(); j++)
-			if (!this.get(i, j).getCouleur().equals(Couleur.VIDE))
-				return false;
+				if (!this.get(i, j).getCouleur().equals(Couleur.VIDE))
+					return false;
 		
 		return true;
 	}
@@ -394,7 +390,6 @@ public class Plateau
 	public void poserDomino(Domino domino, boolean horizontal, boolean sens, int x, int y)
 	{
 		Marque plein = new Marque(-1, Couleur.PLEIN, domino.getMarque1().getCouleurFond());
-		
 		
 		for (int i = x; i <= x+1; i++)
 			for (int j = y; j <= y+1; j++)

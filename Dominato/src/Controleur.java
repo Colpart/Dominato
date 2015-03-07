@@ -64,8 +64,9 @@ class Controleur extends MouseAdapter
 				
 				if (SwingUtilities.isLeftMouseButton(event))
 				{
-					x = (int)event.getPoint().getX()/20;
-					y = (int)event.getPoint().getY()/20;
+					x = (int)event.getPoint().getX()/20+panneau.getDebutX();
+					y = (int)event.getPoint().getY()/20+panneau.getDebutY();
+					System.out.println("x : "+x+", y : "+y);
 					
 				}
 				else if (SwingUtilities.isMiddleMouseButton(event))
@@ -165,6 +166,7 @@ class Controleur extends MouseAdapter
 						{
 							if (this.partie.coupValide(x, y))
 							{
+								System.out.println("xP : "+x+", yP : "+y);
 								this.partie.poserDomino(x, y);
 								this.partie.checkIfTerminee(this.partie.nbLiaisons(x, y));
 							
@@ -208,7 +210,7 @@ class Controleur extends MouseAdapter
 						BougerSouris b = new BougerSouris((int)event.getLocationOnScreen().getX()+150 , (int)event.getLocationOnScreen().getY());
 						b.start();
 						try {
-							Thread.sleep(2000);
+							Thread.sleep(1);
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();

@@ -2,17 +2,16 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
-
 import javax.swing.JPanel;
 
 public class Panneau extends JPanel
 {
-	static final long serialVersionUID = 1;
-	
+	private static final long serialVersionUID = 1L;
 	int compt=0;
 	private Partie partie;
 	private Controleur controleur;
-	
+	private int debutX;
+	private int debutY;
 	
 	public Controleur getControleur() {
 		return controleur;
@@ -25,11 +24,23 @@ public class Panneau extends JPanel
 	public Panneau(Partie partie)
 	{
 		this.partie = partie;
-		this.setPreferredSize(new Dimension(20*partie.getPlateau().getTaille()+100, 45+20*partie.getPlateau().getTaille()));
-		this.controleur = new Controleur(this, this.partie);
+		this.setPreferredSize(new Dimension(20*30+100, 45+20*30));
+		this.controleur = new Controleur(this, partie);
 		this.addMouseListener(controleur);
 		this.addMouseMotionListener(controleur);
 		this.addMouseWheelListener(controleur);
+		this.debutX = 50;
+		this.debutY = 50;
+	}
+	
+	public int getDebutX()
+	{
+		return debutX;
+	}
+	
+	public int getDebutY()
+	{
+		return debutY;
 	}
 	
 	public void paint(Graphics g)
@@ -37,19 +48,13 @@ public class Panneau extends JPanel
 		g.setColor(Color.LIGHT_GRAY);
 	    g.fillRect(0, 0, this.getWidth(), this.getHeight());
 	    
-	    
-	    
-		for (int i = 0; i < this.partie.getPlateau().getTaille(); i++)
-			for (int j = 0; j < this.partie.getPlateau().getTaille(); j++)
+		for (int i = debutX; i < this.partie.getPlateau().getTaille(); i++)
+			for (int j = debutY; j < this.partie.getPlateau().getTaille(); j++)
 				if (!this.partie.getPlateau().get(i, j).getCouleur().equals(Couleur.VIDE) && !this.partie.getPlateau().get(i, j).getCouleur().equals(Couleur.PLEIN))
-					this.partie.getPlateau().get(i, j).draw(g, 20*i, 20*j);
-			
-		
-		
+					this.partie.getPlateau().get(i, j).draw(g, 20*(i-debutX), 20*(j-debutY));
 			
 		if (!this.partie.estTerminee() && this.compt ==0)
 		{
-			
 			if (this.partie.dominoEstDansLeSens1())
 				this.partie.getDominoSelectionne().getMarque1().draw(g, this.partie.getX(), this.partie.getY());
 			else
@@ -108,7 +113,7 @@ public class Panneau extends JPanel
 			}
 		}
 		
-		Font font = new Font("Times Roman", Font.PLAIN, 15);
+		Font font = new Font("Ubuntu", Font.PLAIN, 15);
 		g.setFont(font);
 		
 		for (int k = 0; k < this.partie.getNbJoueurs(); k++)
