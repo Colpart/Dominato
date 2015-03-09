@@ -34,6 +34,10 @@ public class Partie
 		this.terminee = 0;
 	}
 	
+	Joueur getJoueurNum(int i){
+		return this.joueurs[i];
+	}
+	
 	public boolean estTerminee()
 	{
 		if (this.terminee == 1)

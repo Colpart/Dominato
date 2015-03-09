@@ -9,6 +9,8 @@ public class Panneau extends JPanel
 	private static final long serialVersionUID = 1L;
 	int compt=0;
 	private Partie partie;
+	private AffichageDominoEst affDominoEst;
+	private AffichageDominoWest affDominoWest;
 	private Controleur controleur;
 	private int debutX;
 	private int debutY;
@@ -21,10 +23,12 @@ public class Panneau extends JPanel
 		super();
 	}
 	
-	public Panneau(Partie partie)
+	public Panneau(Partie partie, AffichageDominoEst affDominoEst, AffichageDominoWest affDominoWest)
 	{
 		this.partie = partie;
-		this.setPreferredSize(new Dimension(20*30+100, 45+20*30));
+		this.affDominoEst = affDominoEst;
+		this.affDominoWest = affDominoWest;
+		//this.setPreferredSize(new Dimension(20*30+100, 45+20*30));
 		this.controleur = new Controleur(this, partie);
 		this.addMouseListener(controleur);
 		this.addMouseMotionListener(controleur);
@@ -33,6 +37,15 @@ public class Panneau extends JPanel
 		this.debutY = 50;
 	}
 	
+	
+	public AffichageDominoEst getAffDominoEst() {
+		return affDominoEst;
+	}
+
+	public AffichageDominoWest getAffDominoWest() {
+		return affDominoWest;
+	}
+
 	public int getDebutX()
 	{
 		return debutX;
@@ -72,46 +85,7 @@ public class Panneau extends JPanel
 					this.partie.getDominoSelectionne().getMarque1().draw(g, this.partie.getX(), this.partie.getY()+40);
 	    }
 		
-		g.setColor(Color.DARK_GRAY);
-	    g.fillRect(this.getWidth()-100, 0, this.getWidth(), this.getHeight());
-	    g.setColor(Color.BLACK);
-	    g.drawLine(this.getWidth()-100, 0, this.getWidth()-100, this.getHeight());
-		
-		int i = this.getWidth()-90, j = 10, c = 0, j1 = j;
-		
-		for (Domino d : this.partie.getJoueurCourant().getJeu())
-		{
-			if( j1 > this.getHeight()){
-				if( c==0){
-					g.setColor(Color.DARK_GRAY);
-				    g.fillRect(this.getWidth()-150, 0, 50, this.getHeight());
-				    g.setColor(Color.BLACK);
-				    g.drawLine(this.getWidth()-150, 0, this.getWidth()-150, this.getHeight());
-				    g.setColor(Color.DARK_GRAY);
-				    g.drawLine(this.getWidth()-100, 0, this.getWidth()-100, this.getHeight());
-					
-					i = this.getWidth()-140;
-					j = 10;
-					c++;
-					d.getMarque1().draw(g, i, j);
-					j = j+40;
-					d.getMarque2().draw(g, i, j);
-					j = j+50;
-				}
-				else{
-					d.getMarque1().draw(g, i, j);
-					j = j+40;
-					d.getMarque2().draw(g, i, j);
-					j = j+50;
-				}
-			}
-			else{
-				d.getMarque1().draw(g, i, j);
-				d.getMarque2().draw(g, i+40, j);
-				j += 50;
-				j1 = j;
-			}
-		}
+	    
 		
 		Font font = new Font("Ubuntu", Font.PLAIN, 15);
 		g.setFont(font);
@@ -131,5 +105,13 @@ public class Panneau extends JPanel
 		    
 			g.drawString(this.partie.getJoueur(k).getNom()+" : "+this.partie.getJoueur(k).getScore()+" ("+this.partie.getJoueur(k).getJeu().size()+")", 20+k*(this.getWidth()-100)/this.partie.getNbJoueurs(), this.getHeight()-20);
 		}
+	}
+
+	public Partie getPartie() {
+		return partie;
+	}
+
+	public void setPartie(Partie partie) {
+		this.partie = partie;
 	}               
 }

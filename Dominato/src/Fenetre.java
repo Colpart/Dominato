@@ -27,6 +27,8 @@ public class Fenetre extends JFrame
 	private Bouton3Listener boutonL3 = new Bouton3Listener();
 	private Bouton4Listener boutonL4 = new Bouton4Listener();
 	private Panneau pan;
+	private AffichageDominoEst dominoEst;
+	private AffichageDominoWest dominoWest;
 	private Menu menu;
 	private Partie partie;
 	
@@ -128,12 +130,17 @@ public class Fenetre extends JFrame
 						type[i] = false;
 				}
 				Partie p = new Partie(type.length, type);
-				Panneau pa = new Panneau(p);
+				dominoWest = new AffichageDominoWest(partie);
+				dominoEst = new AffichageDominoEst(partie);
+				Panneau pa = new Panneau(p,dominoEst, dominoWest );
 				pan = pa;
+				
 				container.removeAll();
 				
 				container.setLayout(new BorderLayout());
 				container.add(pan, BorderLayout.CENTER);
+				container.add(dominoWest,BorderLayout.WEST);
+				container.add(dominoEst,BorderLayout.EAST);
 				JPanel north = new JPanel();
 				north.add(bouton, BorderLayout.WEST);
 				north.add(bouton2);
@@ -190,10 +197,15 @@ public class Fenetre extends JFrame
 			
 			boolean[] type = {true,false};
 			partie = new Partie(2,type);
-			pan = new Panneau(partie);
+			dominoWest = new AffichageDominoWest(partie);
+			dominoEst = new AffichageDominoEst(partie);
+			pan = new Panneau(partie,dominoEst,dominoWest);
+			
 			getContentPane().removeAll();
 			container.setLayout(new BorderLayout());
 			container.add(pan, BorderLayout.CENTER);
+			container.add(dominoEst,BorderLayout.EAST);
+			container.add(dominoWest,BorderLayout.WEST);
 			JPanel north = new JPanel();
 			north.add(bouton, BorderLayout.WEST);
 			north.add(bouton2);
@@ -219,10 +231,15 @@ public class Fenetre extends JFrame
 		bouton4.removeActionListener(boutonL4);
 		
 		partie = new Partie(type.length,type);
-		pan = new Panneau(partie);
+		
+		dominoWest = new AffichageDominoWest(partie);
+		dominoEst = new AffichageDominoEst(partie);
+		pan = new Panneau(partie,dominoEst,dominoWest );
 		getContentPane().removeAll();
 		container.setLayout(new BorderLayout());
 		container.add(pan, BorderLayout.CENTER);
+		container.add(dominoEst, BorderLayout.EAST);
+		container.add(dominoWest, BorderLayout.WEST);
 		JPanel north = new JPanel();
 		north.add(bouton, BorderLayout.WEST);
 		north.add(bouton2);

@@ -12,6 +12,8 @@ class Controleur extends MouseAdapter
 	private Panneau panneau;
 	private Partie partie;
 	
+	
+	
 	Controleur(Panneau panneau, Partie partie)
 	{
 		this.panneau = panneau;
@@ -19,25 +21,6 @@ class Controleur extends MouseAdapter
 	}
 	
 	
-	public class BougerSouris extends Thread{
-		private int xInit,yInit;
-		BougerSouris(int xInit, int yInit){
-			this.xInit = xInit;
-			this.yInit = yInit;
-		}
-		
-		public void run(){
-			Robot r;
-			try {
-				r = new Robot();
-				r.mouseMove(this.xInit, this.yInit);
-			
-			} catch (AWTException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-	}
 	
 	public void mouseMoved(MouseEvent event)
 	{
@@ -66,7 +49,6 @@ class Controleur extends MouseAdapter
 				{
 					x = (int)event.getPoint().getX()/20+panneau.getDebutX();
 					y = (int)event.getPoint().getY()/20+panneau.getDebutY();
-					System.out.println("x : "+x+", y : "+y);
 					
 				}
 				else if (SwingUtilities.isMiddleMouseButton(event))
@@ -166,7 +148,6 @@ class Controleur extends MouseAdapter
 						{
 							if (this.partie.coupValide(x, y))
 							{
-								System.out.println("xP : "+x+", yP : "+y);
 								this.partie.poserDomino(x, y);
 								this.partie.checkIfTerminee(this.partie.nbLiaisons(x, y));
 							
@@ -198,6 +179,9 @@ class Controleur extends MouseAdapter
 					if (this.partie.getJoueurCourant().estHumain()){
 						this.panneau.compt = 0;
 						this.panneau.paintImmediately(0, 0, this.panneau.getWidth(), this.panneau.getHeight());
+						this.panneau.getAffDominoEst().paintImmediately(0, 0, this.panneau.getAffDominoEst().getWidth(), this.panneau.getAffDominoEst().getHeight());
+						this.panneau.getAffDominoWest().paintImmediately(0, 0, this.panneau.getAffDominoWest().getWidth(), this.panneau.getAffDominoEst().getHeight());
+						
 					}
 					
 					
@@ -206,9 +190,9 @@ class Controleur extends MouseAdapter
 						
 						this.panneau.compt = 1;
 						this.panneau.paintImmediately(0, 0, this.panneau.getWidth(), this.panneau.getHeight());
+						this.panneau.getAffDominoEst().paintImmediately(0, 0, this.panneau.getAffDominoEst().getWidth(), this.panneau.getAffDominoEst().getHeight());
+						this.panneau.getAffDominoWest().paintImmediately(0, 0, this.panneau.getAffDominoWest().getWidth(), this.panneau.getAffDominoEst().getHeight());
 						
-						BougerSouris b = new BougerSouris((int)event.getLocationOnScreen().getX()+150 , (int)event.getLocationOnScreen().getY());
-						b.start();
 						try {
 							Thread.sleep(1);
 						} catch (InterruptedException e) {
@@ -238,7 +222,7 @@ class Controleur extends MouseAdapter
 	        	this.partie.changerDomino(false);
 	        	
 	        this.panneau.repaint();
-		}
+	  }
     }
 
 	

@@ -58,7 +58,6 @@ public class Marque
 	{
 		int r = 7;
 		g.setColor(this.getCouleurFond());
-		//System.out.println(this.getCouleurFond().toString());
 		g.fillRect(x, y, 39, 39);
 		if(this.getCouleurFond() != Color.BLACK){
 			g.setColor(Color.BLACK);
