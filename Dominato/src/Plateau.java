@@ -5,7 +5,7 @@ public class Plateau
 	
 	public Plateau()
 	{
-		this.taille = 100;
+		this.taille = 60;
 		this.cases = new Marque[this.taille*this.taille];
 		for (int i = 0; i < this.taille*this.taille; i++)
 			this.cases[i] = new Marque();

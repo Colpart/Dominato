@@ -29,6 +29,7 @@ public class Fenetre extends JFrame
 	private Panneau pan;
 	private AffichageDominoEst dominoEst;
 	private AffichageDominoWest dominoWest;
+	private AffichageJoueurs affJoueurs;
 	private Menu menu;
 	private Partie partie;
 	
@@ -130,9 +131,10 @@ public class Fenetre extends JFrame
 						type[i] = false;
 				}
 				Partie p = new Partie(type.length, type);
-				dominoWest = new AffichageDominoWest(partie);
-				dominoEst = new AffichageDominoEst(partie);
-				Panneau pa = new Panneau(p,dominoEst, dominoWest );
+				dominoWest = new AffichageDominoWest(p);
+				dominoEst = new AffichageDominoEst(p);
+				affJoueurs = new AffichageJoueurs(p);
+				Panneau pa = new Panneau(p,dominoEst, dominoWest, affJoueurs );
 				pan = pa;
 				
 				container.removeAll();
@@ -141,6 +143,7 @@ public class Fenetre extends JFrame
 				container.add(pan, BorderLayout.CENTER);
 				container.add(dominoWest,BorderLayout.WEST);
 				container.add(dominoEst,BorderLayout.EAST);
+				container.add(affJoueurs, BorderLayout.SOUTH);
 				JPanel north = new JPanel();
 				north.add(bouton, BorderLayout.WEST);
 				north.add(bouton2);
@@ -164,24 +167,10 @@ public class Fenetre extends JFrame
 		public void actionPerformed(ActionEvent arg0) {
 			
 			JOptionPane jop = new JOptionPane();
-			int option = jop.showConfirmDialog(null,"Retourner au Menu Principal ?","Attention",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE);
+			int option = jop.showConfirmDialog(null,"Souhaitez-vous quitter le jeu ?","Attention",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE);
 			
 			if(option == JOptionPane.OK_OPTION){
-				container.removeAll();
-				bouton.removeActionListener(boutonL);
-				bouton2.removeActionListener(boutonL2);
-				bouton3.removeActionListener(boutonL3);
-				bouton4.removeActionListener(boutonL4);
-				container.setLayout(new BorderLayout());
-			    container.add(menu,BorderLayout.CENTER);
-			    JPanel center = new JPanel();
-			    center.add(boutonM1);
-			    center.add(boutonM2);
-			    center.add(boutonM3);
-			    center.setBackground(Color.black);
-			    container.add(center, BorderLayout.NORTH);
-			    pack();
-			    setVisible(true);
+				System.exit(0);
 			}
 			
 		}
@@ -199,13 +188,15 @@ public class Fenetre extends JFrame
 			partie = new Partie(2,type);
 			dominoWest = new AffichageDominoWest(partie);
 			dominoEst = new AffichageDominoEst(partie);
-			pan = new Panneau(partie,dominoEst,dominoWest);
+			affJoueurs = new AffichageJoueurs(partie);
+			pan = new Panneau(partie,dominoEst,dominoWest, affJoueurs);
 			
 			getContentPane().removeAll();
 			container.setLayout(new BorderLayout());
 			container.add(pan, BorderLayout.CENTER);
 			container.add(dominoEst,BorderLayout.EAST);
 			container.add(dominoWest,BorderLayout.WEST);
+			container.add(affJoueurs, BorderLayout.SOUTH);
 			JPanel north = new JPanel();
 			north.add(bouton, BorderLayout.WEST);
 			north.add(bouton2);
@@ -234,12 +225,14 @@ public class Fenetre extends JFrame
 		
 		dominoWest = new AffichageDominoWest(partie);
 		dominoEst = new AffichageDominoEst(partie);
-		pan = new Panneau(partie,dominoEst,dominoWest );
+		affJoueurs = new AffichageJoueurs(partie);
+		pan = new Panneau(partie,dominoEst,dominoWest, affJoueurs );
 		getContentPane().removeAll();
 		container.setLayout(new BorderLayout());
 		container.add(pan, BorderLayout.CENTER);
 		container.add(dominoEst, BorderLayout.EAST);
 		container.add(dominoWest, BorderLayout.WEST);
+		container.add(affJoueurs, BorderLayout.SOUTH);
 		JPanel north = new JPanel();
 		north.add(bouton, BorderLayout.WEST);
 		north.add(bouton2);

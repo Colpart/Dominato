@@ -11,6 +11,7 @@ public class Panneau extends JPanel
 	private Partie partie;
 	private AffichageDominoEst affDominoEst;
 	private AffichageDominoWest affDominoWest;
+	private AffichageJoueurs affJoueurs;
 	private Controleur controleur;
 	private int debutX;
 	private int debutY;
@@ -23,18 +24,18 @@ public class Panneau extends JPanel
 		super();
 	}
 	
-	public Panneau(Partie partie, AffichageDominoEst affDominoEst, AffichageDominoWest affDominoWest)
+	public Panneau(Partie partie, AffichageDominoEst affDominoEst, AffichageDominoWest affDominoWest, AffichageJoueurs affJoueurs)
 	{
 		this.partie = partie;
 		this.affDominoEst = affDominoEst;
 		this.affDominoWest = affDominoWest;
-		//this.setPreferredSize(new Dimension(20*30+100, 45+20*30));
+		this.affJoueurs = affJoueurs;
 		this.controleur = new Controleur(this, partie);
 		this.addMouseListener(controleur);
 		this.addMouseMotionListener(controleur);
 		this.addMouseWheelListener(controleur);
-		this.debutX = 50;
-		this.debutY = 50;
+		this.debutX = 0;
+		this.debutY = 0;
 	}
 	
 	
@@ -56,6 +57,10 @@ public class Panneau extends JPanel
 		return debutY;
 	}
 	
+	public AffichageJoueurs getAffJoueurs() {
+		return affJoueurs;
+	}
+
 	public void paint(Graphics g)
 	{
 		g.setColor(Color.LIGHT_GRAY);
@@ -87,24 +92,7 @@ public class Panneau extends JPanel
 		
 	    
 		
-		Font font = new Font("Ubuntu", Font.PLAIN, 15);
-		g.setFont(font);
 		
-		for (int k = 0; k < this.partie.getNbJoueurs(); k++)
-		{
-			if (this.partie.getJoueur(k).equals(this.partie.getJoueurCourant()))
-			{
-				if (!this.partie.estTerminee()){;
-					g.setColor(Color.BLUE);
-				}
-				else
-					g.setColor(Color.GREEN);
-			}
-		    else
-		    	g.setColor(Color.BLACK);
-		    
-			g.drawString(this.partie.getJoueur(k).getNom()+" : "+this.partie.getJoueur(k).getScore()+" ("+this.partie.getJoueur(k).getJeu().size()+")", 20+k*(this.getWidth()-100)/this.partie.getNbJoueurs(), this.getHeight()-20);
-		}
 	}
 
 	public Partie getPartie() {

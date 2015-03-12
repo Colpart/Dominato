@@ -34,6 +34,7 @@ class Controleur extends MouseAdapter
 		}
 		
 		this.panneau.repaint();
+		this.panneau.getAffJoueurs().repaint();
 	}
 	
 	public void mousePressed(MouseEvent event)
@@ -181,7 +182,7 @@ class Controleur extends MouseAdapter
 						this.panneau.paintImmediately(0, 0, this.panneau.getWidth(), this.panneau.getHeight());
 						this.panneau.getAffDominoEst().paintImmediately(0, 0, this.panneau.getAffDominoEst().getWidth(), this.panneau.getAffDominoEst().getHeight());
 						this.panneau.getAffDominoWest().paintImmediately(0, 0, this.panneau.getAffDominoWest().getWidth(), this.panneau.getAffDominoEst().getHeight());
-						
+						this.panneau.getAffJoueurs().paintImmediately(0, 0, this.panneau.getAffJoueurs().getWidth(), this.panneau.getAffJoueurs().getHeight());
 					}
 					
 					
@@ -192,9 +193,10 @@ class Controleur extends MouseAdapter
 						this.panneau.paintImmediately(0, 0, this.panneau.getWidth(), this.panneau.getHeight());
 						this.panneau.getAffDominoEst().paintImmediately(0, 0, this.panneau.getAffDominoEst().getWidth(), this.panneau.getAffDominoEst().getHeight());
 						this.panneau.getAffDominoWest().paintImmediately(0, 0, this.panneau.getAffDominoWest().getWidth(), this.panneau.getAffDominoEst().getHeight());
+						this.panneau.getAffJoueurs().paintImmediately(0, 0, this.panneau.getAffJoueurs().getWidth(), this.panneau.getAffJoueurs().getHeight());
 						
 						try {
-							Thread.sleep(1);
+							Thread.sleep(1000);
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -208,6 +210,7 @@ class Controleur extends MouseAdapter
 			{
 				this.partie.changerSens();
 				this.panneau.repaint();
+				this.panneau.getAffJoueurs().repaint();
 			}
 		}
 	}
@@ -222,6 +225,7 @@ class Controleur extends MouseAdapter
 	        	this.partie.changerDomino(false);
 	        	
 	        this.panneau.repaint();
+	        this.panneau.getAffJoueurs().repaint();
 	  }
     }
 
