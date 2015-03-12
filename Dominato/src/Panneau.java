@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -63,6 +64,8 @@ public class Panneau extends JPanel
 
 	public void paint(Graphics g)
 	{
+		Cursor cursor = new Cursor(Cursor.HAND_CURSOR);
+		setCursor(cursor);
 		g.setColor(Color.LIGHT_GRAY);
 	    g.fillRect(0, 0, this.getWidth(), this.getHeight());
 	    
