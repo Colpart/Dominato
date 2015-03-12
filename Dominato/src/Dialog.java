@@ -58,12 +58,6 @@ public class Dialog extends JDialog {
 	
 	public void initComponent(){
 		
-		/* Icone */
-		icon = new JLabel(new ImageIcon("icone.jpeg"));
-		JPanel panIcon = new JPanel();
-		panIcon.setBackground(Color.DARK_GRAY);
-		panIcon.setLayout(new BorderLayout());
-		panIcon.add(icon);
 		
 		/* Infos concernant les joueurs humains */
 		JPanel panH = new JPanel();
@@ -101,7 +95,7 @@ public class Dialog extends JDialog {
 		/*  Infos concernant l'ordi */
 		JPanel panO = new JPanel();
 		Font font1 = new Font("Serif", Font.BOLD, 13);
-		panO.setBorder(BorderFactory.createTitledBorder(null, "Nombre Ordinateurs", 0, 0, font1));
+		panO.setBorder(BorderFactory.createTitledBorder(null, "Nombre Joueurs Virtuels", 0, 0, font1));
 		panO.setPreferredSize(new Dimension(250, 60));
 		tranche12 = new JRadioButton("0");
 		this.tranche12.setBackground(Color.LIGHT_GRAY);
@@ -177,7 +171,6 @@ public class Dialog extends JDialog {
 		control.add(cancelBouton);
 		
 		this.getContentPane().add(content,BorderLayout.CENTER);
-		this.getContentPane().add(panIcon, BorderLayout.WEST);
 		this.getContentPane().add(control ,BorderLayout.SOUTH);
 		
 	}
