@@ -24,8 +24,28 @@ class Controleur extends MouseAdapter
 	
 	public void mouseMoved(MouseEvent event)
 	{
-		int x = (int)event.getPoint().getX()-10;
-		int y = (int)event.getPoint().getY()-10;
+		int x = 0, y = 0;
+		
+		/*if (this.partie.dominoEstHorizontal() && this.partie.dominoEstDansLeSens1())
+		{ */
+			x = (int)event.getPoint().getX()-10;
+			y = (int)event.getPoint().getY()-10;
+		/*}
+		else if (this.partie.dominoEstHorizontal() && !this.partie.dominoEstDansLeSens1())
+		{
+			x = (int)event.getPoint().getX()-50;
+			y = (int)event.getPoint().getY()-10;
+		}
+		else if (!this.partie.dominoEstHorizontal() && this.partie.dominoEstDansLeSens1())
+		{
+			x = (int)event.getPoint().getX()-10;
+			y = (int)event.getPoint().getY()-10;
+		}
+		else if (!this.partie.dominoEstHorizontal() && !this.partie.dominoEstDansLeSens1())
+		{
+			x = (int)event.getPoint().getX()-10;
+			y = (int)event.getPoint().getY()-50;
+		}*/
 		
 		if (x >= 0 && x < 20*this.partie.getPlateau().getTaille() && y >= 0 && y < 20*this.partie.getPlateau().getTaille())
 		{
@@ -209,6 +229,36 @@ class Controleur extends MouseAdapter
 			else if (SwingUtilities.isRightMouseButton(event))
 			{
 				this.partie.changerSens();
+				
+				/*int x = 0, y = 0;
+				
+				if (this.partie.dominoEstHorizontal() && this.partie.dominoEstDansLeSens1())
+				{
+					x = (int)event.getPoint().getX()-10;
+					y = (int)event.getPoint().getY()-10;
+				}
+				else if (this.partie.dominoEstHorizontal() && !this.partie.dominoEstDansLeSens1())
+				{
+					x = (int)event.getPoint().getX()-50;
+					y = (int)event.getPoint().getY()-10;
+				}
+				else if (!this.partie.dominoEstHorizontal() && this.partie.dominoEstDansLeSens1())
+				{
+					x = (int)event.getPoint().getX()-10;
+					y = (int)event.getPoint().getY()-10;
+				}
+				else if (!this.partie.dominoEstHorizontal() && !this.partie.dominoEstDansLeSens1())
+				{
+					x = (int)event.getPoint().getX()-10;
+					y = (int)event.getPoint().getY()-50;
+				}
+				
+				if (x >= 0 && x < 20*this.partie.getPlateau().getTaille() && y >= 0 && y < 20*this.partie.getPlateau().getTaille())
+				{
+					this.partie.setX(x);
+					this.partie.setY(y);
+				}*/
+				
 				this.panneau.repaint();
 				this.panneau.getAffJoueurs().repaint();
 			}

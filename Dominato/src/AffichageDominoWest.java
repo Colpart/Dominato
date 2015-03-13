@@ -23,7 +23,7 @@ public class AffichageDominoWest extends JPanel{
 		g.setColor(Color.DARK_GRAY);
 	    g.fillRect(0, 0, this.getWidth(), this.getHeight());
 	    g.setColor(Color.BLACK);
-	    g.drawLine(0, 0, 0, this.getHeight());
+	    g.drawLine(this.getWidth(), 0, this.getWidth(), this.getHeight());
 	    
 	      int i = 60, j = 10, c = 0, j1 = j;
 			

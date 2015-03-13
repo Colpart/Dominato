@@ -35,7 +35,7 @@ public class AffichageJoueurs extends JPanel{
 		{
 			if (this.partie.getJoueur(k).equals(this.partie.getJoueurCourant()))
 			{
-				if (!this.partie.estTerminee()){;
+				if (!this.partie.estTerminee()){
 					g.setColor(Color.WHITE);
 				}
 				else
@@ -44,7 +44,7 @@ public class AffichageJoueurs extends JPanel{
 		    else
 		    	g.setColor(Color.BLACK);
 		    
-			g.drawString(this.partie.getJoueur(k).getNom()+" : "+this.partie.getJoueur(k).getScore()+" ("+this.partie.getJoueur(k).getJeu().size()+")",  1100*k +50  , this.getHeight()-20);
+			g.drawString(this.partie.getJoueur(k).getNom()+" : "+this.partie.getJoueur(k).getScore()+" ("+this.partie.getJoueur(k).getJeu().size()+")",  this.getWidth()/this.partie.getNbJoueurs()*k +50  , this.getHeight()-20);
 			
 	}
 

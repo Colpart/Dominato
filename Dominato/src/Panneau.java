@@ -66,7 +66,7 @@ public class Panneau extends JPanel
 	{
 		Cursor cursor = new Cursor(Cursor.HAND_CURSOR);
 		setCursor(cursor);
-		g.setColor(Color.LIGHT_GRAY);
+		g.setColor(new Color(245, 220, 180));
 	    g.fillRect(0, 0, this.getWidth(), this.getHeight());
 	    
 		for (int i = debutX; i < this.partie.getPlateau().getTaille(); i++)

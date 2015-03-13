@@ -67,14 +67,11 @@ public class Marque
 		}
 		g.drawLine(x+39, y, x+39, y+39);
 		g.drawLine(x, y+39, x+39, y+39);
-			
-		
-		
 		
 		if (this.getCouleur().equals(Couleur.ROUGE))
 			g.setColor(Color.RED);
 		else if (this.getCouleur().equals(Couleur.BLEU))
-			g.setColor(Color.BLUE);
+			g.setColor(Color.GREEN.darker().darker());
 
 		if (this.getValeur() == 1)
 		{
