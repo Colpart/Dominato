@@ -1,8 +1,8 @@
 import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.image.BufferedImage;
+
 import javax.swing.JPanel;
 
 public class Panneau extends JPanel
@@ -64,8 +64,7 @@ public class Panneau extends JPanel
 
 	public void paint(Graphics g)
 	{
-		Cursor cursor = new Cursor(Cursor.HAND_CURSOR);
-		setCursor(cursor);
+		setCursor(this.getToolkit().createCustomCursor(new BufferedImage(3, 3, BufferedImage.TYPE_INT_ARGB), new Point(0, 0), null));
 		g.setColor(new Color(245, 220, 180));
 	    g.fillRect(0, 0, this.getWidth(), this.getHeight());
 	    

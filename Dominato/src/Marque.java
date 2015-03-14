@@ -70,7 +70,7 @@ public class Marque
 		
 		if (this.getCouleur().equals(Couleur.ROUGE))
 			g.setColor(Color.RED);
-		else if (this.getCouleur().equals(Couleur.BLEU))
+		else if (this.getCouleur().equals(Couleur.VERT))
 			g.setColor(Color.GREEN.darker().darker());
 
 		if (this.getValeur() == 1)

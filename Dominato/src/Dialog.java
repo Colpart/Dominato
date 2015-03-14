@@ -10,11 +10,9 @@ import java.awt.event.MouseListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
@@ -37,7 +35,6 @@ public class Dialog extends JDialog {
 	private JRadioButton tranche1, tranche2, tranche3, tranche4;
 	private JRadioButton tranche12, tranche22, tranche32, tranche42;
 	private String resultat;
-	private JLabel icon;
 	
 
 	public Dialog(JFrame parent, String title, boolean modal){

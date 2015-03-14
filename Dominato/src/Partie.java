@@ -180,19 +180,19 @@ public class Partie
 						if (!pioche.contains(domino))
 						pioche.add(domino);
 				
-						domino = new Domino(0, Couleur.BLANC, i+j, Couleur.BLEU, this.couleurCourante());
+						domino = new Domino(0, Couleur.BLANC, i+j, Couleur.VERT, this.couleurCourante());
 				
 						if (!pioche.contains(domino))
 							pioche.add(domino);
 					}
 					else
 					{
-						domino = new Domino(i, Couleur.ROUGE, j, Couleur.BLEU,this.couleurCourante());
+						domino = new Domino(i, Couleur.ROUGE, j, Couleur.VERT,this.couleurCourante());
 				
 						if (!pioche.contains(domino))
 								pioche.add(domino);
 				
-						domino = new Domino(j, Couleur.ROUGE, i, Couleur.BLEU,this.couleurCourante());
+						domino = new Domino(j, Couleur.ROUGE, i, Couleur.VERT,this.couleurCourante());
 				
 						if (!pioche.contains(domino))
 								pioche.add(domino);
@@ -203,7 +203,7 @@ public class Partie
 							if (!pioche.contains(domino))
 								pioche.add(domino);
 				
-						domino = new Domino(i, Couleur.BLEU, j, Couleur.BLEU,this.couleurCourante());
+						domino = new Domino(i, Couleur.VERT, j, Couleur.VERT,this.couleurCourante());
 				
 						if (domino.bilan().getValeur() <= 4)
 							if (!pioche.contains(domino))
@@ -215,8 +215,8 @@ public class Partie
 	
 	public void distribuer()
 	{
-		while (!pioche.isEmpty())
-			for (int i = 0; i < this.nbJoueurs; i++)
+		while (!pioche.isEmpty()){
+			for (int i = 0; i < this.nbJoueurs; i++){
 				if (!pioche.isEmpty())
 				{
 					Domino domino = pioche.get((int)(Math.random()*pioche.size()));
@@ -225,6 +225,83 @@ public class Partie
 					this.joueurs[i].getJeu().add(domino);
 					this.pioche.remove(domino);
 				}
+			}
+		}
+		for (int i = 0; i < this.nbJoueurs; i++){
+			this.trierDominos1(this.joueurs[i].getJeu());
+			this.trierDominos2(this.joueurs[i].getJeu());
+		}
+	}
+	
+	/* Tri des dominos pour la marque 1 */
+	public void trierDominos1(ArrayList<Domino> al){
+		int longueur = al.size();
+		Domino tampon;
+		boolean permut;
+ 
+		do {
+			permut = false;
+			for (int i = 0; i < longueur - 1; i++) {
+				if (al.get(i).getMarque1().getValeur() > al.get(i+1).getMarque1().getValeur()) {
+					tampon = al.get(i);
+					al.set(i, al.get(i+1));
+					al.set(i+1, tampon);
+					permut = true;
+				}
+			}
+		} while (permut);
+	}
+	
+	/* Retourne les dominos qui ont comme valeur dans la marque1  valeurMarque1 */
+	public ArrayList<Domino> getDominosParValeur(ArrayList<Domino> al, int valeurMarque1){
+		ArrayList<Domino> tmp = new ArrayList<Domino>();
+		for(Domino d : al){
+			if(d.getMarque1().getValeur() == valeurMarque1){
+				tmp.add(d);
+			}
+		}
+		return tmp;
+	}
+	
+
+	/* Tri des dominos pour la marque 1 */
+	public void trierDominos2Bis(ArrayList<Domino> al){
+		int longueur = al.size();
+		Domino tampon;
+		boolean permut;
+ 
+		do {
+			permut = false;
+			for (int i = 0; i < longueur - 1; i++) {
+				if (al.get(i).getMarque2().getValeur() > al.get(i+1).getMarque2().getValeur()) {
+					tampon = al.get(i);
+					al.set(i, al.get(i+1));
+					al.set(i+1, tampon);
+					permut = true;
+				}
+			}
+		} while (permut);
+	}
+
+	
+	/* Tri des dominos pour la marque 2 */
+	public void trierDominos2(ArrayList<Domino> al){
+		ArrayList<Domino> tmp0 = getDominosParValeur(al, 0);
+		trierDominos2Bis(tmp0);
+		ArrayList<Domino> tmp1 = getDominosParValeur(al, 1);
+		trierDominos2Bis(tmp1);
+		ArrayList<Domino> tmp2 = getDominosParValeur(al, 2);
+		trierDominos2Bis(tmp2);
+		ArrayList<Domino> tmp3 = getDominosParValeur(al, 3);
+		trierDominos2Bis(tmp3);
+		ArrayList<Domino> tmp4 = getDominosParValeur(al, 4);
+		trierDominos2Bis(tmp4);
+		al.clear();
+		al.addAll(tmp0);
+		al.addAll(tmp1);
+		al.addAll(tmp2);
+		al.addAll(tmp3);
+		al.addAll(tmp4);
 	}
 	
 	public Domino getDominoSelectionne()
@@ -284,7 +361,7 @@ public class Partie
 				if ((int)(Math.random()*2) == 0)
 					couleur1 = Couleur.ROUGE;
 				else
-					couleur1 = Couleur.BLEU;
+					couleur1 = Couleur.VERT;
 			}
 			
 			if (valeur2 == 0)
@@ -294,7 +371,7 @@ public class Partie
 				if ((int)(Math.random()*2) == 0)
 					couleur2 = Couleur.ROUGE;
 				else
-					couleur2 = Couleur.BLEU;
+					couleur2 = Couleur.VERT;
 			}
 			
 			this.dominoSelectionne = new Domino(valeur1, couleur1, valeur2, couleur2, this.couleurCourante());

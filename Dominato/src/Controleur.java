@@ -1,8 +1,6 @@
 
 import javax.swing.SwingUtilities;
 
-import java.awt.AWTException;
-import java.awt.Robot;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;

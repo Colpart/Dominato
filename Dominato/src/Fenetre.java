@@ -114,6 +114,7 @@ public class Fenetre extends JFrame
 		
 		public void actionPerformed(ActionEvent arg0) {
 			JOptionPane jop = new JOptionPane();
+			@SuppressWarnings("static-access")
 			int option = jop.showConfirmDialog(null,"Voulez-vous recommencer la partie?",null,JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE);
 			
 			if(option == JOptionPane.OK_OPTION){
@@ -167,6 +168,7 @@ public class Fenetre extends JFrame
 		public void actionPerformed(ActionEvent arg0) {
 			
 			JOptionPane jop = new JOptionPane();
+			@SuppressWarnings("static-access")
 			int option = jop.showConfirmDialog(null,"Souhaitez-vous quitter le jeu ?","Attention",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE);
 			
 			if(option == JOptionPane.OK_OPTION){
@@ -311,6 +313,7 @@ public class Fenetre extends JFrame
 		public void actionPerformed(ActionEvent arg0) {
 			
 			JOptionPane jop = new JOptionPane();
+			@SuppressWarnings("static-access")
 			int option = jop.showConfirmDialog(null,"Voulez-vous quittez ?","Attention",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE);
 			
 			if(option == JOptionPane.OK_OPTION){

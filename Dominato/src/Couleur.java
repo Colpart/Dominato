@@ -1,7 +1,7 @@
 public enum Couleur
 {
 	ROUGE,
-	BLEU,
+	VERT,
 	BLANC,
 	PLEIN,
 	VIDE;
