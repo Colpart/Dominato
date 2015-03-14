@@ -27,8 +27,8 @@ public class Fenetre extends JFrame
 	private Bouton3Listener boutonL3 = new Bouton3Listener();
 	private Bouton4Listener boutonL4 = new Bouton4Listener();
 	private Panneau pan;
-	private AffichageDominoEst dominoEst;
-	private AffichageDominoWest dominoWest;
+	private AffichageDominosEst dominoEst;
+	private AffichageDominosWest dominoWest;
 	private AffichageJoueurs affJoueurs;
 	private Menu menu;
 	private Partie partie;
@@ -132,8 +132,8 @@ public class Fenetre extends JFrame
 						type[i] = false;
 				}
 				Partie p = new Partie(type.length, type);
-				dominoWest = new AffichageDominoWest(p);
-				dominoEst = new AffichageDominoEst(p);
+				dominoWest = new AffichageDominosWest(p);
+				dominoEst = new AffichageDominosEst(p);
 				affJoueurs = new AffichageJoueurs(p);
 				Panneau pa = new Panneau(p,dominoEst, dominoWest, affJoueurs );
 				pan = pa;
@@ -188,8 +188,8 @@ public class Fenetre extends JFrame
 			
 			boolean[] type = {true,false};
 			partie = new Partie(2,type);
-			dominoWest = new AffichageDominoWest(partie);
-			dominoEst = new AffichageDominoEst(partie);
+			dominoWest = new AffichageDominosWest(partie);
+			dominoEst = new AffichageDominosEst(partie);
 			affJoueurs = new AffichageJoueurs(partie);
 			pan = new Panneau(partie,dominoEst,dominoWest, affJoueurs);
 			
@@ -225,8 +225,8 @@ public class Fenetre extends JFrame
 		
 		partie = new Partie(type.length,type);
 		
-		dominoWest = new AffichageDominoWest(partie);
-		dominoEst = new AffichageDominoEst(partie);
+		dominoWest = new AffichageDominosWest(partie);
+		dominoEst = new AffichageDominosEst(partie);
 		affJoueurs = new AffichageJoueurs(partie);
 		pan = new Panneau(partie,dominoEst,dominoWest, affJoueurs );
 		getContentPane().removeAll();

@@ -10,8 +10,8 @@ public class Panneau extends JPanel
 	private static final long serialVersionUID = 1L;
 	int compt=0;
 	private Partie partie;
-	private AffichageDominoEst affDominoEst;
-	private AffichageDominoWest affDominoWest;
+	private AffichageDominosEst affDominoEst;
+	private AffichageDominosWest affDominoWest;
 	private AffichageJoueurs affJoueurs;
 	private Controleur controleur;
 	private int debutX;
@@ -25,7 +25,7 @@ public class Panneau extends JPanel
 		super();
 	}
 	
-	public Panneau(Partie partie, AffichageDominoEst affDominoEst, AffichageDominoWest affDominoWest, AffichageJoueurs affJoueurs)
+	public Panneau(Partie partie, AffichageDominosEst affDominoEst, AffichageDominosWest affDominoWest, AffichageJoueurs affJoueurs)
 	{
 		this.partie = partie;
 		this.affDominoEst = affDominoEst;
@@ -40,11 +40,11 @@ public class Panneau extends JPanel
 	}
 	
 	
-	public AffichageDominoEst getAffDominoEst() {
+	public AffichageDominosEst getAffDominoEst() {
 		return affDominoEst;
 	}
 
-	public AffichageDominoWest getAffDominoWest() {
+	public AffichageDominosWest getAffDominoWest() {
 		return affDominoWest;
 	}
 
