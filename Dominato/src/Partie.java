@@ -242,7 +242,7 @@ public class Partie
 		do {
 			permut = false;
 			for (int i = 0; i < longueur - 1; i++) {
-				if (al.get(i).getMarque1().getValeur() > al.get(i+1).getMarque1().getValeur()) {
+				if (al.get(i).getMarque1().getValeur() > al.get(i+1).getMarque1().getValeur()){
 					tampon = al.get(i);
 					al.set(i, al.get(i+1));
 					al.set(i+1, tampon);
@@ -445,5 +445,9 @@ public class Partie
 	{
 		this.plateau.poserDomino(this.getDominoSelectionne(), this.dominoEstHorizontal(), this.dominoEstDansLeSens1(), x, y);
 		this.getJoueurCourant().getJeu().remove(this.getDominoSelectionne());
+	}
+
+	public void setDominoSelectionne(Domino dominoSelectionne) {
+		this.dominoSelectionne = dominoSelectionne;
 	}
 }
