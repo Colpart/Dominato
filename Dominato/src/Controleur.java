@@ -1,6 +1,8 @@
 
 import javax.swing.SwingUtilities;
 
+import java.awt.AWTException;
+import java.awt.Robot;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
@@ -24,11 +26,11 @@ class Controleur extends MouseAdapter
 	{
 		int x = 0, y = 0;
 		
-		/*if (this.partie.dominoEstHorizontal() && this.partie.dominoEstDansLeSens1())
-		{ */
+		if (this.partie.dominoEstHorizontal() && this.partie.dominoEstDansLeSens1())
+		{ 
 			x = (int)event.getPoint().getX()-10;
 			y = (int)event.getPoint().getY()-10;
-		/*}
+		}
 		else if (this.partie.dominoEstHorizontal() && !this.partie.dominoEstDansLeSens1())
 		{
 			x = (int)event.getPoint().getX()-50;
@@ -43,7 +45,7 @@ class Controleur extends MouseAdapter
 		{
 			x = (int)event.getPoint().getX()-10;
 			y = (int)event.getPoint().getY()-50;
-		}*/
+		}
 		
 		if (x >= 0 && x < 20*this.partie.getPlateau().getTaille() && y >= 0 && y < 20*this.partie.getPlateau().getTaille())
 		{
@@ -68,6 +70,14 @@ class Controleur extends MouseAdapter
 				{
 					x = (int)event.getPoint().getX()/20+panneau.getDebutX();
 					y = (int)event.getPoint().getY()/20+panneau.getDebutY();
+					
+					if (!this.partie.dominoEstDansLeSens1())
+					{
+						if (this.partie.dominoEstHorizontal())
+							x -= 2;
+						else
+							y -= 2;
+					}
 					
 				}
 				else if (SwingUtilities.isMiddleMouseButton(event))
@@ -141,6 +151,8 @@ class Controleur extends MouseAdapter
 						}
 						else
 						{
+							passer = false;
+							
 							while (!this.partie.getDominoSelectionne().equals(domino))
 								this.partie.changerDomino();
 							
@@ -228,7 +240,7 @@ class Controleur extends MouseAdapter
 			{
 				this.partie.changerSens();
 				
-				/*int x = 0, y = 0;
+				int x = 0, y = 0;
 				
 				if (this.partie.dominoEstHorizontal() && this.partie.dominoEstDansLeSens1())
 				{
@@ -255,7 +267,7 @@ class Controleur extends MouseAdapter
 				{
 					this.partie.setX(x);
 					this.partie.setY(y);
-				}*/
+				}
 				
 				this.panneau.repaint();
 				this.panneau.getAffJoueurs().repaint();
