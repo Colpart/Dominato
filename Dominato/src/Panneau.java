@@ -1,11 +1,13 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
-public class Panneau extends JPanel
+public class Panneau extends JPanel implements MouseListener
 {
 	private static final long serialVersionUID = 1L;
 	int compt=0;
@@ -16,6 +18,7 @@ public class Panneau extends JPanel
 	private Controleur controleur;
 	private int debutX;
 	private int debutY;
+	private int oldX,oldY,newX,newY;
 	
 	public Controleur getControleur() {
 		return controleur;
@@ -37,6 +40,11 @@ public class Panneau extends JPanel
 		this.addMouseWheelListener(controleur);
 		this.debutX = 0;
 		this.debutY = 0;
+		this.oldX =0;
+		this.oldY = 0;
+		this.newX = 0;
+		this.newY = 0;
+		this.addMouseListener(this);
 	}
 	
 	
@@ -103,5 +111,54 @@ public class Panneau extends JPanel
 
 	public void setPartie(Partie partie) {
 		this.partie = partie;
-	}               
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+		this.oldX = e.getX();
+		this.oldY = e.getY();
+		System.out.println(this.oldX+" + "+this.oldY);
+		
+	}
+
+	
+	/* Retourne a entier indiquant comment translater le tableau
+	 * celon la difference de pixels
+	 */
+	public int calculerVariations(int oldX, int oldY, int newX,int newY){
+		return 1;
+	}
+	
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		this.newX = e.getX();
+		this.newY = e.getY();
+		int v = calculerVariations(this.oldX,this.oldY, this.newX, this.newY);
+	}
+	
+	
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+		
+		
+	}  
+	
 }

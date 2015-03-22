@@ -57,7 +57,7 @@ class Controleur extends MouseAdapter
 		this.panneau.getAffJoueurs().repaint();
 	}
 	
-	public void mousePressed(MouseEvent event)
+	public void mouseClicked(MouseEvent event)
 	{	
 		if (!this.partie.estTerminee())
 		{
