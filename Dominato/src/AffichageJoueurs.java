@@ -42,9 +42,10 @@ public class AffichageJoueurs extends JPanel{
 					g.setColor(Color.GREEN);
 			}
 		    else
-		    	g.setColor(Color.BLACK);
+		    	g.setColor(Color.LIGHT_GRAY);
 		    
-			g.drawString(this.partie.getJoueur(k).getNom()+" : "+this.partie.getJoueur(k).getScore()+" ("+this.partie.getJoueur(k).getJeu().size()+")",  this.getWidth()/this.partie.getNbJoueurs()*k +50  , this.getHeight()-20);
+			g.drawString(this.partie.getJoueur(k).getNom(), 300+600*k, this.getHeight()-30);
+			g.drawString("+"+this.partie.getJoueur(k).getScore()+" pt(s) | "+this.partie.getJoueur(k).getJeu().size()+" rest.",  300+600*k, this.getHeight()-10); // this.getWidth()/this.partie.getNbJoueurs()*k +50 , this.getHeight()-20
 			
 	}
 
