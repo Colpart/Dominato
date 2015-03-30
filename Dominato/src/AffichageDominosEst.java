@@ -1,12 +1,14 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
 
-public class AffichageDominosEst extends JPanel{
+public class AffichageDominosEst extends JPanel implements MouseListener{
 	
 	/**
 	 * 
@@ -43,46 +45,43 @@ public class AffichageDominosEst extends JPanel{
 	public void paint(Graphics g){
 		g.setColor(Color.DARK_GRAY);
 	    g.fillRect(0, 0, this.getWidth(), this.getHeight());
-	    g.setColor(Color.BLACK);
-	    g.drawLine(0, 0, 0, this.getHeight());
 	    this.changement();
 	    this.paintComponents(g);
-	    
-	    
-	    
-	/*    	int i = 10, j = 10, c = 0, j1 = j;
-			
-			for (Domino d : this.partie.getJoueur(1).getJeu())
-			{
-				if( j1 > this.getHeight()-40){
-					if( c==0){
-						g.setColor(Color.DARK_GRAY);
-						g.fillRect(100, 0, 50, this.getHeight());
-					    
-						i = 100;
-						j = 10;
-						c++;
-						d.getMarque1().draw(g, i, j);
-						j = j+40;
-						d.getMarque2().draw(g, i, j);
-						j = j+50;
-					}
-					else{
-						d.getMarque1().draw(g, i, j);
-						j = j+40;
-						d.getMarque2().draw(g, i, j);
-						j = j+50;
-					}
-				}
-				else{
-					d.getMarque1().draw(g, i, j);
-					d.getMarque2().draw(g, i+40, j);
-					j += 50;
-					j1 = j;
-				}
-			}*/
-	    	
-	    }
+    }
+
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public void mouseMoved(MouseEvent arg0){
+		this.repaint();
+	}
+}
 
 

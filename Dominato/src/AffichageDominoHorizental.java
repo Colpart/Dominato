@@ -47,17 +47,18 @@ public class AffichageDominoHorizental extends JPanel implements MouseListener{
 			domino.getMarque2().draw(g, 40, 0);
 			this.removeMouseListener(this);
 		}else{
-			if(zoom == false && this.dominoPose == false){
-				domino.getMarque1().draw(g, 0, 0);
-				domino.getMarque2().draw(g, 40, 0);
-				g.setColor(Color.DARK_GRAY);
-			    g.fillRect(80, 0, 10, 40);
-			}
-			else if(zoom == true && this.dominoPose == false){
+			if((zoom == true && this.dominoPose == false) || (this.domino.isSelectionne() == true)){
 				domino.getMarque1().draw(g, 10, 0);
 				domino.getMarque2().draw(g, 50, 0);
 				g.setColor(Color.DARK_GRAY);
 			    g.fillRect(0, 0, 10, 40);
+			}
+			
+			else if(zoom == false && this.dominoPose == false){
+				domino.getMarque1().draw(g, 0, 0);
+				domino.getMarque2().draw(g, 40, 0);
+				g.setColor(Color.DARK_GRAY);
+			    g.fillRect(80, 0, 10, 40);
 			}
 			else if( this.dominoPose == true){
 				this.removeMouseListener(this);
@@ -103,8 +104,12 @@ public class AffichageDominoHorizental extends JPanel implements MouseListener{
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		
+		for(int i = 0; i<this.partie.getJoueur(0).getJeu().size();i++){
+			this.partie.getJoueur(0).getJeu().get(i).setSelectionne(false);
+		}
+		this.domino.setSelectionne(true);
 		this.partie.setDominoSelectionne(this.domino);
-		this.repaint();	
+			
 	}
 
 	@Override

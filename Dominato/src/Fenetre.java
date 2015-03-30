@@ -35,8 +35,6 @@ public class Fenetre extends JFrame
 	
 	
 	public Fenetre(){
-		
-		
 		this.setTitle("Dominato");
 		this.setExtendedState(Fenetre.MAXIMIZED_BOTH);
 	    this.setContentPane(container);

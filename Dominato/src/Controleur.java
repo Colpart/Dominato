@@ -1,8 +1,6 @@
 
 import javax.swing.SwingUtilities;
 
-import java.awt.AWTException;
-import java.awt.Robot;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
@@ -209,6 +207,7 @@ class Controleur extends MouseAdapter
 					
 					if (this.partie.getJoueurCourant().estHumain()){
 						this.panneau.compt = 0;
+						this.panneau.getPlateau().setCompt(0);
 						this.panneau.paintImmediately(0, 0, this.panneau.getWidth(), this.panneau.getHeight());
 						this.panneau.getAffDominoEst().paintImmediately(0, 0, this.panneau.getAffDominoEst().getWidth(), this.panneau.getAffDominoEst().getHeight());
 						this.panneau.getAffDominoWest().paintImmediately(0, 0, this.panneau.getAffDominoWest().getWidth(), this.panneau.getAffDominoEst().getHeight());
@@ -220,6 +219,7 @@ class Controleur extends MouseAdapter
 					{
 						
 						this.panneau.compt = 1;
+						this.panneau.getPlateau().setCompt(1);
 						this.panneau.paintImmediately(0, 0, this.panneau.getWidth(), this.panneau.getHeight());
 						this.panneau.getAffDominoEst().paintImmediately(0, 0, this.panneau.getAffDominoEst().getWidth(), this.panneau.getAffDominoEst().getHeight());
 						this.panneau.getAffDominoWest().paintImmediately(0, 0, this.panneau.getAffDominoWest().getWidth(), this.panneau.getAffDominoEst().getHeight());

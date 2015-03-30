@@ -4,23 +4,27 @@ public class Domino
 {
 	private Marque marque1;
 	private Marque marque2;
+	private boolean selectionne;
 	
 	public Domino()
 	{
 		this.marque1 = new Marque(0, Couleur.BLANC, Color.WHITE);
 		this.marque2 = new Marque(0, Couleur.BLANC, Color.WHITE);
+		selectionne = false;
 	}
 	
 	public Domino(Marque marque1, Marque marque2)
 	{
 		this.marque1 = marque1;
 		this.marque2 = marque2;
+		selectionne = false;
 	}
 	
 	public Domino(int valeur1, Couleur couleur1, int valeur2, Couleur couleur2, Color color)
 	{
 		this.marque1 = new Marque(valeur1, couleur1, color);
 		this.marque2 = new Marque(valeur2, couleur2, color);
+		selectionne = false;
 	}
 	
 	public Marque getMarque1()
@@ -48,6 +52,14 @@ public class Domino
 		return false;
 	}
 	
+	public boolean isSelectionne() {
+		return selectionne;
+	}
+
+	public void setSelectionne(boolean selectionne) {
+		this.selectionne = selectionne;
+	}
+
 	public Marque bilan()
 	{
 		Marque marque;

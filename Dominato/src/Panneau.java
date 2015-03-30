@@ -1,13 +1,12 @@
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Point;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class Panneau extends JPanel implements MouseListener
+public class Panneau extends JPanel 
 {
 	private static final long serialVersionUID = 1L;
 	int compt=0;
@@ -18,7 +17,12 @@ public class Panneau extends JPanel implements MouseListener
 	private Controleur controleur;
 	private int debutX;
 	private int debutY;
-	private int oldX,oldY,newX,newY;
+	private AffichagePlateau plateau;
+	private JButton haut = new Bouton("haut.jpg");
+	private JButton bas = new Bouton("bas.jpg");
+	private JButton droit = new Bouton("droit.jpg");
+	private JButton gauche = new Bouton("gauche.jpg");
+	
 	
 	public Controleur getControleur() {
 		return controleur;
@@ -38,13 +42,22 @@ public class Panneau extends JPanel implements MouseListener
 		this.addMouseListener(controleur);
 		this.addMouseMotionListener(controleur);
 		this.addMouseWheelListener(controleur);
+		this.plateau = new AffichagePlateau(partie,this.compt);
+		BorderLayout bl = new BorderLayout();
+		this.setLayout(bl);
+		haut.setBackground(new Color(245, 220, 180));
+		bas.setBackground(new Color(245, 220, 180));
+		gauche.setBackground(new Color(245, 220, 180));
+		droit.setBackground(new Color(245, 220, 180));
+		droit.setPreferredSize(new Dimension(40,40));
+		this.add(haut,BorderLayout.NORTH);
+		this.add(bas,BorderLayout.SOUTH);
+		this.add(gauche,BorderLayout.WEST);
+		this.add(droit,BorderLayout.EAST);
+		this.add(plateau,BorderLayout.CENTER);
+		
 		this.debutX = 0;
 		this.debutY = 0;
-		this.oldX =0;
-		this.oldY = 0;
-		this.newX = 0;
-		this.newY = 0;
-		this.addMouseListener(this);
 	}
 	
 	
@@ -61,6 +74,11 @@ public class Panneau extends JPanel implements MouseListener
 		return debutX;
 	}
 	
+	public AffichagePlateau getPlateau() {
+		return plateau;
+	}
+
+	
 	public int getDebutY()
 	{
 		return debutY;
@@ -72,37 +90,7 @@ public class Panneau extends JPanel implements MouseListener
 
 	public void paint(Graphics g)
 	{
-		setCursor(this.getToolkit().createCustomCursor(new BufferedImage(3, 3, BufferedImage.TYPE_INT_ARGB), new Point(0, 0), null));
-		g.setColor(new Color(245, 220, 180));
-	    g.fillRect(0, 0, this.getWidth(), this.getHeight());
-	    
-		for (int i = debutX; i < this.partie.getPlateau().getTaille(); i++)
-			for (int j = debutY; j < this.partie.getPlateau().getTaille(); j++)
-				if (!this.partie.getPlateau().get(i, j).getCouleur().equals(Couleur.VIDE) && !this.partie.getPlateau().get(i, j).getCouleur().equals(Couleur.PLEIN))
-					this.partie.getPlateau().get(i, j).draw(g, 20*(i-debutX), 20*(j-debutY));
-			
-		if (!this.partie.estTerminee() && this.compt ==0)
-		{
-			if (this.partie.dominoEstDansLeSens1())
-				this.partie.getDominoSelectionne().getMarque1().draw(g, this.partie.getX(), this.partie.getY());
-			else
-				this.partie.getDominoSelectionne().getMarque2().draw(g, this.partie.getX(), this.partie.getY());
-			
-			if (this.partie.dominoEstHorizontal())
-				if (this.partie.dominoEstDansLeSens1())
-					this.partie.getDominoSelectionne().getMarque2().draw(g, this.partie.getX()+40, this.partie.getY());
-				else
-					this.partie.getDominoSelectionne().getMarque1().draw(g, this.partie.getX()+40, this.partie.getY());
-			else
-				if (this.partie.dominoEstDansLeSens1())
-					this.partie.getDominoSelectionne().getMarque2().draw(g, this.partie.getX(), this.partie.getY()+40);
-				else
-					this.partie.getDominoSelectionne().getMarque1().draw(g, this.partie.getX(), this.partie.getY()+40);
-	    }
-		
-	    
-		
-		
+		this.paintComponents(g);		
 	}
 
 	public Partie getPartie() {
@@ -113,52 +101,5 @@ public class Panneau extends JPanel implements MouseListener
 		this.partie = partie;
 	}
 
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
 		
-	}
-
-	
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-		this.oldX = e.getX();
-		this.oldY = e.getY();
-		System.out.println(this.oldX+" + "+this.oldY);
-		
-	}
-
-	
-	/* Retourne a entier indiquant comment translater le tableau
-	 * celon la difference de pixels
-	 */
-	public int calculerVariations(int oldX, int oldY, int newX,int newY){
-		return 1;
-	}
-	
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		this.newX = e.getX();
-		this.newY = e.getY();
-		int v = calculerVariations(this.oldX,this.oldY, this.newX, this.newY);
-	}
-	
-	
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-		
-		
-	}  
-	
 }
