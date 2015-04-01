@@ -399,6 +399,8 @@ public class Partie
 			this.horizontal = !this.horizontal;
 			this.sens = !this.sens;
 		}
+		
+		this.dominoSelectionne.setHorizontal(this.horizontal);
 	}
 	
 	public int getX()

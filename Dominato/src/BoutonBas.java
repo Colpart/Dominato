@@ -18,13 +18,14 @@ public class BoutonBas extends JButton implements MouseListener{
 	private static final long serialVersionUID = 1L;
 	
 	private String info = "null";
+	private Panneau panneau;
 
 	public BoutonBas(){
 		super();
 		this.addMouseListener(this);
 	}
 	
-	public BoutonBas(String icone){
+	public BoutonBas(String icone, Panneau panneau){
 		super();
 		info = icone;
 		ImageIcon image = new ImageIcon(icone);
@@ -32,6 +33,7 @@ public class BoutonBas extends JButton implements MouseListener{
 		this.setBackground(Color.DARK_GRAY);
 		this.setBorderPainted(false);
 		this.addMouseListener(this);
+		this.panneau = panneau;
 	}
 
 	@Override
@@ -56,7 +58,11 @@ public class BoutonBas extends JButton implements MouseListener{
 
 	@Override
 	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
+		this.panneau.bougerPlateauVersLeBas();
+		this.panneau.paintImmediately(0, 0, this.panneau.getWidth(), this.panneau.getHeight());
+		this.panneau.getAffDominoEst().paintImmediately(0, 0, this.panneau.getAffDominoEst().getWidth(), this.panneau.getAffDominoEst().getHeight());
+		this.panneau.getAffDominoWest().paintImmediately(0, 0, this.panneau.getAffDominoWest().getWidth(), this.panneau.getAffDominoEst().getHeight());
+		this.panneau.getAffJoueurs().paintImmediately(0, 0, this.panneau.getAffJoueurs().getWidth(), this.panneau.getAffJoueurs().getHeight());
 		
 	}
 

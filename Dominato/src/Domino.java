@@ -60,6 +60,12 @@ public class Domino
 		this.selectionne = selectionne;
 	}
 
+	public void setHorizontal(boolean h)
+	{
+		marque1.setHorizontal(h);
+		marque2.setHorizontal(h);
+	}
+	
 	public Marque bilan()
 	{
 		Marque marque;

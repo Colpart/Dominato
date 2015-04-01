@@ -31,6 +31,28 @@ public class AffichagePlateau extends JPanel{
 		this.debutY = 0;
 	}
 
+	public int getDebutX()
+	{
+		return this.debutX;
+	}
+	
+	public int getDebutY()
+	{
+		return this.debutY;
+	}
+	
+	public void setDebutX(int x)
+	{
+		if (x >= 0 && x <= 50)
+			this.debutX = x;
+	}
+	
+	public void setDebutY(int y)
+	{
+		if (y >= 0 && y <= 50)
+			this.debutY = y;
+	}
+	
 	public void paint(Graphics g)
 	{
 		g.setColor(new Color(245, 220, 180));

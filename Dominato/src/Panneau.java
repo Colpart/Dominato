@@ -15,14 +15,21 @@ public class Panneau extends JPanel
 	private AffichageDominosWest affDominoWest;
 	private AffichageJoueurs affJoueurs;
 	private Controleur controleur;
-	private int debutX;
-	private int debutY;
 	private AffichagePlateau plateau;
-	private JButton haut = new Bouton("haut.jpg");
-	private JButton bas = new Bouton("bas.jpg");
-	private JButton droit = new Bouton("droit.jpg");
-	private JButton gauche = new Bouton("gauche.jpg");
+	private JButton haut;
+	private JButton bas;
+	private JButton droit;
+	private JButton gauche;
 	
+	public int getLargeur()
+	{
+		return this.gauche.getWidth();
+	}
+	
+	public int getHauteur()
+	{
+		return this.bas.getHeight();
+	}
 	
 	public Controleur getControleur() {
 		return controleur;
@@ -34,6 +41,10 @@ public class Panneau extends JPanel
 	
 	public Panneau(Partie partie, AffichageDominosEst affDominoEst, AffichageDominosWest affDominoWest, AffichageJoueurs affJoueurs)
 	{
+		haut = new BoutonHaut("haut.jpg", this);
+		bas = new BoutonBas("bas.jpg", this);
+		droit = new BoutonDroit("droit.jpg", this);
+		gauche = new BoutonGauche("gauche.jpg", this);
 		this.partie = partie;
 		this.affDominoEst = affDominoEst;
 		this.affDominoWest = affDominoWest;
@@ -56,34 +67,53 @@ public class Panneau extends JPanel
 		this.add(droit,BorderLayout.EAST);
 		this.add(plateau,BorderLayout.CENTER);
 		
-		this.debutX = 0;
-		this.debutY = 0;
+		
 	}
 	
-	
-	public AffichageDominosEst getAffDominoEst() {
+	public AffichageDominosEst getAffDominoEst()
+	{
 		return affDominoEst;
 	}
 
-	public AffichageDominosWest getAffDominoWest() {
+	public AffichageDominosWest getAffDominoWest()
+	{
 		return affDominoWest;
 	}
 
 	public int getDebutX()
 	{
-		return debutX;
+		return this.plateau.getDebutX();
+	}
+	
+	public int getDebutY()
+	{
+		return this.plateau.getDebutY();
+	}
+	
+	public void bougerPlateauVersLeBas()
+	{
+		this.plateau.setDebutY(this.plateau.getDebutY()+1);
+	}
+	
+	public void bougerPlateauVersLeHaut()
+	{
+		this.plateau.setDebutY(this.plateau.getDebutY()-1);
+	}
+	
+	public void bougerPlateauVersLaGauche()
+	{
+		this.plateau.setDebutX(this.plateau.getDebutX()-1);
+	}
+	
+	public void bougerPlateauVersLaDroite()
+	{
+		this.plateau.setDebutX(this.plateau.getDebutX()+1);
 	}
 	
 	public AffichagePlateau getPlateau() {
 		return plateau;
 	}
 
-	
-	public int getDebutY()
-	{
-		return debutY;
-	}
-	
 	public AffichageJoueurs getAffJoueurs() {
 		return affJoueurs;
 	}

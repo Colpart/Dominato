@@ -26,30 +26,30 @@ class Controleur extends MouseAdapter
 		
 		if (this.partie.dominoEstHorizontal() && this.partie.dominoEstDansLeSens1())
 		{ 
-			x = (int)event.getPoint().getX()-10;
-			y = (int)event.getPoint().getY()-10;
+			x = (int)event.getPoint().getX()-10-this.panneau.getLargeur();
+			y = (int)event.getPoint().getY()-10-this.panneau.getHauteur();
 		}
 		else if (this.partie.dominoEstHorizontal() && !this.partie.dominoEstDansLeSens1())
 		{
-			x = (int)event.getPoint().getX()-50;
-			y = (int)event.getPoint().getY()-10;
+			x = (int)event.getPoint().getX()-50-this.panneau.getLargeur();
+			y = (int)event.getPoint().getY()-10-this.panneau.getHauteur();
 		}
 		else if (!this.partie.dominoEstHorizontal() && this.partie.dominoEstDansLeSens1())
 		{
-			x = (int)event.getPoint().getX()-10;
-			y = (int)event.getPoint().getY()-10;
+			x = (int)event.getPoint().getX()-10-this.panneau.getLargeur();
+			y = (int)event.getPoint().getY()-10-this.panneau.getHauteur();
 		}
 		else if (!this.partie.dominoEstHorizontal() && !this.partie.dominoEstDansLeSens1())
 		{
-			x = (int)event.getPoint().getX()-10;
-			y = (int)event.getPoint().getY()-50;
+			x = (int)event.getPoint().getX()-10-this.panneau.getLargeur();
+			y = (int)event.getPoint().getY()-50-this.panneau.getHauteur();
 		}
 		
-		if (x >= 0 && x < 20*this.partie.getPlateau().getTaille() && y >= 0 && y < 20*this.partie.getPlateau().getTaille())
-		{
+		// if (x >= 0 && x < 20*this.partie.getPlateau().getTaille() && y >= 0 && y < 20*this.partie.getPlateau().getTaille())
+		// {
 			this.partie.setX(x);
 			this.partie.setY(y);
-		}
+		// }
 		
 		this.panneau.repaint();
 		this.panneau.getAffJoueurs().repaint();
@@ -66,8 +66,8 @@ class Controleur extends MouseAdapter
 				
 				if (SwingUtilities.isLeftMouseButton(event))
 				{
-					x = (int)event.getPoint().getX()/20+panneau.getDebutX();
-					y = (int)event.getPoint().getY()/20+panneau.getDebutY();
+					x = ((int)event.getPoint().getX()-this.panneau.getLargeur())/20+panneau.getDebutX();
+					y = ((int)event.getPoint().getY()-this.panneau.getHauteur())/20+panneau.getDebutY();
 					
 					if (!this.partie.dominoEstDansLeSens1())
 					{
@@ -244,23 +244,23 @@ class Controleur extends MouseAdapter
 				
 				if (this.partie.dominoEstHorizontal() && this.partie.dominoEstDansLeSens1())
 				{
-					x = (int)event.getPoint().getX()-10;
-					y = (int)event.getPoint().getY()-10;
+					x = (int)event.getPoint().getX()-10-this.panneau.getLargeur();
+					y = (int)event.getPoint().getY()-10-this.panneau.getHauteur();
 				}
 				else if (this.partie.dominoEstHorizontal() && !this.partie.dominoEstDansLeSens1())
 				{
-					x = (int)event.getPoint().getX()-50;
-					y = (int)event.getPoint().getY()-10;
+					x = (int)event.getPoint().getX()-50-this.panneau.getLargeur();
+					y = (int)event.getPoint().getY()-10-this.panneau.getHauteur();
 				}
 				else if (!this.partie.dominoEstHorizontal() && this.partie.dominoEstDansLeSens1())
 				{
-					x = (int)event.getPoint().getX()-10;
-					y = (int)event.getPoint().getY()-10;
+					x = (int)event.getPoint().getX()-10-this.panneau.getLargeur();
+					y = (int)event.getPoint().getY()-10-this.panneau.getHauteur();
 				}
 				else if (!this.partie.dominoEstHorizontal() && !this.partie.dominoEstDansLeSens1())
 				{
-					x = (int)event.getPoint().getX()-10;
-					y = (int)event.getPoint().getY()-50;
+					x = (int)event.getPoint().getX()-10-this.panneau.getLargeur();
+					y = (int)event.getPoint().getY()-50-this.panneau.getHauteur();
 				}
 				
 				if (x >= 0 && x < 20*this.partie.getPlateau().getTaille() && y >= 0 && y < 20*this.partie.getPlateau().getTaille())

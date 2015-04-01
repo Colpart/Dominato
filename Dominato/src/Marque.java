@@ -5,12 +5,14 @@ public class Marque
 {
 	private int valeur;
 	private Couleur couleur;
+	private boolean horizontal;
 	private Color couleurFond;
 	
 	public Marque()
 	{
 		this.valeur = -1;
 		this.couleur = Couleur.VIDE;
+		this.horizontal = true;
 		this.couleurFond = Color.white;
 	}
 	
@@ -18,6 +20,15 @@ public class Marque
 	{
 		this.valeur = valeur;
 		this.couleur = couleur;
+		this.horizontal = true;
+		this.couleurFond = color;
+	}
+	
+	public Marque(int valeur, Couleur couleur, boolean horizontal, Color color)
+	{
+		this.valeur = valeur;
+		this.couleur = couleur;
+		this.horizontal = horizontal;
 		this.couleurFond = color;
 	}
 	
@@ -53,7 +64,12 @@ public class Marque
 	public void setCouleurFond(Color couleurFond) {
 		this.couleurFond = couleurFond;
 	}
-
+	
+	public void setHorizontal(boolean h)
+	{
+		horizontal = h;
+	}
+	
 	public void draw(Graphics g, int x, int y)
 	{
 		int r = 7;
@@ -79,14 +95,31 @@ public class Marque
 		}
 		else if (this.getValeur() == 2)
 		{
-			g.fillOval(x+5, y+5, r, r);
-			g.fillOval(x+25, y+25, r, r);
+			if (this.horizontal == false)
+			{
+				g.fillOval(x+25, y+5, r, r);
+				g.fillOval(x+5, y+25, r, r);
+			}
+			else
+			{
+				g.fillOval(x+5, y+5, r, r);
+				g.fillOval(x+25, y+25, r, r);
+			}
 		}
 		else if (this.getValeur() == 3)
 		{
-			g.fillOval(x+5, y+5, r, r);
-			g.fillOval(x+15, y+15, r, r);
-			g.fillOval(x+25, y+25, r, r);
+			if (this.horizontal == false)
+			{
+				g.fillOval(x+5, y+25, r, r);
+				g.fillOval(x+15, y+15, r, r);
+				g.fillOval(x+25, y+5, r, r);
+			}
+			else
+			{
+				g.fillOval(x+5, y+5, r, r);
+				g.fillOval(x+15, y+15, r, r);
+				g.fillOval(x+25, y+25, r, r);
+			}
 		}
 		else if (this.getValeur() == 4)
 		{
