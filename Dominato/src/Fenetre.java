@@ -3,6 +3,12 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -22,6 +28,7 @@ public class Fenetre extends JFrame
 	private JButton boutonM1 = new BoutonM("Partie Rapide");	
 	private JButton boutonM2 = new BoutonM("Nouvelle Partie");	
 	private JButton boutonM3 = new BoutonM("Quitter");
+	private JButton boutonM4 = new BoutonM("Reprendre Partie");
 	private BoutonListener boutonL = new BoutonListener();
 	private Bouton2Listener boutonL2 = new Bouton2Listener();
 	private Bouton3Listener boutonL3 = new Bouton3Listener();
@@ -44,6 +51,7 @@ public class Fenetre extends JFrame
 	    this.container.add(this.menu,BorderLayout.CENTER);
 	    JPanel center = new JPanel();
 	    center.add(boutonM1);
+	    center.add(boutonM4);
 	    center.add(boutonM2);
 	    center.add(boutonM3);
 	    center.setBackground(Color.black);
@@ -51,6 +59,7 @@ public class Fenetre extends JFrame
 	    this.boutonM1.addActionListener(new BoutonListenerM1());
 	    this.boutonM2.addActionListener(new BoutonListenerM2());
 	    this.boutonM3.addActionListener(new BoutonListenerM3());
+	    this.boutonM4.addActionListener(new BoutonListenerM4());
 	    this.pack();
 	    this.setVisible(true);
 
@@ -167,9 +176,30 @@ public class Fenetre extends JFrame
 			
 			JOptionPane jop = new JOptionPane();
 			@SuppressWarnings("static-access")
-			int option = jop.showConfirmDialog(null,"Souhaitez-vous quitter le jeu ?","Attention",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE);
+			int option = jop.showConfirmDialog(null,"Enregistrer La Partie ?","Attention",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE);
 			
 			if(option == JOptionPane.OK_OPTION){
+				ObjectOutputStream oos = null;
+
+			    try {
+			      final FileOutputStream fichier = new FileOutputStream("partie.ser");
+			      oos = new ObjectOutputStream(fichier);
+			      oos.writeObject(partie);
+			      oos.flush();
+			    } catch (final java.io.IOException e) {
+			      e.printStackTrace();
+			    } finally {
+			      try {
+			        if (oos != null) {
+			          oos.flush();
+			          oos.close();
+			        }
+			      } catch (final IOException ex) {
+			        ex.printStackTrace();
+			      }
+			    }
+			    System.exit(0);
+			}else if(option == JOptionPane.NO_OPTION){
 				System.exit(0);
 			}
 			
@@ -186,6 +216,63 @@ public class Fenetre extends JFrame
 			
 			boolean[] type = {true,false};
 			partie = new Partie(2,type);
+			dominoWest = new AffichageDominosWest(partie);
+			dominoEst = new AffichageDominosEst(partie);
+			affJoueurs = new AffichageJoueurs(partie);
+			pan = new Panneau(partie,dominoEst,dominoWest, affJoueurs);
+			
+			getContentPane().removeAll();
+			container.setLayout(new BorderLayout());
+			container.add(pan, BorderLayout.CENTER);
+			container.add(dominoEst,BorderLayout.EAST);
+			container.add(dominoWest,BorderLayout.WEST);
+			container.add(affJoueurs, BorderLayout.SOUTH);
+			JPanel north = new JPanel();
+			north.add(bouton, BorderLayout.WEST);
+			north.add(bouton2);
+			north.add(bouton3);
+			north.add(bouton4);
+			north.setBackground(Color.DARK_GRAY);
+			container.add(north, BorderLayout.NORTH);
+			bouton2.setEnabled(false);
+			bouton.addActionListener(boutonL);
+			bouton2.addActionListener(boutonL2);
+			bouton3.addActionListener(boutonL3);
+			bouton4.addActionListener(boutonL4);
+		    setContentPane(container);
+		    
+		}
+	}
+	
+public class BoutonListenerM4 implements ActionListener{
+		
+		public void actionPerformed(ActionEvent arg0) {
+			bouton.removeActionListener(boutonL);
+			bouton2.removeActionListener(boutonL2);
+			bouton3.removeActionListener(boutonL3);
+			bouton4.removeActionListener(boutonL4);
+			
+			ObjectInputStream ois = null;
+
+		    try {
+		      final FileInputStream fichier = new FileInputStream("partie.ser");
+		      ois = new ObjectInputStream(fichier);
+		      final Partie p = (Partie) ois.readObject();
+		      partie = p;
+		    } catch (final java.io.IOException e) {
+		      e.printStackTrace();
+		    } catch (final ClassNotFoundException e) {
+		      e.printStackTrace();
+		    } finally {
+		      try {
+		        if (ois != null) {
+		          ois.close();
+		        }
+		      } catch (final IOException ex) {
+		        ex.printStackTrace();
+		      }
+		    }
+			
 			dominoWest = new AffichageDominosWest(partie);
 			dominoEst = new AffichageDominosEst(partie);
 			affJoueurs = new AffichageJoueurs(partie);

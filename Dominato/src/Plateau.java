@@ -1,5 +1,11 @@
-public class Plateau
+import java.io.Serializable;
+
+public class Plateau implements Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int taille;
 	private Marque[] cases;
 	

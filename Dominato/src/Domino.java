@@ -1,7 +1,12 @@
 import java.awt.Color;
+import java.io.Serializable;
 
-public class Domino
+public class Domino implements Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Marque marque1;
 	private Marque marque2;
 	private boolean selectionne;

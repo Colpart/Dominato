@@ -1,8 +1,13 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.Serializable;
 
-public class Marque
+public class Marque implements Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int valeur;
 	private Couleur couleur;
 	private boolean horizontal;

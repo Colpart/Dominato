@@ -104,10 +104,7 @@ public class AffichageDominoHorizental extends JPanel implements MouseListener{
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		
-		for(int i = 0; i<this.partie.getJoueur(0).getJeu().size();i++){
-			this.partie.getJoueur(0).getJeu().get(i).setSelectionne(false);
-		}
-		this.domino.setSelectionne(true);
+		
 		this.partie.setDominoSelectionne(this.domino);
 			
 	}

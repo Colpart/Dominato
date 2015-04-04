@@ -1,8 +1,13 @@
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Partie
+public class Partie implements Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Plateau plateau;
 	private int nbJoueurs;
 	private Joueur[] joueurs;
