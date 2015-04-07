@@ -256,6 +256,117 @@ class Controleur extends MouseAdapter
 								
 							}
 						}	
+						/* Niveau 3 */
+						
+						if(this.partie.getNiveau() == 3){
+							
+							for (Domino d : partie.getJoueurCourant().getJeu())
+								for (int i = 0; i < partie.getPlateau().getTaille(); i++)
+									for (int j = 0; j < partie.getPlateau().getTaille(); j++)			
+										if (partie.getPlateau().coupValide(i, j, d, true, true))
+										{
+											if (partie.getPlateau().nbLiaisons(i, j, true) == 2)
+											{
+												maximum = partie.getPlateau().nbLiaisons(i, j, true);
+												domino = d;
+												horizontal = true;
+												sens = true;
+												x = i;
+												y = j;
+											}
+										}
+										else if (partie.getPlateau().coupValide(i, j, d, false, true))
+										{
+											if (partie.getPlateau().nbLiaisons(i, j, false) == 2)
+											{
+												maximum = partie.getPlateau().nbLiaisons(i, j, false);
+												domino = d;
+												horizontal = false;
+												sens = true;
+												x = i;
+												y = j;
+											}
+										}
+										else if (partie.getPlateau().coupValide(i, j, d, true, false))
+										{
+											if (partie.getPlateau().nbLiaisons(i, j, true) == 2)
+											{
+												maximum = partie.getPlateau().nbLiaisons(i, j, true);
+												domino = d;
+												horizontal = true;
+												sens = false;
+												x = i;
+												y = j;
+											}
+										}
+										else if (partie.getPlateau().coupValide(i, j, d, false, false))
+										{
+											if (partie.getPlateau().nbLiaisons(i, j, false) == 2)
+											{
+												maximum = partie.getPlateau().nbLiaisons(i, j, false);
+												domino = d;
+												horizontal = false;
+												sens = false;
+												x = i;
+												y = j;
+											}
+										}
+							
+							if(domino == null){
+								for (Domino d : partie.getJoueurCourant().getJeu())
+									for (int i = 0; i < partie.getPlateau().getTaille(); i++)
+										for (int j = 0; j < partie.getPlateau().getTaille(); j++)			
+											if (partie.getPlateau().coupValide(i, j, d, true, true))
+											{
+												if (partie.getPlateau().nbLiaisons(i, j, true) == 1)
+												{
+													maximum = partie.getPlateau().nbLiaisons(i, j, true);
+													domino = d;
+													horizontal = true;
+													sens = true;
+													x = i;
+													y = j;
+												}
+											}
+											else if (partie.getPlateau().coupValide(i, j, d, false, true))
+											{
+												if (partie.getPlateau().nbLiaisons(i, j, false) == 1)
+												{
+													maximum = partie.getPlateau().nbLiaisons(i, j, false);
+													domino = d;
+													horizontal = false;
+													sens = true;
+													x = i;
+													y = j;
+												}
+											}
+											else if (partie.getPlateau().coupValide(i, j, d, true, false))
+											{
+												if (partie.getPlateau().nbLiaisons(i, j, true) == 1)
+												{
+													maximum = partie.getPlateau().nbLiaisons(i, j, true);
+													domino = d;
+													horizontal = true;
+													sens = false;
+													x = i;
+													y = j;
+												}
+											}
+											else if (partie.getPlateau().coupValide(i, j, d, false, false))
+											{
+												if (partie.getPlateau().nbLiaisons(i, j, false) == 1)
+												{
+													maximum = partie.getPlateau().nbLiaisons(i, j, false);
+													domino = d;
+													horizontal = false;
+													sens = false;
+													x = i;
+													y = j;
+												}
+											}
+								
+							}
+						}	
 						
 						if (domino == null)
 						{
@@ -329,6 +440,7 @@ class Controleur extends MouseAdapter
 						if(this.partie.getIndiceNiveauDeux() == 1 && this.partie.getNiveau() == 2){
 							this.partie.setIndiceNiveauDeux(2);
 						}
+						
 					}
 					
 					

@@ -51,9 +51,6 @@ public class Dialog extends JDialog {
 
 	public Dialog(JFrame parent, String title, boolean modal){
 		super(parent, title, modal);
-		
-		
-		this.setResizable(false);
 		this.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
 		this.initComponent();
 		this.setSize(355, 380);
