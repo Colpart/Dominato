@@ -43,20 +43,21 @@ public class AffichageDominoHorizental extends JPanel implements MouseListener{
 	public void paint(Graphics g){
 		this.dominoPose = dominoPose(this.domino);
 		if(this.appartientOrdinateur(domino)){
-			domino.getMarque1().draw(g, 0, 0);
-			domino.getMarque2().draw(g, 40, 0);
+			domino.getMarque1().draw(g, 0, 0,this.partie.getAffichage());
+			domino.getMarque2().draw(g, 40, 0,this.partie.getAffichage());
 			this.removeMouseListener(this);
 		}else{
 			if((zoom == true && this.dominoPose == false) || (this.domino.isSelectionne() == true)){
-				domino.getMarque1().draw(g, 10, 0);
-				domino.getMarque2().draw(g, 50, 0);
+				domino.getMarque1().draw(g, 10, 0,this.partie.getAffichage());
+				
+				domino.getMarque2().draw(g, 50, 0,this.partie.getAffichage());
 				g.setColor(Color.DARK_GRAY);
 			    g.fillRect(0, 0, 10, 40);
 			}
 			
 			else if(zoom == false && this.dominoPose == false){
-				domino.getMarque1().draw(g, 0, 0);
-				domino.getMarque2().draw(g, 40, 0);
+				domino.getMarque1().draw(g, 0, 0,this.partie.getAffichage());
+				domino.getMarque2().draw(g, 40, 0,this.partie.getAffichage());
 				g.setColor(Color.DARK_GRAY);
 			    g.fillRect(80, 0, 10, 40);
 			}

@@ -62,25 +62,25 @@ public class AffichagePlateau extends JPanel{
 		for (int i = debutX; i < this.partie.getPlateau().getTaille(); i++)
 			for (int j = debutY; j < this.partie.getPlateau().getTaille(); j++)
 				if (!this.partie.getPlateau().get(i, j).getCouleur().equals(Couleur.VIDE) && !this.partie.getPlateau().get(i, j).getCouleur().equals(Couleur.PLEIN))
-					this.partie.getPlateau().get(i, j).draw(g, 20*(i-debutX), 20*(j-debutY));
+					this.partie.getPlateau().get(i, j).draw(g, 20*(i-debutX), 20*(j-debutY),this.partie.getAffichage());
 			
 		if (!this.partie.estTerminee() && this.compt ==0)
 		{
 			if (this.partie.dominoEstDansLeSens1())
-				this.partie.getDominoSelectionne().getMarque1().draw(g, this.partie.getX(), this.partie.getY());
+				this.partie.getDominoSelectionne().getMarque1().draw(g, this.partie.getX(), this.partie.getY(),this.partie.getAffichage());
 			else
-				this.partie.getDominoSelectionne().getMarque2().draw(g, this.partie.getX(), this.partie.getY());
+				this.partie.getDominoSelectionne().getMarque2().draw(g, this.partie.getX(), this.partie.getY(),this.partie.getAffichage());
 			
 			if (this.partie.dominoEstHorizontal())
 				if (this.partie.dominoEstDansLeSens1())
-					this.partie.getDominoSelectionne().getMarque2().draw(g, this.partie.getX()+40, this.partie.getY());
+					this.partie.getDominoSelectionne().getMarque2().draw(g, this.partie.getX()+40, this.partie.getY(),this.partie.getAffichage());
 				else
-					this.partie.getDominoSelectionne().getMarque1().draw(g, this.partie.getX()+40, this.partie.getY());
+					this.partie.getDominoSelectionne().getMarque1().draw(g, this.partie.getX()+40, this.partie.getY(),this.partie.getAffichage());
 			else
 				if (this.partie.dominoEstDansLeSens1())
-					this.partie.getDominoSelectionne().getMarque2().draw(g, this.partie.getX(), this.partie.getY()+40);
+					this.partie.getDominoSelectionne().getMarque2().draw(g, this.partie.getX(), this.partie.getY()+40,this.partie.getAffichage());
 				else
-					this.partie.getDominoSelectionne().getMarque1().draw(g, this.partie.getX(), this.partie.getY()+40);
+					this.partie.getDominoSelectionne().getMarque1().draw(g, this.partie.getX(), this.partie.getY()+40,this.partie.getAffichage());
 	    }
 		
 	}

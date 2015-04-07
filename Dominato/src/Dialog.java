@@ -34,18 +34,30 @@ public class Dialog extends JDialog {
 
 	private JRadioButton tranche1, tranche2, tranche3, tranche4;
 	private JRadioButton tranche12, tranche22, tranche32, tranche42;
+	private JRadioButton tranche13, tranche23, tranche33, tranche43;
+	private JRadioButton tranche14, tranche24, tranche34, tranche44;
 	private String resultat;
+	private int affichage;
 	
+
+	public int getAffichage() {
+		return affichage;
+	}
+
+	public void setAffichage(int affichage) {
+		this.affichage = affichage;
+	}
 
 	public Dialog(JFrame parent, String title, boolean modal){
 		super(parent, title, modal);
-		this.setSize(355, 154);
-		this.setLocationRelativeTo(null);
+		
+		
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
 		this.initComponent();
+		this.setSize(355, 380);
+		this.setLocationRelativeTo(null);
 		this.setVisible(true);
-		
 	}
 	
 	public void showDialog(){
@@ -121,12 +133,81 @@ public class Dialog extends JDialog {
 		panO.add(tranche32);
 		panO.add(tranche42);
 		
+		
+		/* Infos concernant Niveau */
+		
+		
+		JPanel panN = new JPanel();
+		panN.setBorder(BorderFactory.createTitledBorder(null, "Niveau", 0, 0, font1));
+		panN.setPreferredSize(new Dimension(250, 60));
+		tranche13 = new JRadioButton("1");
+		this.tranche13.setBackground(Color.LIGHT_GRAY);
+		tranche23 = new JRadioButton("2");
+		tranche23.setSelected(true);
+		this.tranche23.setBackground(Color.LIGHT_GRAY);
+		tranche33 = new JRadioButton("3");
+		this.tranche33.setBackground(Color.LIGHT_GRAY);
+		tranche43 = new JRadioButton("4");
+		this.tranche43.setBackground(Color.LIGHT_GRAY);
+		
+		tranche13.addMouseListener(new SourisListener());
+		tranche23.addMouseListener(new SourisListener());
+		tranche33.addMouseListener(new SourisListener());
+		tranche43.addMouseListener(new SourisListener());
+		
+		ButtonGroup bg3 = new ButtonGroup();
+		bg3.add(tranche13);
+		bg3.add(tranche23);
+		bg3.add(tranche33);
+		bg3.add(tranche43);
+		panN.add(tranche13);
+		panN.add(tranche23);
+		panN.add(tranche33);
+		panN.add(tranche43);
+		
+		
+		/* Infos concernant Mode de jeux */
+		
+		
+		JPanel panM = new JPanel();
+		panM.setBorder(BorderFactory.createTitledBorder(null, "Mode de jeu", 0, 0, font1));
+		panM.setPreferredSize(new Dimension(250, 150));
+		tranche14 = new JRadioButton("Points                   ");
+		this.tranche14.setBackground(Color.LIGHT_GRAY);
+		tranche24 = new JRadioButton("Nombres             ");
+		tranche24.setSelected(true);
+		this.tranche24.setBackground(Color.LIGHT_GRAY);
+		tranche34 = new JRadioButton("Puissance de 10");
+		this.tranche34.setBackground(Color.LIGHT_GRAY);
+		tranche44 = new JRadioButton("Puissance de a");
+		this.tranche44.setBackground(Color.LIGHT_GRAY);
+		
+		tranche14.addMouseListener(new SourisListener());
+		tranche24.addMouseListener(new SourisListener());
+		tranche34.addMouseListener(new SourisListener());
+		tranche44.addMouseListener(new SourisListener());
+		
+		ButtonGroup bg4 = new ButtonGroup();
+		bg4.add(tranche14);
+		bg4.add(tranche24);
+		bg4.add(tranche34);
+		bg4.add(tranche44);
+		panM.add(tranche14);
+		panM.add(tranche24);
+		panM.add(tranche34);
+		panM.add(tranche44);
+		
+		
 		JPanel content = new JPanel();
 		content.setBackground(Color.DARK_GRAY);
 		panH.setBackground(Color.LIGHT_GRAY);
 		panO.setBackground(Color.LIGHT_GRAY);
+		panN.setBackground(Color.LIGHT_GRAY);
+		panM.setBackground(Color.LIGHT_GRAY);
 		content.add(panH);
 		content.add(panO);
+		content.add(panM);
+		content.add(panN);
 		
 		
 		JPanel control = new JPanel();
@@ -136,6 +217,21 @@ public class Dialog extends JDialog {
 		
 		okBouton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
+				this.getM();
+				if(tranche14.isSelected()){
+					affichage = 0;
+					
+				}
+				if(tranche24.isSelected()){
+					affichage = 1;
+				}
+				if(tranche34.isSelected()){
+					affichage = 2;
+				}
+				if(tranche44.isSelected()){
+					affichage = 3;
+				}
+			
 				resultat = this.getNbH()+this.getNbO();
 				setVisible(false);
 			}
@@ -153,7 +249,16 @@ public class Dialog extends JDialog {
 						(tranche42.isSelected()) ? tranche42.getText() :
 						tranche12.getText();
 			}
+			public void getM(){
+					
+			}
 		});
+		
+		
+		
+		
+		
+		
 			
 		/* Bonton Annuler */
 		JButton cancelBouton = new Bouton();

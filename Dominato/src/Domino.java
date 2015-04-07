@@ -10,11 +10,13 @@ public class Domino implements Serializable
 	private Marque marque1;
 	private Marque marque2;
 	private boolean selectionne;
+	private int affichage;
 	
 	public Domino()
 	{
-		this.marque1 = new Marque(0, Couleur.BLANC, Color.WHITE);
-		this.marque2 = new Marque(0, Couleur.BLANC, Color.WHITE);
+		affichage = 0;
+		this.marque1 = new Marque(0, Couleur.BLANC, Color.WHITE,affichage);
+		this.marque2 = new Marque(0, Couleur.BLANC, Color.WHITE,affichage);
 		selectionne = false;
 	}
 	
@@ -27,8 +29,9 @@ public class Domino implements Serializable
 	
 	public Domino(int valeur1, Couleur couleur1, int valeur2, Couleur couleur2, Color color)
 	{
-		this.marque1 = new Marque(valeur1, couleur1, color);
-		this.marque2 = new Marque(valeur2, couleur2, color);
+		affichage = 0;
+		this.marque1 = new Marque(valeur1, couleur1, color,affichage);
+		this.marque2 = new Marque(valeur2, couleur2, color,affichage);
 		selectionne = false;
 	}
 	
@@ -76,14 +79,14 @@ public class Domino implements Serializable
 		Marque marque;
 		
 		if (this.marque1.getCouleur().equals(this.marque2.getCouleur()))
-			marque = new Marque(this.marque1.getValeur()+this.marque2.getValeur(), this.marque1.getCouleur(),Color.white);
+			marque = new Marque(this.marque1.getValeur()+this.marque2.getValeur(), this.marque1.getCouleur(),Color.white,affichage);
 		else if (this.marque1.getValeur() == this.marque2.getValeur())
-			marque = new Marque(0, Couleur.BLANC, Color.WHITE);
+			marque = new Marque(0, Couleur.BLANC, Color.WHITE,affichage);
 		else
 			if (this.marque1.getValeur() > this.marque2.getValeur())
-				marque = new Marque(this.marque1.getValeur()-this.marque2.getValeur(), this.marque1.getCouleur(), this.marque1.getCouleurFond());
+				marque = new Marque(this.marque1.getValeur()-this.marque2.getValeur(), this.marque1.getCouleur(), this.marque1.getCouleurFond(),affichage);
 			else
-				marque = new Marque(this.marque2.getValeur()-this.marque1.getValeur(), this.marque2.getCouleur(), this.marque1.getCouleurFond());
+				marque = new Marque(this.marque2.getValeur()-this.marque1.getValeur(), this.marque2.getCouleur(), this.marque1.getCouleurFond(),affichage);
 		
 		return marque;
 	}

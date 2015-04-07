@@ -19,8 +19,10 @@ public class Partie implements Serializable
 	private int x;
 	private int y;
 	private int terminee;
+	private int affichage;
 	
-	public Partie(int nbJoueurs, boolean[] type)
+	
+	public Partie(int nbJoueurs, boolean[] type, int affichage)
 	{
 		this.plateau = new Plateau();
 		this.nbJoueurs = nbJoueurs;
@@ -37,6 +39,7 @@ public class Partie implements Serializable
 		this.x = 0;
 		this.y = 0;
 		this.terminee = 0;
+		this.affichage = affichage;
 	}
 	
 	Joueur getJoueurNum(int i){
@@ -456,5 +459,13 @@ public class Partie implements Serializable
 
 	public void setDominoSelectionne(Domino dominoSelectionne) {
 		this.dominoSelectionne = dominoSelectionne;
+	}
+
+	public int getAffichage() {
+		return affichage;
+	}
+
+	public void setAffichage(int affichage) {
+		this.affichage = affichage;
 	}
 }
