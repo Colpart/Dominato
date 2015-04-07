@@ -138,7 +138,7 @@ public class Fenetre extends JFrame
 					else
 						type[i] = false;
 				}
-				Partie p = new Partie(type.length, type,3);
+				Partie p = new Partie(type.length, type,3,2);
 				dominoWest = new AffichageDominosWest(p);
 				dominoEst = new AffichageDominosEst(p);
 				affJoueurs = new AffichageJoueurs(p);
@@ -215,7 +215,7 @@ public class Fenetre extends JFrame
 			bouton4.removeActionListener(boutonL4);
 			
 			boolean[] type = {true,false};
-			partie = new Partie(2,type,3);
+			partie = new Partie(2,type,3,2);
 			dominoWest = new AffichageDominosWest(partie);
 			dominoEst = new AffichageDominosEst(partie);
 			affJoueurs = new AffichageJoueurs(partie);
@@ -302,13 +302,13 @@ public class BoutonListenerM4 implements ActionListener{
 	}
 	
 	
-	public void lancerPartie(boolean type[], int affichage){
+	public void lancerPartie(boolean type[], int affichage,int niveau){
 		bouton.removeActionListener(boutonL);
 		bouton2.removeActionListener(boutonL2);
 		bouton3.removeActionListener(boutonL3);
 		bouton4.removeActionListener(boutonL4);
 		
-		partie = new Partie(type.length,type,affichage);
+		partie = new Partie(type.length,type,affichage,niveau);
 		
 		dominoWest = new AffichageDominosWest(partie);
 		dominoEst = new AffichageDominosEst(partie);
@@ -349,49 +349,49 @@ public class BoutonListenerM4 implements ActionListener{
 			
 			if(res == 20){
 				boolean[] type = {true,true};
-				lancerPartie(type,d.getAffichage());
+				lancerPartie(type,d.getAffichage(),d.getNiveau());
 				System.out.print(d.getAffichage());
 			}
 			
 			else if(res == 30){
 				boolean[] type = {true,true,true};
-				lancerPartie(type,d.getAffichage());
+				lancerPartie(type,d.getAffichage(),d.getNiveau());
 			}
 			
 			else if(res == 40){
 				boolean[] type = {true,true,true,true};
-				lancerPartie(type,d.getAffichage());
+				lancerPartie(type,d.getAffichage(),d.getNiveau());
 			}
 			
 			
 			else if(res == 11){
 				boolean[] type = {true,false};
-				lancerPartie(type,d.getAffichage());
+				lancerPartie(type,d.getAffichage(),d.getNiveau());
 			}
 			
 			else if(res == 21){
 				boolean[] type = {true,true,false};
-				lancerPartie(type,d.getAffichage());
+				lancerPartie(type,d.getAffichage(),d.getNiveau());
 			}
 			
 			else if(res == 31){
 				boolean[] type = {true,true,true,false};
-				lancerPartie(type,d.getAffichage());
+				lancerPartie(type,d.getAffichage(),d.getNiveau());
 			}
 			
 			else if(res == 12){
 				boolean[] type = {true,false,false};
-				lancerPartie(type,d.getAffichage());
+				lancerPartie(type,d.getAffichage(),d.getNiveau());
 			}
 			
 			else if(res == 13){
 				boolean[] type = {true,false,false,false};
-				lancerPartie(type,d.getAffichage());
+				lancerPartie(type,d.getAffichage(),d.getNiveau());
 			}
 		
 			else if(res == 22){
 				boolean[] type = {true,true,false,false};
-				lancerPartie(type,d.getAffichage());
+				lancerPartie(type,d.getAffichage(),d.getNiveau());
 			}
 		}
 	}

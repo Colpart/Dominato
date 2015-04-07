@@ -91,57 +91,171 @@ class Controleur extends MouseAdapter
 						boolean horizontal = true, sens = true;
 						int maximum = 0;
 						
-						for (Domino d : partie.getJoueurCourant().getJeu())
-							for (int i = 0; i < partie.getPlateau().getTaille(); i++)
-								for (int j = 0; j < partie.getPlateau().getTaille(); j++)			
-									if (partie.getPlateau().coupValide(i, j, d, true, true))
-									{
-										if (partie.getPlateau().nbLiaisons(i, j, true) > maximum)
+						if(this.partie.getNiveau() == 1){
+							for (Domino d : partie.getJoueurCourant().getJeu())
+								for (int i = 0; i < partie.getPlateau().getTaille(); i++)
+									for (int j = 0; j < partie.getPlateau().getTaille(); j++)			
+										if (partie.getPlateau().coupValide(i, j, d, true, true))
 										{
-											maximum = partie.getPlateau().nbLiaisons(i, j, true);
-											domino = d;
-											horizontal = true;
-											sens = true;
-											x = i;
-											y = j;
+											if (partie.getPlateau().nbLiaisons(i, j, true) == 1)
+											{
+												maximum = partie.getPlateau().nbLiaisons(i, j, true);
+												domino = d;
+												horizontal = true;
+												sens = true;
+												x = i;
+												y = j;
+											}
 										}
-									}
-									else if (partie.getPlateau().coupValide(i, j, d, false, true))
-									{
-										if (partie.getPlateau().nbLiaisons(i, j, false) > maximum)
+										else if (partie.getPlateau().coupValide(i, j, d, false, true))
 										{
-											maximum = partie.getPlateau().nbLiaisons(i, j, false);
-											domino = d;
-											horizontal = false;
-											sens = true;
-											x = i;
-											y = j;
+											if (partie.getPlateau().nbLiaisons(i, j, false) == 1)
+											{
+												maximum = partie.getPlateau().nbLiaisons(i, j, false);
+												domino = d;
+												horizontal = false;
+												sens = true;
+												x = i;
+												y = j;
+											}
 										}
-									}
-									else if (partie.getPlateau().coupValide(i, j, d, true, false))
-									{
-										if (partie.getPlateau().nbLiaisons(i, j, true) > maximum)
+										else if (partie.getPlateau().coupValide(i, j, d, true, false))
 										{
-											maximum = partie.getPlateau().nbLiaisons(i, j, true);
-											domino = d;
-											horizontal = true;
-											sens = false;
-											x = i;
-											y = j;
+											if (partie.getPlateau().nbLiaisons(i, j, true) == 1)
+											{
+												maximum = partie.getPlateau().nbLiaisons(i, j, true);
+												domino = d;
+												horizontal = true;
+												sens = false;
+												x = i;
+												y = j;
+											}
 										}
-									}
-									else if (partie.getPlateau().coupValide(i, j, d, false, false))
-									{
-										if (partie.getPlateau().nbLiaisons(i, j, false) > maximum)
+										else if (partie.getPlateau().coupValide(i, j, d, false, false))
 										{
-											maximum = partie.getPlateau().nbLiaisons(i, j, false);
-											domino = d;
-											horizontal = false;
-											sens = false;
-											x = i;
-											y = j;
+											if (partie.getPlateau().nbLiaisons(i, j, false) == 1)
+											{
+												maximum = partie.getPlateau().nbLiaisons(i, j, false);
+												domino = d;
+												horizontal = false;
+												sens = false;
+												x = i;
+												y = j;
+											}
 										}
-									}
+						}
+						if(this.partie.getNiveau() == 2){
+							
+							for (Domino d : partie.getJoueurCourant().getJeu())
+								for (int i = 0; i < partie.getPlateau().getTaille(); i++)
+									for (int j = 0; j < partie.getPlateau().getTaille(); j++)			
+										if (partie.getPlateau().coupValide(i, j, d, true, true))
+										{
+											if (partie.getPlateau().nbLiaisons(i, j, true) == this.partie.getIndiceNiveauDeux())
+											{
+												maximum = partie.getPlateau().nbLiaisons(i, j, true);
+												domino = d;
+												horizontal = true;
+												sens = true;
+												x = i;
+												y = j;
+											}
+										}
+										else if (partie.getPlateau().coupValide(i, j, d, false, true))
+										{
+											if (partie.getPlateau().nbLiaisons(i, j, false) == this.partie.getIndiceNiveauDeux())
+											{
+												maximum = partie.getPlateau().nbLiaisons(i, j, false);
+												domino = d;
+												horizontal = false;
+												sens = true;
+												x = i;
+												y = j;
+											}
+										}
+										else if (partie.getPlateau().coupValide(i, j, d, true, false))
+										{
+											if (partie.getPlateau().nbLiaisons(i, j, true) == this.partie.getIndiceNiveauDeux())
+											{
+												maximum = partie.getPlateau().nbLiaisons(i, j, true);
+												domino = d;
+												horizontal = true;
+												sens = false;
+												x = i;
+												y = j;
+											}
+										}
+										else if (partie.getPlateau().coupValide(i, j, d, false, false))
+										{
+											if (partie.getPlateau().nbLiaisons(i, j, false) == this.partie.getIndiceNiveauDeux())
+											{
+												maximum = partie.getPlateau().nbLiaisons(i, j, false);
+												domino = d;
+												horizontal = false;
+												sens = false;
+												x = i;
+												y = j;
+											}
+										}
+							if(this.partie.getIndiceNiveauDeux() == 2){
+								this.partie.setIndiceNiveauDeux(1);
+							}
+							
+							if(domino == null){
+								for (Domino d : partie.getJoueurCourant().getJeu())
+									for (int i = 0; i < partie.getPlateau().getTaille(); i++)
+										for (int j = 0; j < partie.getPlateau().getTaille(); j++)			
+											if (partie.getPlateau().coupValide(i, j, d, true, true))
+											{
+												if (partie.getPlateau().nbLiaisons(i, j, true) == this.partie.getIndiceNiveauDeux())
+												{
+													maximum = partie.getPlateau().nbLiaisons(i, j, true);
+													domino = d;
+													horizontal = true;
+													sens = true;
+													x = i;
+													y = j;
+												}
+											}
+											else if (partie.getPlateau().coupValide(i, j, d, false, true))
+											{
+												if (partie.getPlateau().nbLiaisons(i, j, false) == this.partie.getIndiceNiveauDeux())
+												{
+													maximum = partie.getPlateau().nbLiaisons(i, j, false);
+													domino = d;
+													horizontal = false;
+													sens = true;
+													x = i;
+													y = j;
+												}
+											}
+											else if (partie.getPlateau().coupValide(i, j, d, true, false))
+											{
+												if (partie.getPlateau().nbLiaisons(i, j, true) == this.partie.getIndiceNiveauDeux())
+												{
+													maximum = partie.getPlateau().nbLiaisons(i, j, true);
+													domino = d;
+													horizontal = true;
+													sens = false;
+													x = i;
+													y = j;
+												}
+											}
+											else if (partie.getPlateau().coupValide(i, j, d, false, false))
+											{
+												if (partie.getPlateau().nbLiaisons(i, j, false) == this.partie.getIndiceNiveauDeux())
+												{
+													maximum = partie.getPlateau().nbLiaisons(i, j, false);
+													domino = d;
+													horizontal = false;
+													sens = false;
+													x = i;
+													y = j;
+												}
+											}
+								
+							}
+						}	
 						
 						if (domino == null)
 						{
@@ -212,6 +326,9 @@ class Controleur extends MouseAdapter
 						this.panneau.getAffDominoEst().paintImmediately(0, 0, this.panneau.getAffDominoEst().getWidth(), this.panneau.getAffDominoEst().getHeight());
 						this.panneau.getAffDominoWest().paintImmediately(0, 0, this.panneau.getAffDominoWest().getWidth(), this.panneau.getAffDominoEst().getHeight());
 						this.panneau.getAffJoueurs().paintImmediately(0, 0, this.panneau.getAffJoueurs().getWidth(), this.panneau.getAffJoueurs().getHeight());
+						if(this.partie.getIndiceNiveauDeux() == 1 && this.partie.getNiveau() == 2){
+							this.partie.setIndiceNiveauDeux(2);
+						}
 					}
 					
 					

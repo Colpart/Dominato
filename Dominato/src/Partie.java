@@ -20,9 +20,20 @@ public class Partie implements Serializable
 	private int y;
 	private int terminee;
 	private int affichage;
+	private int niveau;
+	private int indiceNiveauDeux;
+	
+	public int getNiveau() {
+		return niveau;
+	}
+
+	public void setNiveau(int niveau) {
+		this.niveau = niveau;
+	}
+
 	
 	
-	public Partie(int nbJoueurs, boolean[] type, int affichage)
+	public Partie(int nbJoueurs, boolean[] type, int affichage, int niveau)
 	{
 		this.plateau = new Plateau();
 		this.nbJoueurs = nbJoueurs;
@@ -40,8 +51,18 @@ public class Partie implements Serializable
 		this.y = 0;
 		this.terminee = 0;
 		this.affichage = affichage;
+		this.niveau = niveau;
+		indiceNiveauDeux = 2; 
 	}
 	
+	public int getIndiceNiveauDeux() {
+		return indiceNiveauDeux;
+	}
+
+	public void setIndiceNiveauDeux(int indiceNiveauDeux) {
+		this.indiceNiveauDeux = indiceNiveauDeux;
+	}
+
 	Joueur getJoueurNum(int i){
 		return this.joueurs[i];
 	}

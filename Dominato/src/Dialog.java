@@ -38,6 +38,7 @@ public class Dialog extends JDialog {
 	private JRadioButton tranche14, tranche24, tranche34, tranche44;
 	private String resultat;
 	private int affichage;
+	private int niveau;
 	
 
 	public int getAffichage() {
@@ -60,6 +61,14 @@ public class Dialog extends JDialog {
 		this.setVisible(true);
 	}
 	
+	public int getNiveau() {
+		return niveau;
+	}
+
+	public void setNiveau(int niveau) {
+		this.niveau = niveau;
+	}
+
 	public void showDialog(){
 		this.setVisible(true);
 	}
@@ -217,10 +226,21 @@ public class Dialog extends JDialog {
 		
 		okBouton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
-				this.getM();
+				if(tranche13.isSelected()){
+					niveau = 1;
+				}
+				if(tranche23.isSelected()){
+					niveau = 2;
+				}
+				if(tranche33.isSelected()){
+					niveau = 3;
+				}
+				if(tranche43.isSelected()){
+					niveau = 4;
+				}
+				
 				if(tranche14.isSelected()){
 					affichage = 0;
-					
 				}
 				if(tranche24.isSelected()){
 					affichage = 1;
@@ -248,9 +268,6 @@ public class Dialog extends JDialog {
 						(tranche32.isSelected()) ? tranche32.getText() :
 						(tranche42.isSelected()) ? tranche42.getText() :
 						tranche12.getText();
-			}
-			public void getM(){
-					
 			}
 		});
 		
