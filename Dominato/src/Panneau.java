@@ -41,10 +41,10 @@ public class Panneau extends JPanel
 	
 	public Panneau(Partie partie, AffichageDominosEst affDominoEst, AffichageDominosWest affDominoWest, AffichageJoueurs affJoueurs)
 	{
-		haut = new BoutonHaut("haut.jpg", this);
-		bas = new BoutonBas("bas.jpg", this);
-		droit = new BoutonDroit("droit.jpg", this);
-		gauche = new BoutonGauche("gauche.jpg", this);
+		haut = new BoutonHaut("Haut.jpg", this);
+		bas = new BoutonBas("Bas.jpg", this);
+		droit = new BoutonDroit("Droit.jpg", this);
+		gauche = new BoutonGauche("Gauche.jpg", this);
 		this.partie = partie;
 		this.affDominoEst = affDominoEst;
 		this.affDominoWest = affDominoWest;

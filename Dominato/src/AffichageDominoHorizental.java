@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
@@ -19,12 +20,19 @@ public class AffichageDominoHorizental extends JPanel implements MouseListener{
 	private boolean zoom;
 	private boolean dominoPose;
 	private Partie partie;
+	private int indiceListener;
+	private ArrayList<Domino> mainJoueur1;
+	private ArrayList<Domino> mainJoueur2;
+	
 	
 	AffichageDominoHorizental(Partie partie,Domino d){
 		domino = d;
 		zoom = false;
 		this.partie = partie;
+		mainJoueur1 = this.partie.getJoueur(0).getJeu();
+		mainJoueur2 = this.partie.getJoueur(1).getJeu();
 		dominoPose = false;
+		indiceListener = 0;
 		this.addMouseListener(this);
 		this.setPreferredSize(new Dimension(90,50));
 	}
@@ -40,13 +48,38 @@ public class AffichageDominoHorizental extends JPanel implements MouseListener{
 		return false;
 	}
 	
+	
+	public boolean appartientJoueurCourant(Domino domino){
+		if(partie.getjoueurcourant() == 0){
+			for(Domino d : this.mainJoueur1){
+				if(d.equals(domino)){
+					return true;
+				}
+			}
+		}else{
+			for(Domino d : this.mainJoueur2){
+				if(d.equals(domino)){
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
 	public void paint(Graphics g){
 		this.dominoPose = dominoPose(this.domino);
-		if(this.appartientOrdinateur(domino)){
-			domino.getMarque1().draw(g, 0, 0,this.partie.getAffichage());
-			domino.getMarque2().draw(g, 40, 0,this.partie.getAffichage());
+		if(!this.appartientJoueurCourant(domino)){
+			if(this.partie.getJoueur(0).getJeu().contains(domino) || this.partie.getJoueur(1).getJeu().contains(domino)){
+				domino.getMarque1().draw(g, 0, 0,this.partie.getAffichage());
+				domino.getMarque2().draw(g, 40, 0,this.partie.getAffichage());
+			}
 			this.removeMouseListener(this);
+			indiceListener = 1;
 		}else{
+			if(indiceListener == 1){
+				indiceListener = 0;
+				this.addMouseListener(this);
+			}
 			if((zoom == true && this.dominoPose == false) || (this.domino.isSelectionne() == true)){
 				domino.getMarque1().draw(g, 10, 0,this.partie.getAffichage());
 				

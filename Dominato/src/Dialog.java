@@ -310,6 +310,7 @@ public class Dialog extends JDialog {
 			if(tranche2.isSelected()){
 				if(!tranche12.isEnabled()){
 					tranche12.setEnabled(true);
+					tranche12.setSelected(true);
 				}
 				
 				tranche22.setEnabled(false);

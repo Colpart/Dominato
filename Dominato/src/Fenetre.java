@@ -21,10 +21,11 @@ public class Fenetre extends JFrame
 	static final long serialVersionUID = 1;
 	
 	private JPanel container = new JPanel(); 
-	private JButton bouton = new Bouton("pause.jpg");
-	private JButton bouton2 = new Bouton("reprendre.jpg");
-	private JButton bouton3 = new Bouton("rejouer.jpg");
-	private JButton bouton4 = new Bouton("quitter.jpg");
+	private JButton bouton = new Bouton("Pause.jpg");
+	private JButton bouton2 = new Bouton("Reprendre.jpg");
+	private JButton bouton3 = new Bouton("Rejouer.jpg");
+	private JButton bouton4 = new Bouton("Quitter.jpg");
+	private JButton bouton5 = new Bouton("Menu_Principal.jpg");
 	private JButton boutonM1 = new BoutonM("Partie Rapide");	
 	private JButton boutonM2 = new BoutonM("Nouvelle Partie");	
 	private JButton boutonM3 = new BoutonM("Quitter");
@@ -33,6 +34,7 @@ public class Fenetre extends JFrame
 	private Bouton2Listener boutonL2 = new Bouton2Listener();
 	private Bouton3Listener boutonL3 = new Bouton3Listener();
 	private Bouton4Listener boutonL4 = new Bouton4Listener();
+	private Bouton5Listener boutonL5 = new Bouton5Listener();
 	private Panneau pan;
 	private AffichageDominosEst dominoEst;
 	private AffichageDominosWest dominoWest;
@@ -122,13 +124,14 @@ public class Fenetre extends JFrame
 		public void actionPerformed(ActionEvent arg0) {
 			JOptionPane jop = new JOptionPane();
 			@SuppressWarnings("static-access")
-			int option = jop.showConfirmDialog(null,"Voulez-vous recommencer la partie?",null,JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE);
+			int option = jop.showConfirmDialog(null,"Voulez-vous recommencer la partie?","Recommencer La Partie",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE);
 			
 			if(option == JOptionPane.OK_OPTION){
 				bouton.removeActionListener(boutonL);
 				bouton2.removeActionListener(boutonL2);
 				bouton3.removeActionListener(boutonL3);
 				bouton4.removeActionListener(boutonL4);
+				bouton5.removeActionListener(boutonL5);
 				
 				boolean[] type = new boolean[partie.getNbJoueurs()];
 				
@@ -138,7 +141,7 @@ public class Fenetre extends JFrame
 					else
 						type[i] = false;
 				}
-				Partie p = new Partie(type.length, type,3,2);
+				Partie p = new Partie(type.length, type,partie.getAffichage(),partie.getNiveau());
 				dominoWest = new AffichageDominosWest(p);
 				dominoEst = new AffichageDominosEst(p);
 				affJoueurs = new AffichageJoueurs(p);
@@ -156,7 +159,9 @@ public class Fenetre extends JFrame
 				north.add(bouton, BorderLayout.WEST);
 				north.add(bouton2);
 				north.add(bouton3);
+				north.add(bouton5);
 				north.add(bouton4);
+				
 				north.setBackground(Color.DARK_GRAY);
 				container.add(north, BorderLayout.NORTH);
 				bouton2.setEnabled(false);
@@ -165,6 +170,7 @@ public class Fenetre extends JFrame
 				bouton2.addActionListener(boutonL2);
 				bouton3.addActionListener(boutonL3);
 				bouton4.addActionListener(boutonL4);
+				bouton5.addActionListener(boutonL5);
 				modifierContainer(container);
 			}	
 		}
@@ -176,7 +182,7 @@ public class Fenetre extends JFrame
 			
 			JOptionPane jop = new JOptionPane();
 			@SuppressWarnings("static-access")
-			int option = jop.showConfirmDialog(null,"Enregistrer La Partie ?","Attention",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE);
+			int option = jop.showConfirmDialog(null,"Enregistrer La Partie ?","Quitter La Partie",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE);
 			
 			if(option == JOptionPane.OK_OPTION){
 				ObjectOutputStream oos = null;
@@ -205,6 +211,68 @@ public class Fenetre extends JFrame
 			
 		}
 	}
+
+	
+	
+	public class Bouton5Listener implements ActionListener{
+		
+		public void actionPerformed(ActionEvent arg0) {
+			
+			JOptionPane jop = new JOptionPane();
+			@SuppressWarnings("static-access")
+			int option = jop.showConfirmDialog(null,"Enregistrer La Partie ?","Retour Menu Principal",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE);
+			
+			if(option == JOptionPane.OK_OPTION){
+				ObjectOutputStream oos = null;
+
+			    try {
+			      final FileOutputStream fichier = new FileOutputStream("partie.ser");
+			      oos = new ObjectOutputStream(fichier);
+			      oos.writeObject(partie);
+			      oos.flush();
+			    } catch (final java.io.IOException e) {
+			      e.printStackTrace();
+			    } finally {
+			      try {
+			        if (oos != null) {
+			          oos.flush();
+			          oos.close();
+			        }
+			      } catch (final IOException ex) {
+			        ex.printStackTrace();
+			      }
+			    }
+			    container.removeAll();
+				container.add(menu,BorderLayout.CENTER);
+			    JPanel center = new JPanel();
+			    center.add(boutonM1);
+			    center.add(boutonM4);
+			    center.add(boutonM2);
+			    center.add(boutonM3);
+			    center.setBackground(Color.black);
+			    container.add(center, BorderLayout.NORTH);
+			    
+			    modifierContainer(container); 
+			
+			}else if(option == JOptionPane.NO_OPTION){
+				container.removeAll();
+				container.add(menu,BorderLayout.CENTER);
+			    JPanel center = new JPanel();
+			    center.add(boutonM1);
+			    center.add(boutonM4);
+			    center.add(boutonM2);
+			    center.add(boutonM3);
+			    center.setBackground(Color.black);
+			    container.add(center, BorderLayout.NORTH);
+			    
+			    modifierContainer(container); 
+			
+			}
+			
+		}
+	}
+
+	
 	
 	public class BoutonListenerM1 implements ActionListener{
 		
@@ -213,6 +281,8 @@ public class Fenetre extends JFrame
 			bouton2.removeActionListener(boutonL2);
 			bouton3.removeActionListener(boutonL3);
 			bouton4.removeActionListener(boutonL4);
+			bouton5.removeActionListener(boutonL5);
+			
 			
 			boolean[] type = {true,false};
 			partie = new Partie(2,type,3,2);
@@ -231,7 +301,9 @@ public class Fenetre extends JFrame
 			north.add(bouton, BorderLayout.WEST);
 			north.add(bouton2);
 			north.add(bouton3);
+			north.add(bouton5);
 			north.add(bouton4);
+			
 			north.setBackground(Color.DARK_GRAY);
 			container.add(north, BorderLayout.NORTH);
 			bouton2.setEnabled(false);
@@ -239,6 +311,7 @@ public class Fenetre extends JFrame
 			bouton2.addActionListener(boutonL2);
 			bouton3.addActionListener(boutonL3);
 			bouton4.addActionListener(boutonL4);
+			bouton5.addActionListener(boutonL5);
 		    setContentPane(container);
 		    
 		}
@@ -251,6 +324,7 @@ public class BoutonListenerM4 implements ActionListener{
 			bouton2.removeActionListener(boutonL2);
 			bouton3.removeActionListener(boutonL3);
 			bouton4.removeActionListener(boutonL4);
+			bouton5.removeActionListener(boutonL5);
 			
 			ObjectInputStream ois = null;
 
@@ -288,7 +362,9 @@ public class BoutonListenerM4 implements ActionListener{
 			north.add(bouton, BorderLayout.WEST);
 			north.add(bouton2);
 			north.add(bouton3);
+			north.add(bouton5);
 			north.add(bouton4);
+			
 			north.setBackground(Color.DARK_GRAY);
 			container.add(north, BorderLayout.NORTH);
 			bouton2.setEnabled(false);
@@ -296,6 +372,7 @@ public class BoutonListenerM4 implements ActionListener{
 			bouton2.addActionListener(boutonL2);
 			bouton3.addActionListener(boutonL3);
 			bouton4.addActionListener(boutonL4);
+			bouton5.addActionListener(boutonL5);
 		    setContentPane(container);
 		    
 		}
@@ -307,6 +384,7 @@ public class BoutonListenerM4 implements ActionListener{
 		bouton2.removeActionListener(boutonL2);
 		bouton3.removeActionListener(boutonL3);
 		bouton4.removeActionListener(boutonL4);
+		bouton5.removeActionListener(boutonL5);
 		
 		partie = new Partie(type.length,type,affichage,niveau);
 		
@@ -324,7 +402,9 @@ public class BoutonListenerM4 implements ActionListener{
 		north.add(bouton, BorderLayout.WEST);
 		north.add(bouton2);
 		north.add(bouton3);
+		north.add(bouton5);
 		north.add(bouton4);
+		
 		north.setBackground(Color.DARK_GRAY);
 		container.add(north, BorderLayout.NORTH);
 		bouton2.setEnabled(false);
@@ -332,6 +412,7 @@ public class BoutonListenerM4 implements ActionListener{
 		bouton2.addActionListener(boutonL2);
 		bouton3.addActionListener(boutonL3);
 		bouton4.addActionListener(boutonL4);
+		bouton5.addActionListener(boutonL5);
 	    setContentPane(container);
 	}
 	
