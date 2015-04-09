@@ -1,14 +1,12 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
 
-public class AffichageDominosEst extends JPanel implements MouseListener{
+public class AffichageDominosEst extends JPanel {
 	
 	/**
 	 * 
@@ -38,50 +36,14 @@ public class AffichageDominosEst extends JPanel implements MouseListener{
 		}
 	}
 	
-	public void changement(){
-		
-	}
 	
 	public void paint(Graphics g){
 		g.setColor(Color.DARK_GRAY);
 	    g.fillRect(0, 0, this.getWidth(), this.getHeight());
-	    this.changement();
 	    this.paintComponents(g);
     }
 
-	@Override
-	public void mouseClicked(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	public void mouseMoved(MouseEvent arg0){
-		this.repaint();
-	}
 }
 
 

@@ -80,9 +80,8 @@ public class AffichageDominoHorizental extends JPanel implements MouseListener{
 				indiceListener = 0;
 				this.addMouseListener(this);
 			}
-			if((zoom == true && this.dominoPose == false) || (this.domino.isSelectionne() == true)){
+			if(zoom == true && this.dominoPose == false ){
 				domino.getMarque1().draw(g, 10, 0,this.partie.getAffichage());
-				
 				domino.getMarque2().draw(g, 50, 0,this.partie.getAffichage());
 				g.setColor(Color.DARK_GRAY);
 			    g.fillRect(0, 0, 10, 40);

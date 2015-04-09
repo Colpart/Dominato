@@ -56,10 +56,10 @@ public class Panneau extends JPanel
 		this.plateau = new AffichagePlateau(partie,this.compt);
 		BorderLayout bl = new BorderLayout();
 		this.setLayout(bl);
-		haut.setBackground(new Color(245, 220, 180));
-		bas.setBackground(new Color(245, 220, 180));
-		gauche.setBackground(new Color(245, 220, 180));
-		droit.setBackground(new Color(245, 220, 180));
+		haut.setBackground(Color.DARK_GRAY);
+		bas.setBackground(Color.DARK_GRAY);
+		gauche.setBackground(Color.DARK_GRAY);
+		droit.setBackground(Color.DARK_GRAY);
 		this.add(haut,BorderLayout.NORTH);
 		this.add(bas,BorderLayout.SOUTH);
 		this.add(gauche,BorderLayout.WEST);
@@ -116,11 +116,6 @@ public class Panneau extends JPanel
 		return affJoueurs;
 	}
 
-	public void paint(Graphics g)
-	{
-		this.paintComponents(g);		
-	}
-
 	public Partie getPartie() {
 		return partie;
 	}
@@ -129,5 +124,10 @@ public class Panneau extends JPanel
 		this.partie = partie;
 	}
 
-		
+
+	public void paint(Graphics g)
+	{
+		this.paintComponents(g);		
+	}
+	
 }
