@@ -85,6 +85,7 @@ public class AffichageDominoHorizental extends JPanel implements MouseListener{
 				domino.getMarque2().draw(g, 50, 0,this.partie.getAffichage());
 				g.setColor(Color.DARK_GRAY);
 			    g.fillRect(0, 0, 10, 40);
+			    g.fillRect(0, 40, 90, 10);
 			}
 			
 			else if(zoom == false && this.dominoPose == false){
@@ -92,6 +93,7 @@ public class AffichageDominoHorizental extends JPanel implements MouseListener{
 				domino.getMarque2().draw(g, 40, 0,this.partie.getAffichage());
 				g.setColor(Color.DARK_GRAY);
 			    g.fillRect(80, 0, 10, 40);
+			    g.fillRect(0, 40, 90, 10);
 			}
 			else if( this.dominoPose == true){
 				this.removeMouseListener(this);
