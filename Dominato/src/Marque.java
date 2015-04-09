@@ -399,34 +399,34 @@ public class Marque implements Serializable
 				if(codeCouleur == 0)
 					g.drawString(Integer.toString(this.getValeur()), x+14, y+25);
 				else
-					g.drawString("-"+Integer.toString(this.getValeur()), x+10, y+25);
+					g.drawString("- "+Integer.toString(this.getValeur()), x+10, y+25);
 			}
 			else if (this.getValeur() == 2)
 			{
 				if(codeCouleur == 0)
 					g.drawString(Integer.toString(this.getValeur()), x+14, y+25);
 				else
-					g.drawString("-"+Integer.toString(this.getValeur()), x+10, y+25);
+					g.drawString("- "+Integer.toString(this.getValeur()), x+10, y+25);
 			}
 			else if (this.getValeur() == 3)
 			{
 				if(codeCouleur == 0)
 					g.drawString(Integer.toString(this.getValeur()), x+14, y+25);
 				else
-					g.drawString("-"+Integer.toString(this.getValeur()), x+10, y+25);
+					g.drawString("- "+Integer.toString(this.getValeur()), x+10, y+25);
 			}
 			else if (this.getValeur() == 4)
 			{
 				if(codeCouleur == 0)
 					g.drawString(Integer.toString(this.getValeur()), x+14, y+25);
 				else
-					g.drawString("-"+Integer.toString(this.getValeur()), x+10, y+25);
+					g.drawString("- "+Integer.toString(this.getValeur()), x+10, y+25);
 			}
 			else if (this.getValeur() != 0){
 				if(codeCouleur == 0)
 					g.drawString(Integer.toString(this.getValeur()), x+14, y+25);
 				else
-					g.drawString("-"+Integer.toString(this.getValeur()), x+10, y+25);
+					g.drawString("- "+Integer.toString(this.getValeur()), x+10, y+25);
 			}
 		}
 	

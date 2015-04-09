@@ -26,10 +26,10 @@ public class Fenetre extends JFrame
 	private JButton bouton3 = new Bouton("Rejouer.jpg");
 	private JButton bouton4 = new Bouton("Quitter.jpg");
 	private JButton bouton5 = new Bouton("Menu_Principal.jpg");
-	private JButton boutonM1 = new BoutonM("Partie Rapide");	
-	private JButton boutonM2 = new BoutonM("Nouvelle Partie");	
+	private JButton boutonM1 = new BoutonM("Partie rapide");	
+	private JButton boutonM2 = new BoutonM("Nouvelle partie");	
 	private JButton boutonM3 = new BoutonM("Quitter");
-	private JButton boutonM4 = new BoutonM("Reprendre Partie");
+	private JButton boutonM4 = new BoutonM("Reprendre la partie");
 	private BoutonListener boutonL = new BoutonListener();
 	private Bouton2Listener boutonL2 = new Bouton2Listener();
 	private Bouton3Listener boutonL3 = new Bouton3Listener();
@@ -124,7 +124,7 @@ public class Fenetre extends JFrame
 		public void actionPerformed(ActionEvent arg0) {
 			JOptionPane jop = new JOptionPane();
 			@SuppressWarnings("static-access")
-			int option = jop.showConfirmDialog(null,"Voulez-vous recommencer la partie?","Recommencer La Partie",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE);
+			int option = jop.showConfirmDialog(null,"Voulez-vous recommencer la partie ?","Recommencer la partie",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE);
 			
 			if(option == JOptionPane.OK_OPTION){
 				bouton.removeActionListener(boutonL);
@@ -182,7 +182,7 @@ public class Fenetre extends JFrame
 			
 			JOptionPane jop = new JOptionPane();
 			@SuppressWarnings("static-access")
-			int option = jop.showConfirmDialog(null,"Enregistrer La Partie ?","Quitter La Partie",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE);
+			int option = jop.showConfirmDialog(null,"Enregistrer la partie ?","Quitter la partie",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE);
 			
 			if(option == JOptionPane.OK_OPTION){
 				ObjectOutputStream oos = null;
@@ -220,7 +220,7 @@ public class Fenetre extends JFrame
 			
 			JOptionPane jop = new JOptionPane();
 			@SuppressWarnings("static-access")
-			int option = jop.showConfirmDialog(null,"Enregistrer La Partie ?","Retour Menu Principal",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE);
+			int option = jop.showConfirmDialog(null,"Enregistrer la partie ?","Retour au menu principal",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE);
 			
 			if(option == JOptionPane.OK_OPTION){
 				ObjectOutputStream oos = null;
@@ -421,7 +421,7 @@ public class BoutonListenerM4 implements ActionListener{
 		public void actionPerformed(ActionEvent arg0) {
 			
 			int res = 0;
-			Dialog d = new Dialog(null, "Nouvelle Partie", true);
+			Dialog d = new Dialog(null, "Nouvelle partie", true);
 			
 			try{
 				res = Integer.parseInt(d.getResultat());
@@ -482,7 +482,7 @@ public class BoutonListenerM4 implements ActionListener{
 			
 			JOptionPane jop = new JOptionPane();
 			@SuppressWarnings("static-access")
-			int option = jop.showConfirmDialog(null,"Voulez-vous quittez ?","Attention",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE);
+			int option = jop.showConfirmDialog(null,"Voulez-vous quitter ?","Attention",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE);
 			
 			if(option == JOptionPane.OK_OPTION){
 				System.exit(0);

@@ -78,7 +78,7 @@ public class Dialog extends JDialog {
 		JPanel panH = new JPanel();
 		
 		Font font = new Font("Serif", Font.BOLD, 13);
-		panH.setBorder(BorderFactory.createTitledBorder(null, "Nombre Joueurs Humains", 0, 0, font));
+		panH.setBorder(BorderFactory.createTitledBorder(null, "Nombre de joueurs humains", 0, 0, font));
 		panH.setPreferredSize(new Dimension(250, 60));
 		tranche1 = new JRadioButton("1");
 		this.tranche1.setBackground(Color.LIGHT_GRAY);
@@ -98,7 +98,7 @@ public class Dialog extends JDialog {
 		/*  Infos concernant l'ordi */
 		JPanel panO = new JPanel();
 		Font font1 = new Font("Serif", Font.BOLD, 13);
-		panO.setBorder(BorderFactory.createTitledBorder(null, "Nombre Joueurs Virtuels", 0, 0, font1));
+		panO.setBorder(BorderFactory.createTitledBorder(null, "Nombre de joueurs virtuels", 0, 0, font1));
 		panO.setPreferredSize(new Dimension(250, 60));
 		tranche12 = new JRadioButton("0");
 		this.tranche12.setBackground(Color.LIGHT_GRAY);
@@ -154,14 +154,14 @@ public class Dialog extends JDialog {
 		JPanel panM = new JPanel();
 		panM.setBorder(BorderFactory.createTitledBorder(null, "Mode de jeu", 0, 0, font1));
 		panM.setPreferredSize(new Dimension(250, 150));
-		tranche14 = new JRadioButton("Points                   ");
+		tranche14 = new JRadioButton("Points                     ");
 		this.tranche14.setBackground(Color.LIGHT_GRAY);
-		tranche24 = new JRadioButton("Nombres             ");
+		tranche24 = new JRadioButton("Nombres               ");
 		tranche24.setSelected(true);
 		this.tranche24.setBackground(Color.LIGHT_GRAY);
 		tranche34 = new JRadioButton("Puissance de 10");
 		this.tranche34.setBackground(Color.LIGHT_GRAY);
-		tranche44 = new JRadioButton("Puissance de a");
+		tranche44 = new JRadioButton("Puissance de a  ");
 		this.tranche44.setBackground(Color.LIGHT_GRAY);
 		
 		tranche14.addMouseListener(new SourisListener());
