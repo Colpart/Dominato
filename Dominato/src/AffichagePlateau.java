@@ -29,8 +29,8 @@ public class AffichagePlateau extends JPanel{
 	AffichagePlateau(Partie partie, int compt){
 		this.partie = partie;
 		this.compt = compt;
-		this.debutX = 0;
-		this.debutY = 0;
+		this.debutX = 10;
+		this.debutY = 10;
 	}
 
 	public int getDebutX()

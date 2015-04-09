@@ -115,18 +115,18 @@ public class Marque implements Serializable
 			{
 				if(codeCouleur == 0){
 					g.setFont(fonteBase);
-					g.setColor(Color.black);
+					g.setColor(new Color(15,5,107));
 					g.drawString("a", x+13, y+27);
-					g.setColor(Color.RED);
 					g.setFont(fontePuissance);
+					g.setColor(Color.black);
 					g.drawString(Integer.toString(this.getValeur()), x+23, y+18);
 				}
 				else{
 					g.setFont(fonteBase);
-					g.setColor(Color.black);
+					g.setColor(new Color(15,5,107));
 					g.drawString("a", x+13, y+27);
-					g.setColor(Color.GREEN.darker().darker());
 					g.setFont(fontePuissance);
+					g.setColor(Color.black);
 					g.drawString("-"+Integer.toString(this.getValeur()), x+23, y+18);
 				}
 			}
@@ -134,17 +134,17 @@ public class Marque implements Serializable
 			{
 				if(codeCouleur == 0){
 					g.setFont(fonteBase);
-					g.setColor(Color.black);
+					g.setColor(new Color(15,5,107));
 					g.drawString("a", x+13, y+27);
-					g.setColor(Color.RED);
+					g.setColor(Color.black);
 					g.setFont(fontePuissance);
 					g.drawString(Integer.toString(this.getValeur()), x+23, y+18);
 				}
 				else{
 					g.setFont(fonteBase);
-					g.setColor(Color.black);
+					g.setColor(new Color(15,5,107));
 					g.drawString("a", x+13, y+27);
-					g.setColor(Color.GREEN.darker().darker());
+					g.setColor(Color.black);
 					g.setFont(fontePuissance);
 					g.drawString("-"+Integer.toString(this.getValeur()), x+23, y+18);
 				}
@@ -153,17 +153,17 @@ public class Marque implements Serializable
 			{
 				if(codeCouleur == 0){
 					g.setFont(fonteBase);
-					g.setColor(Color.black);
+					g.setColor(new Color(15,5,107));
 					g.drawString("a", x+13, y+27);
-					g.setColor(Color.RED);
+					g.setColor(Color.black);
 					g.setFont(fontePuissance);
 					g.drawString(Integer.toString(this.getValeur()), x+23, y+18);
 				}
 				else{
 					g.setFont(fonteBase);
-					g.setColor(Color.black);
+					g.setColor(new Color(15,5,107));
 					g.drawString("a", x+13, y+27);
-					g.setColor(Color.GREEN.darker().darker());
+					g.setColor(Color.black);
 					g.setFont(fontePuissance);
 					g.drawString("-"+Integer.toString(this.getValeur()), x+23, y+18);
 				}
@@ -172,17 +172,17 @@ public class Marque implements Serializable
 			{
 				if(codeCouleur == 0){
 					g.setFont(fonteBase);
-					g.setColor(Color.black);
+					g.setColor(new Color(15,5,107));
 					g.drawString("a", x+13, y+27);
-					g.setColor(Color.RED);
+					g.setColor(Color.black);
 					g.setFont(fontePuissance);
 					g.drawString(Integer.toString(this.getValeur()), x+23, y+18);
 				}
 				else{
 					g.setFont(fonteBase);
-					g.setColor(Color.black);
+					g.setColor(new Color(15,5,107));
 					g.drawString("a", x+13, y+27);
-					g.setColor(Color.GREEN.darker().darker());
+					g.setColor(Color.black);
 					g.setFont(fontePuissance);
 					g.drawString("-"+Integer.toString(this.getValeur()), x+23, y+18);
 				}
@@ -191,36 +191,36 @@ public class Marque implements Serializable
 			{
 				if(codeCouleur == 0){
 					g.setFont(fonteBase);
-					g.setColor(Color.black);
+					g.setColor(new Color(15,5,107));
 					g.drawString("a", x+13, y+27);
-					g.setColor(Color.RED);
+					g.setColor(Color.black);
 					g.setFont(fontePuissance);
 					g.drawString(Integer.toString(this.getValeur()), x+23, y+18);
 				}
 				else{
 					g.setFont(fonteBase);
-					g.setColor(Color.black);
+					g.setColor(new Color(15,5,107));
 					g.drawString("a", x+13, y+27);
-					g.setColor(Color.GREEN.darker().darker());
 					g.setFont(fontePuissance);
+					g.setColor(Color.black);
 					g.drawString("-"+Integer.toString(this.getValeur()), x+23, y+18);
 				}
 			}
 			else if (this.getValeur() != 0){
 				if(codeCouleur == 0){
 					g.setFont(fonteBase);
-					g.setColor(Color.black);
+					g.setColor(new Color(15,5,107));
 					g.drawString("a", x+13, y+27);
-					g.setColor(Color.RED);
 					g.setFont(fontePuissance);
+					g.setColor(Color.black);
 					g.drawString(Integer.toString(this.getValeur()), x+23, y+18);
 				}
 				else{
 					g.setFont(fonteBase);
-					g.setColor(Color.black);
+					g.setColor(new Color(15,5,107));
 					g.drawString("a", x+13, y+27);
-					g.setColor(Color.GREEN.darker().darker());
 					g.setFont(fontePuissance);
+					g.setColor(Color.black);
 					g.drawString("-"+Integer.toString(this.getValeur()), x+23, y+18);
 				}
 			}
@@ -245,10 +245,8 @@ public class Marque implements Serializable
 			
 			
 			if (this.getCouleur().equals(Couleur.ROUGE)){
-				g.setColor(Color.RED);
 			}
 			else if (this.getCouleur().equals(Couleur.VERT)){
-				g.setColor(Color.GREEN.darker().darker());
 				codeCouleur = 1;
 			}
 	
@@ -258,18 +256,18 @@ public class Marque implements Serializable
 			{
 				if(codeCouleur == 0){
 					g.setFont(fonteBase);
-					g.setColor(Color.black);
+					g.setColor(new Color(15,5,107));
 					g.drawString(Integer.toString(10), x+4, y+30);
-					g.setColor(Color.RED);
 					g.setFont(fontePuissance);
+					g.setColor(Color.black);
 					g.drawString(Integer.toString(this.getValeur()), x+25, y+18);
 				}
 				else{
 					g.setFont(fonteBase);
-					g.setColor(Color.black);
+					g.setColor(new Color(15,5,107));
 					g.drawString(Integer.toString(10), x+4, y+30);
-					g.setColor(Color.GREEN.darker().darker());
 					g.setFont(fontePuissance);
+					g.setColor(Color.black);
 					g.drawString("-"+Integer.toString(this.getValeur()), x+25, y+18);
 				}
 			}
@@ -277,18 +275,18 @@ public class Marque implements Serializable
 			{
 				if(codeCouleur == 0){
 					g.setFont(fonteBase);
-					g.setColor(Color.black);
+					g.setColor(new Color(15,5,107));
 					g.drawString(Integer.toString(10), x+4, y+30);
-					g.setColor(Color.RED);
 					g.setFont(fontePuissance);
+					g.setColor(Color.black);
 					g.drawString(Integer.toString(this.getValeur()), x+25, y+18);
 				}
 				else{
 					g.setFont(fonteBase);
-					g.setColor(Color.black);
+					g.setColor(new Color(15,5,107));
 					g.drawString(Integer.toString(10), x+4, y+30);
-					g.setColor(Color.GREEN.darker().darker());
 					g.setFont(fontePuissance);
+					g.setColor(Color.black);
 					g.drawString("-"+Integer.toString(this.getValeur()), x+25, y+18);
 				}
 			}
@@ -296,18 +294,18 @@ public class Marque implements Serializable
 			{
 				if(codeCouleur == 0){
 					g.setFont(fonteBase);
-					g.setColor(Color.black);
+					g.setColor(new Color(15,5,107));
 					g.drawString(Integer.toString(10), x+4, y+30);
-					g.setColor(Color.RED);
 					g.setFont(fontePuissance);
+					g.setColor(Color.black);
 					g.drawString(Integer.toString(this.getValeur()), x+25, y+18);
 				}
 				else{
 					g.setFont(fonteBase);
-					g.setColor(Color.black);
+					g.setColor(new Color(15,5,107));
 					g.drawString(Integer.toString(10), x+4, y+30);
-					g.setColor(Color.GREEN.darker().darker());
 					g.setFont(fontePuissance);
+					g.setColor(Color.black);
 					g.drawString("-"+Integer.toString(this.getValeur()), x+25, y+18);
 				}
 			}
@@ -315,18 +313,18 @@ public class Marque implements Serializable
 			{
 				if(codeCouleur == 0){
 					g.setFont(fonteBase);
-					g.setColor(Color.black);
+					g.setColor(new Color(15,5,107));
 					g.drawString(Integer.toString(10), x+4, y+30);
-					g.setColor(Color.RED);
 					g.setFont(fontePuissance);
+					g.setColor(Color.black);
 					g.drawString(Integer.toString(this.getValeur()), x+25, y+18);
 				}
 				else{
 					g.setFont(fonteBase);
-					g.setColor(Color.black);
+					g.setColor(new Color(15,5,107));
 					g.drawString(Integer.toString(10), x+4, y+30);
-					g.setColor(Color.GREEN.darker().darker());
 					g.setFont(fontePuissance);
+					g.setColor(Color.black);
 					g.drawString("-"+Integer.toString(this.getValeur()), x+25, y+18);
 				}
 			}
@@ -334,36 +332,36 @@ public class Marque implements Serializable
 			{
 				if(codeCouleur == 0){
 					g.setFont(fonteBase);
-					g.setColor(Color.black);
+					g.setColor(new Color(15,5,107));
 					g.drawString(Integer.toString(10), x+4, y+30);
-					g.setColor(Color.RED);
+					g.setColor(Color.black);
 					g.setFont(fontePuissance);
 					g.drawString(Integer.toString(this.getValeur()), x+25, y+18);
 				}
 				else{
 					g.setFont(fonteBase);
-					g.setColor(Color.black);
+					g.setColor(new Color(15,5,107));
 					g.drawString(Integer.toString(10), x+4, y+30);
-					g.setColor(Color.GREEN.darker().darker());
 					g.setFont(fontePuissance);
+					g.setColor(Color.black);
 					g.drawString("-"+Integer.toString(this.getValeur()), x+25, y+18);
 				}
 			}
 			else if (this.getValeur() != 0){
 				if(codeCouleur == 0){
 					g.setFont(fonteBase);
-					g.setColor(Color.black);
+					g.setColor(new Color(15,5,107));
 					g.drawString(Integer.toString(10), x+4, y+30);
-					g.setColor(Color.RED);
+					g.setColor(Color.black);
 					g.setFont(fontePuissance);
 					g.drawString(Integer.toString(this.getValeur()), x+25, y+18);
 				}
 				else{
 					g.setFont(fonteBase);
-					g.setColor(Color.black);
+					g.setColor(new Color(15,5,107));
 					g.drawString(Integer.toString(10), x+4, y+30);
-					g.setColor(Color.GREEN.darker().darker());
 					g.setFont(fontePuissance);
+					g.setColor(Color.black);
 					g.drawString("-"+Integer.toString(this.getValeur()), x+25, y+18);
 				}
 			}
@@ -391,10 +389,8 @@ public class Marque implements Serializable
 			
 			
 			if (this.getCouleur().equals(Couleur.ROUGE)){
-				g.setColor(Color.RED);
 			}
 			else if (this.getCouleur().equals(Couleur.VERT)){
-				g.setColor(Color.GREEN.darker().darker());
 				codeCouleur = 1;
 			}
 	

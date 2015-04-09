@@ -60,13 +60,11 @@ public class Panneau extends JPanel
 		bas.setBackground(new Color(245, 220, 180));
 		gauche.setBackground(new Color(245, 220, 180));
 		droit.setBackground(new Color(245, 220, 180));
-		droit.setPreferredSize(new Dimension(40,40));
 		this.add(haut,BorderLayout.NORTH);
 		this.add(bas,BorderLayout.SOUTH);
 		this.add(gauche,BorderLayout.WEST);
 		this.add(droit,BorderLayout.EAST);
 		this.add(plateau,BorderLayout.CENTER);
-		
 		
 	}
 	
