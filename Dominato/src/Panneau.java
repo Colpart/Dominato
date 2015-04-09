@@ -56,10 +56,10 @@ public class Panneau extends JPanel
 		this.plateau = new AffichagePlateau(partie,this.compt);
 		BorderLayout bl = new BorderLayout();
 		this.setLayout(bl);
-		haut.setBackground(Color.DARK_GRAY);
-		bas.setBackground(Color.DARK_GRAY);
-		gauche.setBackground(Color.DARK_GRAY);
-		droit.setBackground(Color.DARK_GRAY);
+		haut.setBackground(new Color(245, 220, 180));
+		bas.setBackground(new Color(245, 220, 180));
+		gauche.setBackground(new Color(245, 220, 180));
+		droit.setBackground(new Color(245, 220, 180));
 		this.add(haut,BorderLayout.NORTH);
 		this.add(bas,BorderLayout.SOUTH);
 		this.add(gauche,BorderLayout.WEST);

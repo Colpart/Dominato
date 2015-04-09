@@ -285,7 +285,7 @@ public class Fenetre extends JFrame
 			
 			
 			boolean[] type = {true,false};
-			partie = new Partie(2,type,3,2);
+			partie = new Partie(2,type,0,2);
 			dominoWest = new AffichageDominosWest(partie);
 			dominoEst = new AffichageDominosEst(partie);
 			affJoueurs = new AffichageJoueurs(partie);
