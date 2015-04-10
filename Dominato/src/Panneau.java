@@ -1,6 +1,8 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 
 import javax.swing.JButton;
@@ -127,7 +129,13 @@ public class Panneau extends JPanel
 
 	public void paint(Graphics g)
 	{
-		this.paintComponents(g);		
+		this.paintComponents(g);
+		if(this.partie.estTerminee()){
+	    	this.removeMouseListener(this.controleur);
+	    	this.removeMouseMotionListener(this.controleur);
+	    	this.removeMouseWheelListener(this.controleur);
+	    	this.plateau.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+	    }
 	}
 	
 }
