@@ -314,15 +314,12 @@ public class Dialog extends JDialog {
 				}
 				
 				tranche22.setEnabled(false);
+				tranche22.setSelected(false);
 				
 			}
 			if(tranche1.isSelected()){
-				tranche12.setEnabled(false);
 				if(!tranche22.isEnabled()){
 					tranche22.setEnabled(true);
-				}
-				if(tranche12.isSelected()){
-					tranche22.setSelected(true);
 				}
 			}
 			

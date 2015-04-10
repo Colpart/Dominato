@@ -30,7 +30,9 @@ public class AffichageDominoHorizental extends JPanel implements MouseListener{
 		zoom = false;
 		this.partie = partie;
 		mainJoueur1 = this.partie.getJoueur(0).getJeu();
-		mainJoueur2 = this.partie.getJoueur(1).getJeu();
+		if(this.partie.getNbJoueurs() !=1){
+			mainJoueur2 = this.partie.getJoueur(1).getJeu();
+		}
 		dominoPose = false;
 		indiceListener = 0;
 		this.addMouseListener(this);
@@ -57,10 +59,12 @@ public class AffichageDominoHorizental extends JPanel implements MouseListener{
 				}
 			}
 		}else{
+			if(this.partie.getNbJoueurs() !=1){
 			for(Domino d : this.mainJoueur2){
 				if(d.equals(domino)){
 					return true;
 				}
+			}
 			}
 		}
 		return false;
@@ -69,9 +73,16 @@ public class AffichageDominoHorizental extends JPanel implements MouseListener{
 	public void paint(Graphics g){
 		this.dominoPose = dominoPose(this.domino);
 		if(!this.appartientJoueurCourant(domino)){
-			if(this.partie.getJoueur(0).getJeu().contains(domino) || this.partie.getJoueur(1).getJeu().contains(domino)){
-				domino.getMarque1().draw(g, 0, 0,this.partie.getAffichage());
-				domino.getMarque2().draw(g, 40, 0,this.partie.getAffichage());
+			if(this.partie.getNbJoueurs() !=1){
+				if(this.partie.getJoueur(0).getJeu().contains(domino) || this.partie.getJoueur(1).getJeu().contains(domino)){
+					domino.getMarque1().draw(g, 0, 0,this.partie.getAffichage());
+					domino.getMarque2().draw(g, 40, 0,this.partie.getAffichage());
+				}
+			}else{
+				if(this.partie.getJoueur(0).getJeu().contains(domino)){
+					domino.getMarque1().draw(g, 0, 0,this.partie.getAffichage());
+					domino.getMarque2().draw(g, 40, 0,this.partie.getAffichage());
+				}
 			}
 			this.removeMouseListener(this);
 			indiceListener = 1;
@@ -112,7 +123,8 @@ public class AffichageDominoHorizental extends JPanel implements MouseListener{
 			if(this.partie.getJoueur(0).getJeu().contains(d)){
 				return false;
 			}
-			else if(this.partie.getJoueur(1).getJeu().contains(d)){
+			
+			else if(this.partie.getNbJoueurs() !=1 && this.partie.getJoueur(1).getJeu().contains(d)){
 				return false;
 			}
 			else{

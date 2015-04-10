@@ -21,7 +21,11 @@ public class AffichageDominosEst extends JPanel {
 		this.setPreferredSize(new Dimension(200,this.getHeight()));
 		this.adh = new ArrayList<AffichageDominoHorizental>();
 		this.dominos = new ArrayList<Domino>();
-		init();
+		if(this.partie.getNbJoueurs() !=1){
+			init();
+		}else{
+			init1();
+		}
 	}
 	
 	public void init(){
@@ -33,6 +37,18 @@ public class AffichageDominosEst extends JPanel {
 		
 		for(int i = 0;i<adh.size();i++){
 			this.add(adh.get(i),i);
+		}
+	}
+	
+	public void init1(){
+		
+		for (Domino d : this.partie.getJoueur(0).getJeu()){
+			adh.add(new AffichageDominoHorizental(this.partie,d));
+			dominos.add(d);
+		}
+		
+		for(int i = 16;i<adh.size();i++){
+			this.add(adh.get(i),i-16);
 		}
 	}
 	

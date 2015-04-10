@@ -428,10 +428,13 @@ public class BoutonListenerM4 implements ActionListener{
 				
 			}catch(NumberFormatException e){}
 			
-			if(res == 20){
+			if(res == 10){
+				boolean[] type = {true};
+				lancerPartie(type,d.getAffichage(),d.getNiveau());
+			}
+			else if(res == 20){
 				boolean[] type = {true,true};
 				lancerPartie(type,d.getAffichage(),d.getNiveau());
-				System.out.print(d.getAffichage());
 			}
 			
 			else if(res == 30){
