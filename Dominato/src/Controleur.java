@@ -463,14 +463,16 @@ class Controleur extends MouseAdapter
 							
 								if (!this.partie.estTerminee())
 								{
-									if (this.partie.nbLiaisons(x, y) == 1){
-										this.partie.getJoueurCourant().ajouterAuScore(10);
-									}
-									else if (this.partie.nbLiaisons(x, y) == 2){
-										this.partie.getJoueurCourant().ajouterAuScore(20);
-									}
-									else if (this.partie.nbLiaisons(x, y) == 3){
-										this.partie.getJoueurCourant().ajouterAuScore(40);
+									if(this.partie.getNbJoueurs() == 1){
+										if (this.partie.nbLiaisons(x, y) == 1){
+											this.partie.getJoueurCourant().ajouterAuScore(10);
+										}
+										else if (this.partie.nbLiaisons(x, y) == 2){
+											this.partie.getJoueurCourant().ajouterAuScore(20);
+										}
+										else if (this.partie.nbLiaisons(x, y) == 3){
+											this.partie.getJoueurCourant().ajouterAuScore(40);
+										}
 									}
 									this.partie.dernierCoupPasse(false);
 									if (this.partie.nbLiaisons(x, y) <= 1)

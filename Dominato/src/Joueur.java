@@ -37,7 +37,9 @@ public class Joueur implements Serializable
 	
 	public void penaliser()
 	{
-		this.score--;
+		
+		this.score++;
+		
 	}
 	
 	public void ajouterAuScore(int nbPoints)
